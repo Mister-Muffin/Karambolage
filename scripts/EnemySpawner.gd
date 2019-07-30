@@ -18,5 +18,8 @@ func _on_timer_timeout():
 	spawn()
 
 func spawn():
-	get_node("container").add_child(enemy.instance())
+	#var canvasLayer = $container.get_parent().get_parent()
+	var lol = 1
+	$container.add_child(enemy.instance())
 	GLOBALS.enemys = GLOBALS.enemys + 1
+	var lol2 = 2

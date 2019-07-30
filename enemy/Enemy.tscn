@@ -7,12 +7,11 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28, 28 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=2]
 size = 70
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "axclamMark"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:text")
 tracks/0/interp = 1
@@ -38,7 +37,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "question"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:text")
@@ -65,13 +64,13 @@ tracks/1/keys = {
 "values": [ Color( 1, 0.796078, 0, 1 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=5]
 radius = 300.0
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 31, 30 )
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=7]
 radius = 392.02
 
 [node name="Enemy" type="KinematicBody2D" groups=[
@@ -95,15 +94,15 @@ margin_left = -28.0
 margin_top = -131.0
 margin_right = 32.0
 margin_bottom = -30.0
-custom_fonts/font = SubResource( 7 )
-custom_colors/font_color = Color( 1, 0.796078, 0, 1 )
-text = "?"
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "!"
 align = 1
 valign = 1
 
 [node name="animPlayer" type="AnimationPlayer" parent="ExclamationMark"]
-anims/axclamMark = SubResource( 2 )
-anims/question = SubResource( 5 )
+anims/axclamMark = SubResource( 3 )
+anims/question = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
@@ -121,7 +120,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detectingArea"]
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="collsisionArea" type="Area2D" parent="."]
 editor/display_folded = true
@@ -131,7 +130,7 @@ __meta__ = {
 }
 
 [node name="mainCollisionShape" type="CollisionShape2D" parent="collsisionArea"]
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -144,7 +143,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="warningArea"]
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 [connection signal="body_entered" from="detectingArea" to="." method="_on_detectingArea_body_entered"]
 [connection signal="body_exited" from="detectingArea" to="." method="_on_detectingArea_body_exited"]
 [connection signal="body_entered" from="collsisionArea" to="." method="_on_collsisionArea_body_entered"]

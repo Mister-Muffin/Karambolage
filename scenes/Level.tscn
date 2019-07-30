@@ -209,7 +209,9 @@ texture = ExtResource( 3 )
 color = Color( 0, 0, 0, 1 )
 mode = 3
 
-[node name="letter_countdown" type="CenterContainer" parent="."]
+[node name="LetterCountdownLayer" type="CanvasLayer" parent="."]
+
+[node name="letter_countdown" type="CenterContainer" parent="LetterCountdownLayer"]
 editor/display_folded = true
 visible = false
 light_mask = 2
@@ -217,14 +219,14 @@ margin_left = 1140.0
 margin_right = 1240.0
 margin_bottom = 100.0
 
-[node name="progressBar" type="TextureProgress" parent="letter_countdown"]
+[node name="progressBar" type="TextureProgress" parent="LetterCountdownLayer/letter_countdown"]
 light_mask = 2
 margin_right = 100.0
 margin_bottom = 100.0
 texture_progress = ExtResource( 9 )
 fill_mode = 4
 
-[node name="letterLabel" type="Label" parent="letter_countdown"]
+[node name="letterLabel" type="Label" parent="LetterCountdownLayer/letter_countdown"]
 light_mask = 2
 margin_left = 35.0
 margin_top = 20.0
@@ -233,11 +235,10 @@ margin_bottom = 80.0
 custom_fonts/font = SubResource( 5 )
 text = "R"
 
-[node name="timer" type="Timer" parent="letter_countdown"]
+[node name="timer" type="Timer" parent="LetterCountdownLayer/letter_countdown"]
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="infoLabel" type="Label" parent="CanvasLayer"]
 light_mask = 2
@@ -249,10 +250,10 @@ margin_right = -21.0
 margin_bottom = 111.0
 custom_fonts/font = SubResource( 6 )
 text = "Q: Quit
-R: Reset"
+R: Reset
+M: Menu"
 
 [node name="infoLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="infoPanel" type="Control" parent="infoLayer"]
 margin_left = 1930.0
@@ -371,14 +372,14 @@ margin_top = 10.0
 margin_right = 104.0
 margin_bottom = 105.0
 custom_fonts/font = SubResource( 11 )
-text = "10"
+text = "0"
 align = 1
 script = ExtResource( 15 )
 
 [node name="Timer" type="Timer" parent="labelTime"]
 autostart = true
 [connection signal="timeout" from="time survived/timer" to="time survived" method="_on_timer_timeout"]
-[connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="LetterCountdownLayer/letter_countdown/timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnContinue" to="canvasPauseMenu/pauseMenu" method="_on_btnContinue_pressed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnExit" to="canvasPauseMenu/pauseMenu" method="_on_btnExit_pressed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnQuit" to="canvasPauseMenu/pauseMenu" method="_on_btnQuit_pressed"]
