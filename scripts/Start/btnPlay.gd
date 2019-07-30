@@ -1,6 +1,7 @@
 extends Control
 
 var entered = false
+#var parent = self.get_parent()
 
 export var title = "Play"
 export var description = ""
@@ -14,6 +15,11 @@ func _ready():
 
 func _on_Area2D_area_shape_entered(area_id, area, area_shape, self_shape):
 	if not entered && area.name == "Mouse":
+		var lay = get_parent().layer
+		var jft = 0
+		get_parent().layer = 2
+		lay = get_parent().layer
+		jft = 0
 		$animPlayer.play("anim")
 		entered = true
 
@@ -22,6 +28,7 @@ func _on_Area2D_area_shape_exited(area_id, area, area_shape, self_shape):
 	if entered && area.name == "Mouse":
 		$animPlayer.play_backwards("anim")
 		entered = false
+		get_parent().layer = 1
 
 
 func _on_button_pressed():
