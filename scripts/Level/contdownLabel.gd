@@ -10,3 +10,4 @@ func _process(delta):
 	if not GLOBALS.countDown:
 		get_node("animPlayer").stop(true)
 		self.visible = false
+		#
