@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/Background.gd" type="Script" id=1]
+[ext_resource path="res://background.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "loop"
+length = 9.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0.447059 ), Color( 1, 0.470588, 0, 0.447059 ), Color( 1, 0.74902, 0, 0.447059 ), Color( 0.592157, 1, 0, 0.447059 ), Color( 0.0784314, 1, 0, 0.447059 ), Color( 0, 1, 0.952941, 0.447059 ), Color( 0, 0.552941, 1, 0.447059 ), Color( 0.12549, 0, 1, 0.447059 ), Color( 0.992157, 0, 1, 0.447059 ), Color( 1, 0, 0.631373, 0.447059 ) ]
+}
+
+[node name="ColorRect" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0, 0, 0.447059 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 2
+
+[node name="animPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 0.25
+anims/loop = SubResource( 1 )

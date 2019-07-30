@@ -1,0 +1,385 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
+[ext_resource path="res://Level.tres" type="Animation" id=2]
+[ext_resource path="res://background.png" type="Texture" id=3]
+[ext_resource path="res://BabelStoneModern.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://scripts/Level/contdownLabel.gd" type="Script" id=5]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://light.png" type="Texture" id=7]
+[ext_resource path="res://scenes/EnemySpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://progress.png" type="Texture" id=9]
+[ext_resource path="res://scripts/Level/totalEnemysLabel.gd" type="Script" id=10]
+[ext_resource path="res://scripts/Level/pauseManager.gd" type="Script" id=11]
+[ext_resource path="res://scenes/closeopenAnim.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=14]
+[ext_resource path="res://scripts/Level/labelTime.gd" type="Script" id=15]
+
+[sub_resource type="DynamicFont" id=1]
+size = 200
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=2]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "3", "2", "1", "0" ]
+}
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 4 )
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Label
+
+var timeSurvived = 0
+
+func _on_timer_timeout():
+	timeSurvived = timeSurvived + 1
+	text = String (timeSurvived)"
+
+[sub_resource type="DynamicFont" id=5]
+size = 50
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=8]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1920, 150 ), Vector2( 1470, 150 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../canvasLayerPause/colorRectPause:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.784314 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../canvasLayerPause/colorRectPause:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.00860383, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -313.25, 0 ), Vector2( -319.2, 0 ), Vector2( 10, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="DynamicFont" id=10]
+size = 50
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 80
+font_data = ExtResource( 4 )
+
+[node name="Level" type="Control"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0, 0, 0.447059 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="animPlayer" type="AnimationPlayer" parent="ColorRect"]
+playback_speed = 0.06
+anims/colorLoop = ExtResource( 2 )
+
+[node name="background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="countDownCanvas" type="CanvasLayer" parent="."]
+
+[node name="contdownLabel" type="Label" parent="countDownCanvas"]
+visible = false
+light_mask = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -59.0
+margin_top = 303.0
+margin_right = 59.0
+margin_bottom = 538.0
+rect_pivot_offset = Vector2( 59, 117 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 1
+script = ExtResource( 5 )
+
+[node name="animPlayer" type="AnimationPlayer" parent="countDownCanvas/contdownLabel"]
+anims/countdown = SubResource( 2 )
+
+[node name="time survived" type="Label" parent="."]
+editor/display_folded = true
+light_mask = 2
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 1789.0
+margin_top = 10.0
+margin_right = 1910.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+script = SubResource( 4 )
+
+[node name="timer" type="Timer" parent="time survived"]
+autostart = true
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 865, 544 )
+
+[node name="Light2D" type="Light2D" parent="Player"]
+visible = false
+texture = ExtResource( 7 )
+texture_scale = 3.0
+
+[node name="EnemySpawner" parent="." instance=ExtResource( 8 )]
+
+[node name="Light2D" type="Light2D" parent="."]
+visible = false
+position = Vector2( 960, 540 )
+scale = Vector2( 32, 18 )
+texture = ExtResource( 3 )
+color = Color( 0, 0, 0, 1 )
+mode = 3
+
+[node name="letter_countdown" type="CenterContainer" parent="."]
+editor/display_folded = true
+visible = false
+light_mask = 2
+margin_left = 1140.0
+margin_right = 1240.0
+margin_bottom = 100.0
+
+[node name="progressBar" type="TextureProgress" parent="letter_countdown"]
+light_mask = 2
+margin_right = 100.0
+margin_bottom = 100.0
+texture_progress = ExtResource( 9 )
+fill_mode = 4
+
+[node name="letterLabel" type="Label" parent="letter_countdown"]
+light_mask = 2
+margin_left = 35.0
+margin_top = 20.0
+margin_right = 65.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 5 )
+text = "R"
+
+[node name="timer" type="Timer" parent="letter_countdown"]
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="infoLabel" type="Label" parent="CanvasLayer"]
+light_mask = 2
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -211.0
+margin_top = 12.0
+margin_right = -21.0
+margin_bottom = 111.0
+custom_fonts/font = SubResource( 6 )
+text = "Q: Quit
+R: Reset"
+
+[node name="infoLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="infoPanel" type="Control" parent="infoLayer"]
+margin_left = 1930.0
+margin_top = 120.0
+margin_right = 2380.0
+margin_bottom = 220.0
+
+[node name="background" type="ColorRect" parent="infoLayer/infoPanel"]
+light_mask = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.454902, 0.454902, 0.454902, 0.784314 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="totalEnemysLabel" type="Label" parent="infoLayer/infoPanel"]
+light_mask = 2
+margin_right = 144.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 7 )
+text = "Monster: 100"
+script = ExtResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="infoLayer/infoPanel"]
+anims/inout = SubResource( 8 )
+
+[node name="pauseManager" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 11 )
+
+[node name="closeAnim" parent="." instance=ExtResource( 12 )]
+
+[node name="fullscreenControl" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Border" parent="." instance=ExtResource( 13 )]
+
+[node name="canvasLayerPause" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="colorRectPause" type="ColorRect" parent="canvasLayerPause"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+
+[node name="canvasPauseMenu" type="CanvasLayer" parent="."]
+
+[node name="pauseMenu" type="Control" parent="canvasPauseMenu"]
+pause_mode = 2
+anchor_bottom = 1.0
+margin_left = -313.25
+margin_right = -3.24963
+script = ExtResource( 14 )
+
+[node name="animPlayer" type="AnimationPlayer" parent="canvasPauseMenu/pauseMenu"]
+anims/anim = SubResource( 9 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="canvasPauseMenu/pauseMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="btnContinue" type="Button" parent="canvasPauseMenu/pauseMenu/VBoxContainer"]
+margin_top = 393.0
+margin_right = 310.0
+margin_bottom = 459.0
+focus_mode = 0
+custom_fonts/font = SubResource( 10 )
+enabled_focus_mode = 0
+text = "Continue"
+flat = true
+
+[node name="spacer" type="Control" parent="canvasPauseMenu/pauseMenu/VBoxContainer"]
+margin_top = 463.0
+margin_right = 310.0
+margin_bottom = 503.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="btnExit" type="Button" parent="canvasPauseMenu/pauseMenu/VBoxContainer"]
+margin_top = 507.0
+margin_right = 310.0
+margin_bottom = 573.0
+focus_mode = 0
+custom_fonts/font = SubResource( 10 )
+enabled_focus_mode = 0
+text = "Exit"
+flat = true
+
+[node name="spacer2" type="Control" parent="canvasPauseMenu/pauseMenu/VBoxContainer"]
+margin_top = 577.0
+margin_right = 310.0
+margin_bottom = 617.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="btnQuit" type="Button" parent="canvasPauseMenu/pauseMenu/VBoxContainer"]
+margin_top = 621.0
+margin_right = 310.0
+margin_bottom = 687.0
+focus_mode = 0
+custom_fonts/font = SubResource( 10 )
+enabled_focus_mode = 0
+text = "Quit"
+flat = true
+
+[node name="labelTime" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 104.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 11 )
+text = "10"
+align = 1
+script = ExtResource( 15 )
+
+[node name="Timer" type="Timer" parent="labelTime"]
+autostart = true
+[connection signal="timeout" from="time survived/timer" to="time survived" method="_on_timer_timeout"]
+[connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnContinue" to="canvasPauseMenu/pauseMenu" method="_on_btnContinue_pressed"]
+[connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnExit" to="canvasPauseMenu/pauseMenu" method="_on_btnExit_pressed"]
+[connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnQuit" to="canvasPauseMenu/pauseMenu" method="_on_btnQuit_pressed"]
+[connection signal="timeout" from="labelTime/Timer" to="labelTime" method="_on_Timer_timeout"]
