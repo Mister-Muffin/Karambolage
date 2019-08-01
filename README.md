@@ -3,4 +3,4 @@
 ### A game by [MarkusMCPEGamer](https://github.com/MarkusMCPEGamer "GitHub") created with the Godot Game Engine
 
 
-Participants: [MarkusMCPEGamer](https://github.com/MarkusMCPEGamer "GitHub"), [DaKie206](https://github.com/DaKie206 "GitHub")
+Collaborators: [MarkusMCPEGamer](https://github.com/MarkusMCPEGamer "GitHub"), [DaKie206](https://github.com/DaKie206 "GitHub")
