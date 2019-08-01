@@ -19,6 +19,7 @@ func _on_btnContinue_pressed():
 
 
 func _on_btnExit_pressed():
+	get_tree().paused = false
 	get_tree().change_scene("res://scenes/Start.tscn")
 
 

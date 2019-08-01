@@ -2,13 +2,13 @@
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Level.tres" type="Animation" id=2]
-[ext_resource path="res://background.png" type="Texture" id=3]
-[ext_resource path="res://BabelStoneModern.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://textures/background.png" type="Texture" id=3]
+[ext_resource path="res://fonts/BabelStoneModern.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scripts/Level/contdownLabel.gd" type="Script" id=5]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://light.png" type="Texture" id=7]
+[ext_resource path="res://textures/light.png" type="Texture" id=7]
 [ext_resource path="res://scenes/EnemySpawner.tscn" type="PackedScene" id=8]
-[ext_resource path="res://progress.png" type="Texture" id=9]
+[ext_resource path="res://textures/progress.png" type="Texture" id=9]
 [ext_resource path="res://scripts/Level/totalEnemysLabel.gd" type="Script" id=10]
 [ext_resource path="res://scripts/Level/pauseManager.gd" type="Script" id=11]
 [ext_resource path="res://scenes/closeopenAnim.tscn" type="PackedScene" id=12]
@@ -153,6 +153,7 @@ __meta__ = {
 }
 
 [node name="countDownCanvas" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="contdownLabel" type="Label" parent="countDownCanvas"]
 visible = false
@@ -192,6 +193,7 @@ script = SubResource( 4 )
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
+editor/display_folded = true
 position = Vector2( 865, 544 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
@@ -237,7 +239,6 @@ text = "R"
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="infoLabel" type="Label" parent="CanvasLayer"]
 light_mask = 2
@@ -249,7 +250,8 @@ margin_right = -21.0
 margin_bottom = 111.0
 custom_fonts/font = SubResource( 6 )
 text = "Q: Quit
-R: Reset"
+R: Reset
+M: Menu"
 
 [node name="infoLayer" type="CanvasLayer" parent="."]
 editor/display_folded = true

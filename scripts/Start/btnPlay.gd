@@ -14,12 +14,14 @@ func _ready():
 
 func _on_Area2D_area_shape_entered(area_id, area, area_shape, self_shape):
 	if not entered && area.name == "Mouse":
+		get_parent().layer = 2
 		$animPlayer.play("anim")
 		entered = true
 
 
 func _on_Area2D_area_shape_exited(area_id, area, area_shape, self_shape):
 	if entered && area.name == "Mouse":
+		get_parent().layer = 1
 		$animPlayer.play_backwards("anim")
 		entered = false
 
