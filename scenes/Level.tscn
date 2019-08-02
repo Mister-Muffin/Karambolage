@@ -147,7 +147,7 @@ margin_right = 59.0
 margin_bottom = 538.0
 rect_pivot_offset = Vector2( 59, 117 )
 custom_fonts/font = SubResource( 1 )
-text = "0"
+text = "3"
 align = 1
 script = ExtResource( 4 )
 
@@ -175,6 +175,7 @@ autostart = true
 position = Vector2( 865, 544 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
+visible = false
 texture = ExtResource( 6 )
 texture_scale = 3.5
 energy = 1.5
@@ -183,6 +184,7 @@ mode = 2
 [node name="EnemySpawner" parent="." instance=ExtResource( 7 )]
 
 [node name="Light2D" type="Light2D" parent="."]
+visible = false
 position = Vector2( 960, 540 )
 scale = Vector2( 32, 18 )
 texture = ExtResource( 8 )

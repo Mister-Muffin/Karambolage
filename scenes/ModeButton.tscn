@@ -154,7 +154,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -1.69277e-05, -2.71797e-05 )
+position = Vector2( -1.69277e-005, -2.71797e-005 )
 shape = SubResource( 4 )
 
 [node name="TextureRect2" type="TextureRect" parent="."]
