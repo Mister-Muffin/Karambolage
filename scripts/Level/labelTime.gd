@@ -12,4 +12,4 @@ func _process(delta):
 func _on_Timer_timeout():
 	time = time + 1
 	if GLOBALS.cave == true:
-		get_node("../../Player/Light2D").texture_scale += 0.1
+		get_node("../Player/Light2D").texture_scale += 0.1
