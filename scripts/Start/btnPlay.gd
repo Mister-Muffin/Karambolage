@@ -29,6 +29,7 @@ func _on_Area2D_area_shape_exited(area_id, area, area_shape, self_shape):
 func _on_button_pressed():
 	if mode == "Cave": GLOBALS.cave = true
 	if mode == "Fast": GLOBALS.fast = true
-	if not mode == "Cave": GLOBALS.cave = false
-	else: GLOBALS.cave = false
+	if mode == "Normal": 
+		GLOBALS.fast = false
+		GLOBALS.cave = false
 	get_tree().change_scene(ScenePath)

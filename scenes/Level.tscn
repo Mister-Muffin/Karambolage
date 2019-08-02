@@ -1,13 +1,13 @@
 [gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
-[ext_resource path="res://Level.tres" type="Animation" id=2]
-[ext_resource path="res://textures/background.png" type="Texture" id=3]
-[ext_resource path="res://fonts/BabelStoneModern.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://scripts/Level/contdownLabel.gd" type="Script" id=5]
-[ext_resource path="res://player/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://textures/light.png" type="Texture" id=7]
-[ext_resource path="res://scenes/EnemySpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fonts/BabelStoneModern.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scripts/Level/contdownLabel.gd" type="Script" id=4]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://textures/light.png" type="Texture" id=6]
+[ext_resource path="res://scenes/EnemySpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://textures/background.png" type="Texture" id=8]
 [ext_resource path="res://textures/progress.png" type="Texture" id=9]
 [ext_resource path="res://scripts/Level/totalEnemysLabel.gd" type="Script" id=10]
 [ext_resource path="res://scripts/Level/pauseManager.gd" type="Script" id=11]
@@ -18,7 +18,7 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 200
-font_data = ExtResource( 4 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=2]
 length = 3.0
@@ -37,7 +37,7 @@ tracks/0/keys = {
 
 [sub_resource type="DynamicFont" id=3]
 size = 50
-font_data = ExtResource( 4 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="GDScript" id=4]
 script/source = "extends Label
@@ -50,15 +50,15 @@ func _on_timer_timeout():
 
 [sub_resource type="DynamicFont" id=5]
 size = 50
-font_data = ExtResource( 4 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 40
-font_data = ExtResource( 4 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 20
-font_data = ExtResource( 4 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=8]
 length = 0.5
@@ -116,11 +116,11 @@ tracks/2/keys = {
 
 [sub_resource type="DynamicFont" id=10]
 size = 50
-font_data = ExtResource( 4 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=11]
 size = 80
-font_data = ExtResource( 4 )
+font_data = ExtResource( 3 )
 
 [node name="Level" type="Control"]
 margin_right = 1920.0
@@ -130,27 +130,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 1, 0, 0, 0.447059 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="animPlayer" type="AnimationPlayer" parent="ColorRect"]
-playback_speed = 0.06
-anims/colorLoop = ExtResource( 2 )
-
-[node name="background" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 3 )
-expand = true
-stretch_mode = 2
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Background" parent="." instance=ExtResource( 2 )]
 
 [node name="countDownCanvas" type="CanvasLayer" parent="."]
 editor/display_folded = true
@@ -170,7 +150,7 @@ rect_pivot_offset = Vector2( 59, 117 )
 custom_fonts/font = SubResource( 1 )
 text = "0"
 align = 1
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="countDownCanvas/contdownLabel"]
 anims/countdown = SubResource( 2 )
@@ -192,22 +172,22 @@ script = SubResource( 4 )
 [node name="timer" type="Timer" parent="time survived"]
 autostart = true
 
-[node name="Player" parent="." instance=ExtResource( 6 )]
+[node name="Player" parent="." instance=ExtResource( 5 )]
 editor/display_folded = true
 position = Vector2( 865, 544 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
 visible = false
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 texture_scale = 3.0
 
-[node name="EnemySpawner" parent="." instance=ExtResource( 8 )]
+[node name="EnemySpawner" parent="." instance=ExtResource( 7 )]
 
 [node name="Light2D" type="Light2D" parent="."]
 visible = false
 position = Vector2( 960, 540 )
 scale = Vector2( 32, 18 )
-texture = ExtResource( 3 )
+texture = ExtResource( 8 )
 color = Color( 0, 0, 0, 1 )
 mode = 3
 
