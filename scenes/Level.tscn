@@ -8,13 +8,13 @@
 [ext_resource path="res://textures/light.png" type="Texture" id=6]
 [ext_resource path="res://scenes/EnemySpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://textures/background.png" type="Texture" id=8]
-[ext_resource path="res://textures/progress.png" type="Texture" id=9]
-[ext_resource path="res://scripts/Level/totalEnemysLabel.gd" type="Script" id=10]
-[ext_resource path="res://scripts/Level/pauseManager.gd" type="Script" id=11]
-[ext_resource path="res://scenes/closeopenAnim.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=14]
-[ext_resource path="res://scripts/Level/labelTime.gd" type="Script" id=15]
+[ext_resource path="res://scripts/Level/labelTime.gd" type="Script" id=9]
+[ext_resource path="res://textures/progress.png" type="Texture" id=10]
+[ext_resource path="res://scripts/Level/totalEnemysLabel.gd" type="Script" id=11]
+[ext_resource path="res://scripts/Level/pauseManager.gd" type="Script" id=12]
+[ext_resource path="res://scenes/closeopenAnim.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 size = 200
@@ -47,6 +47,10 @@ var timeSurvived = 0
 func _on_timer_timeout():
 	timeSurvived = timeSurvived + 1
 	text = String (timeSurvived)"
+
+[sub_resource type="DynamicFont" id=11]
+size = 80
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 50
@@ -118,10 +122,6 @@ tracks/2/keys = {
 size = 50
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=11]
-size = 80
-font_data = ExtResource( 3 )
-
 [node name="Level" type="Control"]
 margin_right = 1920.0
 margin_bottom = 1080.0
@@ -133,7 +133,6 @@ __meta__ = {
 [node name="Background" parent="." instance=ExtResource( 2 )]
 
 [node name="countDownCanvas" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="contdownLabel" type="Label" parent="countDownCanvas"]
 visible = false
@@ -173,23 +172,38 @@ script = SubResource( 4 )
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-editor/display_folded = true
 position = Vector2( 865, 544 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
-visible = false
 texture = ExtResource( 6 )
-texture_scale = 3.0
+texture_scale = 3.5
+energy = 1.5
+mode = 2
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 7 )]
 
 [node name="Light2D" type="Light2D" parent="."]
-visible = false
 position = Vector2( 960, 540 )
 scale = Vector2( 32, 18 )
 texture = ExtResource( 8 )
 color = Color( 0, 0, 0, 1 )
 mode = 3
+
+[node name="LabelTimerLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="labelTimer" type="Label" parent="LabelTimerLayer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 104.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 11 )
+text = "0"
+align = 1
+script = ExtResource( 9 )
+
+[node name="Timer" type="Timer" parent="LabelTimerLayer/labelTimer"]
+autostart = true
 
 [node name="letter_countdown" type="CenterContainer" parent="."]
 editor/display_folded = true
@@ -203,7 +217,7 @@ margin_bottom = 100.0
 light_mask = 2
 margin_right = 100.0
 margin_bottom = 100.0
-texture_progress = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
 fill_mode = 4
 
 [node name="letterLabel" type="Label" parent="letter_countdown"]
@@ -224,14 +238,12 @@ one_shot = true
 light_mask = 2
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -211.0
-margin_top = 12.0
-margin_right = -21.0
-margin_bottom = 111.0
+margin_left = -263.258
+margin_top = 23.3604
+margin_right = -24.2576
+margin_bottom = 78.3604
 custom_fonts/font = SubResource( 6 )
-text = "Q: Quit
-R: Reset
-M: Menu"
+text = "esc: Pause"
 
 [node name="infoLayer" type="CanvasLayer" parent="."]
 editor/display_folded = true
@@ -257,16 +269,16 @@ margin_right = 144.0
 margin_bottom = 24.0
 custom_fonts/font = SubResource( 7 )
 text = "Monster: 100"
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="infoLayer/infoPanel"]
 anims/inout = SubResource( 8 )
 
 [node name="pauseManager" type="Node" parent="."]
 pause_mode = 2
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 
-[node name="closeAnim" parent="." instance=ExtResource( 12 )]
+[node name="closeAnim" parent="." instance=ExtResource( 13 )]
 
 [node name="fullscreenControl" type="Control" parent="."]
 anchor_right = 1.0
@@ -277,10 +289,11 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" parent="." instance=ExtResource( 13 )]
+[node name="Border" parent="." instance=ExtResource( 14 )]
 
 [node name="canvasLayerPause" type="CanvasLayer" parent="."]
 editor/display_folded = true
+layer = 3
 
 [node name="colorRectPause" type="ColorRect" parent="canvasLayerPause"]
 visible = false
@@ -289,13 +302,14 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )
 
 [node name="canvasPauseMenu" type="CanvasLayer" parent="."]
+layer = 4
 
 [node name="pauseMenu" type="Control" parent="canvasPauseMenu"]
 pause_mode = 2
 anchor_bottom = 1.0
 margin_left = -313.25
 margin_right = -3.24963
-script = ExtResource( 14 )
+script = ExtResource( 15 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="canvasPauseMenu/pauseMenu"]
 anims/anim = SubResource( 9 )
@@ -346,22 +360,9 @@ custom_fonts/font = SubResource( 10 )
 enabled_focus_mode = 0
 text = "Quit"
 flat = true
-
-[node name="labelTime" type="Label" parent="."]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 104.0
-margin_bottom = 105.0
-custom_fonts/font = SubResource( 11 )
-text = "10"
-align = 1
-script = ExtResource( 15 )
-
-[node name="Timer" type="Timer" parent="labelTime"]
-autostart = true
 [connection signal="timeout" from="time survived/timer" to="time survived" method="_on_timer_timeout"]
+[connection signal="timeout" from="LabelTimerLayer/labelTimer/Timer" to="LabelTimerLayer/labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnContinue" to="canvasPauseMenu/pauseMenu" method="_on_btnContinue_pressed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnExit" to="canvasPauseMenu/pauseMenu" method="_on_btnExit_pressed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnQuit" to="canvasPauseMenu/pauseMenu" method="_on_btnQuit_pressed"]
-[connection signal="timeout" from="labelTime/Timer" to="labelTime" method="_on_Timer_timeout"]
