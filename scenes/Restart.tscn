@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://fonts/BabelStoneModern.ttf" type="DynamicFontData" id=1]
 
@@ -7,18 +7,34 @@ script/source = "extends Control
 
 func _ready():
 	GLOBALS.enemys = 0
-
+#	set_process(true)
 #func _on_Timer_timeout(): get_tree().change_scene(\"res://scenes/Level.tscn\")
 
+#func _process(delta):
+#	if Input.is_action_just_pressed(\"ui_r\"):
+#		restart()
+#	if Input.is_action_just_pressed(\"ui_e\"):
+#		exit()
+
 func _on_btnRestart_pressed():
-	get_tree().change_scene(\"res://scenes/Level.tscn\")
+	restart()
 	
 func _on_btnETMenu_pressed():
+	exit()
+	
+func restart():
+	get_tree().change_scene(\"res://scenes/Level.tscn\")
+	
+func exit():
 	get_tree().change_scene(\"res://scenes/Start.tscn\")"
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=5]
 
@@ -26,13 +42,16 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=7]
 
-[sub_resource type="StyleBoxEmpty" id=8]
-
-[sub_resource type="StyleBoxEmpty" id=3]
-
-[sub_resource type="DynamicFont" id=4]
-size = 32
+[sub_resource type="DynamicFont" id=8]
+size = 35
 font_data = ExtResource( 1 )
+
+[sub_resource type="InputEventKey" id=13]
+pressed = true
+scancode = 82
+
+[sub_resource type="ShortCut" id=14]
+shortcut = SubResource( 13 )
 
 [sub_resource type="StyleBoxEmpty" id=9]
 
@@ -42,10 +61,19 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=12]
 
+[sub_resource type="InputEventKey" id=15]
+scancode = 69
+
+[sub_resource type="ShortCut" id=16]
+shortcut = SubResource( 15 )
+
 [node name="Restart" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_left = 0.5
@@ -81,30 +109,32 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="btnRestart" type="Button" parent="CanvasLayer"]
-margin_left = 690.0
+margin_left = 660.0
 margin_top = 590.0
-margin_right = 901.0
+margin_right = 871.0
 margin_bottom = 650.0
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 7 )
-custom_styles/disabled = SubResource( 8 )
-custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 4 )
-text = "restart"
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+shortcut = SubResource( 14 )
+text = "restart (r)"
 
 [node name="btnETMenu" type="Button" parent="CanvasLayer"]
-margin_left = 1010.0
+margin_left = 940.0
 margin_top = 590.0
-margin_right = 1259.0
+margin_right = 1266.0
 margin_bottom = 650.0
 custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/focus = SubResource( 11 )
 custom_styles/disabled = SubResource( 12 )
-custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 4 )
-text = "exit to menu"
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+shortcut = SubResource( 16 )
+text = "exit to menu (e)"
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/btnRestart" to="." method="_on_btnRestart_pressed"]
 [connection signal="pressed" from="CanvasLayer/btnETMenu" to="." method="_on_btnETMenu_pressed"]

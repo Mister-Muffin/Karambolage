@@ -48,23 +48,23 @@ func _on_timer_timeout():
 	timeSurvived = timeSurvived + 1
 	text = String (timeSurvived)"
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=5]
 size = 80
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 50
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 size = 40
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=8]
 size = 20
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
@@ -79,8 +79,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1920, 150 ), Vector2( 1470, 150 ) ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "anim"
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("../../canvasLayerPause/colorRectPause:color")
 tracks/0/interp = 1
@@ -118,7 +117,7 @@ tracks/2/keys = {
 "values": [ Vector2( -313.25, 0 ), Vector2( -319.2, 0 ), Vector2( 10, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=11]
 size = 50
 font_data = ExtResource( 3 )
 
@@ -196,7 +195,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = 104.0
 margin_bottom = 105.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 5 )
 text = "0"
 align = 1
 script = ExtResource( 9 )
@@ -225,7 +224,7 @@ margin_left = 35.0
 margin_top = 20.0
 margin_right = 65.0
 margin_bottom = 80.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "R"
 
 [node name="timer" type="Timer" parent="letter_countdown"]
@@ -241,7 +240,7 @@ margin_left = -263.258
 margin_top = 23.3604
 margin_right = -24.2576
 margin_bottom = 78.3604
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 text = "esc: Pause"
 
 [node name="infoLayer" type="CanvasLayer" parent="."]
@@ -266,12 +265,12 @@ __meta__ = {
 light_mask = 2
 margin_right = 144.0
 margin_bottom = 24.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 text = "Monster: 100"
 script = ExtResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="infoLayer/infoPanel"]
-anims/inout = SubResource( 8 )
+anims/inout = SubResource( 9 )
 
 [node name="pauseManager" type="Node" parent="."]
 pause_mode = 2
@@ -311,7 +310,7 @@ margin_right = -3.24963
 script = ExtResource( 15 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="canvasPauseMenu/pauseMenu"]
-anims/anim = SubResource( 9 )
+anims/anim = SubResource( 10 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="canvasPauseMenu/pauseMenu"]
 anchor_right = 1.0
@@ -323,7 +322,7 @@ margin_top = 393.0
 margin_right = 310.0
 margin_bottom = 459.0
 focus_mode = 0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 enabled_focus_mode = 0
 text = "Continue"
 flat = true
@@ -339,7 +338,7 @@ margin_top = 507.0
 margin_right = 310.0
 margin_bottom = 573.0
 focus_mode = 0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 enabled_focus_mode = 0
 text = "Exit"
 flat = true
@@ -355,7 +354,7 @@ margin_top = 621.0
 margin_right = 310.0
 margin_bottom = 687.0
 focus_mode = 0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 enabled_focus_mode = 0
 text = "Quit"
 flat = true
