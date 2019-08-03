@@ -120,7 +120,7 @@ custom_styles/disabled = SubResource( 6 )
 custom_styles/normal = SubResource( 7 )
 custom_fonts/font = SubResource( 8 )
 shortcut = SubResource( 14 )
-text = "restart (r)"
+text = "restart [r]"
 
 [node name="btnETMenu" type="Button" parent="CanvasLayer"]
 margin_left = 940.0
@@ -134,7 +134,7 @@ custom_styles/disabled = SubResource( 12 )
 custom_styles/normal = SubResource( 7 )
 custom_fonts/font = SubResource( 8 )
 shortcut = SubResource( 16 )
-text = "exit to menu (e)"
+text = "exit to menu [e]"
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/btnRestart" to="." method="_on_btnRestart_pressed"]
 [connection signal="pressed" from="CanvasLayer/btnETMenu" to="." method="_on_btnETMenu_pressed"]
