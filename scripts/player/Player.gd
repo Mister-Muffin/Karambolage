@@ -27,10 +27,9 @@ func _physics_process(null):
 		GLOBALS.countDown = true
 		yield(get_tree(), "idle_frame")
 	else:
-		get_node("livesLabel").text = "Not Colliding"
-		get_node("timer").stop()
-		GLOBALS.countDown = false
-	
+		$livesLabel.text = "Not Colliding"
+		$timer.stop()
+		GLOBALS.countDown = false	
 #	if collision_info:
 #		if collision_info.collider.name == "Enemy":
 #			get_node("livesLabel").text = "Colliding"

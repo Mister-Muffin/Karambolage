@@ -1,7 +1,5 @@
 extends Control
 
-var DOWN = Input.is_action_pressed("ui_s")
-
 var contCancel = false
 
 func _ready():
@@ -11,8 +9,6 @@ func _ready():
 	else:
 		get_node("Player/Light2D").visible = false
 		get_node("Light2D").visible = false
-
-	$ColorRect/animPlayer.play("colorLoop")
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
