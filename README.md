@@ -1,4 +1,4 @@
-# [KARAMBOLAGE](https://markusmcpegamer.github.io/Karambolage "GitHub Page")
+# [KARAMBOLAGE](https://markusmcpegamer.github.io/Karambolage "GitHub Webpage")
 
 ### A game by [MarkusMCPEGamer](https://github.com/MarkusMCPEGamer "GitHub") created with the Godot Game Engine
 
