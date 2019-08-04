@@ -23,5 +23,3 @@ func _unhandled_key_input(event):
 
 func _on_btnQuit_pressed():
 	get_tree().quit()
-	
-	##s
