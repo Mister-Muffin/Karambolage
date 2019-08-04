@@ -78,22 +78,31 @@ tracks/0/keys = {
 "values": [ Vector2( 1920, 150 ), Vector2( 1470, 150 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=10]
 resource_name = "close"
-tracks/0/type = "value"
-tracks/0/path = NodePath("rectUp:rect_position")
-tracks/0/interp = 2
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("rectUp:rect_position:x")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 0.6, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, -1080 ), Vector2( 0, 0 ), Vector2( 0, -100 ), Vector2( 0, 0 ) ]
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("rectUp:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( -1100, -0.25, 0, 0.249953, 557.712, 0.0066036, -0.247483, -543.961, 0.111944, -162.137, -280.018, -0.0835409, -3.05176e-005, 0.0766261, 0.00537109, -0.0250216, -0.106958, -175.011, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.497895, 0.850947, 1.19992 )
 }
 
-[sub_resource type="GDScript" id=13]
+[sub_resource type="GDScript" id=11]
 script/source = "extends AnimationPlayer
 
 func _on_animPlayer_animation_finished(anim_name):
@@ -104,7 +113,7 @@ func _on_Player_end_game():
 	play(\"close\")
 "
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=12]
 tracks/0/type = "value"
 tracks/0/path = NodePath("../../canvasLayerPause/colorRectPause:color")
 tracks/0/interp = 1
@@ -142,7 +151,7 @@ tracks/2/keys = {
 "values": [ Vector2( -313.25, 0 ), Vector2( -319.2, 0 ), Vector2( 10, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=13]
 size = 50
 font_data = ExtResource( 3 )
 
@@ -306,13 +315,13 @@ script = ExtResource( 12 )
 [node name="closeAnim" type="CanvasLayer" parent="."]
 
 [node name="rectUp" type="ColorRect" parent="closeAnim"]
-margin_top = -1080.0
+margin_top = -1100.0
 margin_right = 1920.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="closeAnim"]
-anims/close = SubResource( 12 )
-script = SubResource( 13 )
+anims/close = SubResource( 10 )
+script = SubResource( 11 )
 
 [node name="fullscreenControl" type="Control" parent="."]
 anchor_right = 1.0
@@ -347,7 +356,7 @@ margin_right = -3.24963
 script = ExtResource( 14 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="canvasPauseMenu/pauseMenu"]
-anims/anim = SubResource( 10 )
+anims/anim = SubResource( 12 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="canvasPauseMenu/pauseMenu"]
 anchor_right = 1.0
@@ -359,7 +368,7 @@ margin_top = 393.0
 margin_right = 310.0
 margin_bottom = 459.0
 focus_mode = 0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 13 )
 enabled_focus_mode = 0
 text = "Continue"
 flat = true
@@ -375,7 +384,7 @@ margin_top = 507.0
 margin_right = 310.0
 margin_bottom = 573.0
 focus_mode = 0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 13 )
 enabled_focus_mode = 0
 text = "Exit"
 flat = true
@@ -391,7 +400,7 @@ margin_top = 621.0
 margin_right = 310.0
 margin_bottom = 687.0
 focus_mode = 0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 13 )
 enabled_focus_mode = 0
 text = "Quit"
 flat = true
