@@ -3,10 +3,9 @@
 [ext_resource path="res://scripts/Background.gd" type="Script" id=1]
 [ext_resource path="res://textures/background.png" type="Texture" id=2]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "loop"
-length = 9.0
+length = 10.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:color")
