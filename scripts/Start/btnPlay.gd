@@ -9,8 +9,13 @@ export (String, "Normal", "Cave", "Fast") var mode
 export var ScenePath = "res://scenes/Level.tscn"
 
 func _ready():
+	set_process(true)
 	$title.text = title
 	$mode.text = "-" + description + "-"
+
+func _process(delta):
+	if get_node("../../../../Main").visible: visible = true
+	else: visible = false
 
 func _on_Area2D_area_shape_entered(area_id, area, area_shape, self_shape):
 	if not entered && area.name == "Mouse":
