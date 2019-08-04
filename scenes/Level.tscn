@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -12,9 +12,8 @@
 [ext_resource path="res://textures/progress.png" type="Texture" id=10]
 [ext_resource path="res://scripts/Level/totalEnemysLabel.gd" type="Script" id=11]
 [ext_resource path="res://scripts/Level/pauseManager.gd" type="Script" id=12]
-[ext_resource path="res://scenes/closeopenAnim.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=15]
+[ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 200
@@ -78,6 +77,32 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 1920, 150 ), Vector2( 1470, 150 ) ]
 }
+
+[sub_resource type="Animation" id=12]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/path = NodePath("rectUp:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -1080 ), Vector2( 0, 0 ), Vector2( 0, -100 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="GDScript" id=13]
+script/source = "extends AnimationPlayer
+
+func _on_animPlayer_animation_finished(anim_name):
+	get_tree().change_scene(\"res://scenes/Restart.tscn\")
+
+
+func _on_Player_end_game():
+	play(\"close\")
+"
 
 [sub_resource type="Animation" id=10]
 tracks/0/type = "value"
@@ -191,6 +216,7 @@ color = Color( 0, 0, 0, 1 )
 mode = 3
 
 [node name="labelTimer" type="Label" parent="."]
+editor/display_folded = true
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 104.0
@@ -231,6 +257,7 @@ text = "R"
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="infoLabel" type="Label" parent="CanvasLayer"]
 light_mask = 2
@@ -276,7 +303,16 @@ anims/inout = SubResource( 9 )
 pause_mode = 2
 script = ExtResource( 12 )
 
-[node name="closeAnim" parent="." instance=ExtResource( 13 )]
+[node name="closeAnim" type="CanvasLayer" parent="."]
+
+[node name="rectUp" type="ColorRect" parent="closeAnim"]
+margin_top = -1080.0
+margin_right = 1920.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="animPlayer" type="AnimationPlayer" parent="closeAnim"]
+anims/close = SubResource( 12 )
+script = SubResource( 13 )
 
 [node name="fullscreenControl" type="Control" parent="."]
 anchor_right = 1.0
@@ -287,7 +323,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" parent="." instance=ExtResource( 14 )]
+[node name="Border" parent="." instance=ExtResource( 13 )]
 
 [node name="canvasLayerPause" type="CanvasLayer" parent="."]
 editor/display_folded = true
@@ -300,6 +336,7 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )
 
 [node name="canvasPauseMenu" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 4
 
 [node name="pauseMenu" type="Control" parent="canvasPauseMenu"]
@@ -307,7 +344,7 @@ pause_mode = 2
 anchor_bottom = 1.0
 margin_left = -313.25
 margin_right = -3.24963
-script = ExtResource( 15 )
+script = ExtResource( 14 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="canvasPauseMenu/pauseMenu"]
 anims/anim = SubResource( 10 )
@@ -359,8 +396,11 @@ enabled_focus_mode = 0
 text = "Quit"
 flat = true
 [connection signal="timeout" from="time survived/timer" to="time survived" method="_on_timer_timeout"]
+[connection signal="end_game" from="Player" to="countDownCanvas/contdownLabel" method="_on_Player_end_game"]
+[connection signal="end_game" from="Player" to="closeAnim/animPlayer" method="_on_Player_end_game"]
 [connection signal="timeout" from="labelTimer/Timer" to="labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="closeAnim/animPlayer" to="closeAnim/animPlayer" method="_on_animPlayer_animation_finished"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnContinue" to="canvasPauseMenu/pauseMenu" method="_on_btnContinue_pressed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnExit" to="canvasPauseMenu/pauseMenu" method="_on_btnExit_pressed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnQuit" to="canvasPauseMenu/pauseMenu" method="_on_btnQuit_pressed"]

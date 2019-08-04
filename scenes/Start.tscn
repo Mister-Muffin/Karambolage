@@ -21,17 +21,17 @@ font_data = ExtResource( 4 )
 size = 50
 font_data = ExtResource( 4 )
 
-[sub_resource type="InputEventKey" id=7]
+[sub_resource type="InputEventKey" id=4]
 scancode = 81
 
-[sub_resource type="ShortCut" id=8]
-shortcut = SubResource( 7 )
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 size = 100
 font_data = ExtResource( 4 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:offset")
@@ -70,7 +70,7 @@ tracks/2/keys = {
 "values": [ Vector2( 1770, 465 ), Vector2( 1921, 465 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=8]
 radius = 2.23607
 
 [node name="Start" type="Control"]
@@ -180,7 +180,7 @@ custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 enabled_focus_mode = 0
-shortcut = SubResource( 8 )
+shortcut = SubResource( 5 )
 text = "Quit [q]"
 flat = true
 
@@ -195,7 +195,7 @@ margin_top = -75.0
 margin_right = -14.0
 margin_bottom = 75.0
 focus_mode = 0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 enabled_focus_mode = 0
 text = "->"
 flat = true
@@ -205,7 +205,7 @@ anchor_mode = 0
 current = true
 
 [node name="animPlayer" type="AnimationPlayer" parent="Camera2D"]
-anims/swipe = SubResource( 5 )
+anims/swipe = SubResource( 7 )
 
 [node name="managers" type="Node" parent="."]
 
@@ -216,7 +216,7 @@ script = ExtResource( 6 )
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse"]
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 visible = false
