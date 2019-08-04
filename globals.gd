@@ -8,3 +8,5 @@ var cave = true
 var enemysInCollision = 0
 
 var fast = false
+
+var splashDone = false
