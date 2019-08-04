@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/Start/Start.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -20,6 +20,12 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=3]
 size = 50
 font_data = ExtResource( 4 )
+
+[sub_resource type="InputEventKey" id=7]
+scancode = 81
+
+[sub_resource type="ShortCut" id=8]
+shortcut = SubResource( 7 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 100
@@ -80,10 +86,10 @@ __meta__ = {
 
 [node name="title" type="Label" parent="."]
 anchor_right = 1.0
-margin_left = 4.0
-margin_top = 3.0
-margin_right = -1612.0
-margin_bottom = 40.0
+margin_left = 17.6324
+margin_top = 16.6324
+margin_right = -1496.37
+margin_bottom = 65.6324
 rect_pivot_offset = Vector2( 960, 77 )
 custom_fonts/font = SubResource( 1 )
 text = "Karambolage"
@@ -165,16 +171,17 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -171.17
-margin_top = -101.72
-margin_right = -42.1694
-margin_bottom = -22.7207
+margin_left = -259.78
+margin_top = -94.9042
+margin_right = -14.7804
+margin_bottom = -15.9044
 focus_mode = 0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 enabled_focus_mode = 0
-text = "Quit"
+shortcut = SubResource( 8 )
+text = "Quit [q]"
 flat = true
 
 [node name="btnSwipe" type="Button" parent="."]
