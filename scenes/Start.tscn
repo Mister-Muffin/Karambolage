@@ -1,76 +1,32 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/Start/Start.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://fonts/good times rg.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://fonts/BabelStoneModern.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scenes/ModeButton.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scripts/Start/swipe.gd" type="Script" id=6]
-[ext_resource path="res://scripts/Start/mouse.gd" type="Script" id=7]
-[ext_resource path="res://scenes/TitleButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scripts/Start/mouse.gd" type="Script" id=6]
+[ext_resource path="res://scenes/TitleButton.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 50
+size = 45
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 50
 font_data = ExtResource( 4 )
 
-[sub_resource type="InputEventKey" id=7]
+[sub_resource type="InputEventKey" id=4]
 scancode = 81
 
-[sub_resource type="ShortCut" id=8]
-shortcut = SubResource( 7 )
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
 
-[sub_resource type="DynamicFont" id=4]
-size = 100
-font_data = ExtResource( 4 )
-
-[sub_resource type="Animation" id=5]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 1920, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../btnSwipe:text")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.017539, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ "->", "<-" ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../btnSwipe:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.017539, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1770, 465 ), Vector2( 1921, 465 ) ]
-}
-
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=8]
 radius = 2.23607
 
 [node name="Start" type="Control"]
@@ -126,6 +82,7 @@ enabled_focus_mode = 0
 text = "Autostart"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+editor/display_folded = true
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -134,6 +91,7 @@ margin_bottom = 378.0
 alignment = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="HBoxContainer"]
+editor/display_folded = true
 
 [node name="btnPlay" parent="HBoxContainer/CanvasLayer" instance=ExtResource( 5 )]
 margin_left = 356.0
@@ -143,6 +101,7 @@ margin_bottom = 918.0
 description = "Normal"
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="HBoxContainer"]
+editor/display_folded = true
 
 [node name="btnPlayFast" parent="HBoxContainer/CanvasLayer2" instance=ExtResource( 5 )]
 anchor_left = 0.5
@@ -157,6 +116,7 @@ description = "Fast"
 mode = "Fast"
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="HBoxContainer"]
+editor/display_folded = true
 
 [node name="btnCave" parent="HBoxContainer/CanvasLayer3" instance=ExtResource( 5 )]
 margin_left = 1164.0
@@ -171,52 +131,25 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -259.78
-margin_top = -94.9042
-margin_right = -14.7804
-margin_bottom = -15.9044
+margin_left = -233.0
+margin_top = -69.0
+margin_right = -10.0
+margin_bottom = -10.0
 focus_mode = 0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 enabled_focus_mode = 0
-shortcut = SubResource( 8 )
+shortcut = SubResource( 5 )
 text = "Quit [q]"
 flat = true
 
-[node name="btnSwipe" type="Button" parent="."]
-visible = false
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -144.0
-margin_top = -75.0
-margin_right = -14.0
-margin_bottom = 75.0
-focus_mode = 0
-custom_fonts/font = SubResource( 4 )
-enabled_focus_mode = 0
-text = "->"
-flat = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-current = true
-
-[node name="animPlayer" type="AnimationPlayer" parent="Camera2D"]
-anims/swipe = SubResource( 5 )
-
-[node name="managers" type="Node" parent="."]
-
-[node name="swipe" type="Node" parent="managers"]
+[node name="Mouse" type="Area2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 6 )
 
-[node name="Mouse" type="Area2D" parent="."]
-script = ExtResource( 7 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse"]
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 visible = false
@@ -226,7 +159,6 @@ margin_top = 80.0
 margin_right = -50.0
 margin_bottom = 150.0
 
-[node name="btnPlay" parent="HBoxContainer2" instance=ExtResource( 8 )]
+[node name="btnPlay" parent="HBoxContainer2" instance=ExtResource( 7 )]
 [connection signal="button_down" from="btnCave" to="." method="_on_btnCave_button_down"]
 [connection signal="pressed" from="btnQuit" to="." method="_on_btnQuit_pressed"]
-[connection signal="pressed" from="btnSwipe" to="managers/swipe" method="_on_btnSwipe_pressed"]

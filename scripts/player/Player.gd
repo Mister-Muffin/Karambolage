@@ -4,6 +4,8 @@ const pixelsToMove = 10
 var collision_info
 var speed = 4
 
+signal end_game
+
 func _physics_process(null):
 	
 	GLOBALS.playerPos = global_position 
@@ -42,8 +44,9 @@ func _physics_process(null):
 
 
 func _on_timer_timeout():
-	queue_free()
-	get_tree().change_scene("res://scenes/Restart.tscn")
+	emit_signal("end_game")
+	#queue_free()
+	#get_tree().change_scene("res://scenes/Restart.tscn")
 
 
 func _on_touchUp_pressed():
