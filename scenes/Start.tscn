@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/Start/Start.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://fonts/BabelStoneModern.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scenes/ModeButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/TitleButton.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scripts/Start/mouse.gd" type="Script" id=7]
+[ext_resource path="res://textures/whiteProgress.jpg" type="Texture" id=7]
+[ext_resource path="res://scripts/Start/mouse.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 120
@@ -40,12 +41,6 @@ font_data = ExtResource( 3 )
 [sub_resource type="DynamicFont" id=5]
 size = 45
 font_data = ExtResource( 4 )
-
-[sub_resource type="InputEventKey" id=6]
-scancode = 81
-
-[sub_resource type="ShortCut" id=7]
-shortcut = SubResource( 6 )
 
 [sub_resource type="CircleShape2D" id=8]
 radius = 2.23607
@@ -272,13 +267,24 @@ custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 enabled_focus_mode = 0
-shortcut = SubResource( 7 )
 text = "Quit [q]"
 flat = true
 
+[node name="TextureProgress" type="TextureProgress" parent="btnQuit"]
+visible = false
+margin_left = 143.0
+margin_top = 56.0
+margin_right = 213.0
+margin_bottom = 61.0
+texture_progress = ExtResource( 7 )
+nine_patch_stretch = true
+
+[node name="Timer" type="Timer" parent="btnQuit"]
+wait_time = 0.5
+
 [node name="Mouse" type="Area2D" parent="."]
 editor/display_folded = true
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse"]
 shape = SubResource( 8 )
@@ -286,3 +292,4 @@ shape = SubResource( 8 )
 [node name="animPlayer" type="AnimationPlayer" parent="."]
 anims/switch = SubResource( 9 )
 [connection signal="pressed" from="btnQuit" to="." method="_on_btnQuit_pressed"]
+[connection signal="timeout" from="btnQuit/Timer" to="." method="_on_Timer_timeout"]
