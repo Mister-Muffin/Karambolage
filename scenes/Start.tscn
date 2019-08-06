@@ -42,10 +42,10 @@ font_data = ExtResource( 3 )
 size = 45
 font_data = ExtResource( 4 )
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=6]
 radius = 2.23607
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=7]
 resource_name = "switch"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Splash/title:custom_colors/font_color")
@@ -287,9 +287,9 @@ editor/display_folded = true
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="."]
-anims/switch = SubResource( 9 )
+anims/switch = SubResource( 7 )
 [connection signal="pressed" from="btnQuit" to="." method="_on_btnQuit_pressed"]
 [connection signal="timeout" from="btnQuit/Timer" to="." method="_on_Timer_timeout"]

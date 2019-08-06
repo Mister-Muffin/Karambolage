@@ -20,8 +20,10 @@ func _unhandled_input(event):
 			get_tree().quit()
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_select"): $infoLayer/infoPanel/AnimationPlayer.play("inout")
-	if Input.is_action_just_released("ui_select"): $infoLayer/infoPanel/AnimationPlayer.play_backwards("inout")
+	if Input.is_action_just_pressed("ui_select"):
+		$infoLayer/infoPanel/AnimationPlayer.play("inout")
+	if Input.is_action_just_released("ui_select"):
+		$infoLayer/infoPanel/AnimationPlayer.play_backwards("inout")
 	if Input.is_action_pressed("ui_r") || Input.is_action_pressed("quit") || Input.is_action_pressed("ui_m"):
 		contCancel = true
 		if get_node("letter_countdown/timer").is_stopped(): get_node("letter_countdown/timer").start()
