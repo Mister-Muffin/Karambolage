@@ -24,7 +24,7 @@ func _process(delta):
 				setLabelVisible(false)
 				
 			keyBindingLabel.text = "Esc: Pause"
-			keyBindingAnim.play("slide")
+			keyBindingAnim.play_backwards("slide")
 			GLOBALS.labelVisible = null
 			
 		else:
