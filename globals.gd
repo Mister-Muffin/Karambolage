@@ -15,3 +15,5 @@ var fast = false
 var splashDone = false
 
 var score = 0
+
+var labelVisible
