@@ -45,9 +45,6 @@ func _physics_process(null):
 
 func _on_timer_timeout():
 	emit_signal("end_game")
-	#queue_free()
-	#get_tree().change_scene("res://scenes/Restart.tscn")
-
 
 func _on_touchUp_pressed():
 	GLOBALS.playerPos = global_position 
