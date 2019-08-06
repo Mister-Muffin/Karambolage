@@ -36,19 +36,19 @@ tracks/0/keys = {
 "values": [ "3", "2", "1", "0" ]
 }
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=3]
 size = 80
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=4]
 size = 50
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=5]
 size = 40
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=6]
 resource_name = "blend"
 length = 2.0
 tracks/0/type = "value"
@@ -76,11 +76,11 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=7]
 size = 20
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=8]
 size = 20
 font_data = ExtResource( 3 )
 
@@ -254,7 +254,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = 104.0
 margin_bottom = 105.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
 text = "0"
 align = 1
 script = ExtResource( 9 )
@@ -285,7 +285,7 @@ margin_left = 35.0
 margin_top = 20.0
 margin_right = 65.0
 margin_bottom = 80.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 4 )
 text = "R"
 
 [node name="timer" type="Timer" parent="letter_countdown"]
@@ -302,12 +302,12 @@ margin_left = -249.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = 65.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Esc: Pause"
 
 [node name="animPlayer" type="AnimationPlayer" parent="keyBindingCanvas"]
-anims/blend = SubResource( 15 )
+anims/blend = SubResource( 6 )
 
 [node name="Timer" type="Timer" parent="keyBindingCanvas"]
 wait_time = 10.0
@@ -341,7 +341,7 @@ anchor_bottom = 1.0
 light_mask = 2
 margin_right = 450.0
 margin_bottom = 24.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 7 )
 text = "Monster: N/A"
 script = ExtResource( 12 )
 
@@ -349,7 +349,7 @@ script = ExtResource( 12 )
 margin_top = 28.0
 margin_right = 450.0
 margin_bottom = 52.0
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 8 )
 text = "FPS: N/A"
 script = ExtResource( 13 )
 
@@ -395,11 +395,11 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )
 
 [node name="canvasPauseMenu" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = 4
 
 [node name="pauseMenu" type="Control" parent="canvasPauseMenu"]
 pause_mode = 2
+light_mask = 2
 anchor_bottom = 1.0
 margin_left = -313.25
 margin_right = -3.24963
@@ -409,11 +409,13 @@ script = ExtResource( 16 )
 anims/anim = SubResource( 12 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="canvasPauseMenu/pauseMenu"]
+light_mask = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 alignment = 1
 
 [node name="btnContinue" type="Button" parent="canvasPauseMenu/pauseMenu/VBoxContainer"]
+light_mask = 2
 margin_top = 393.0
 margin_right = 310.0
 margin_bottom = 459.0
@@ -430,6 +432,7 @@ margin_bottom = 503.0
 rect_min_size = Vector2( 0, 40 )
 
 [node name="btnExit" type="Button" parent="canvasPauseMenu/pauseMenu/VBoxContainer"]
+light_mask = 2
 margin_top = 507.0
 margin_right = 310.0
 margin_bottom = 573.0
@@ -446,6 +449,7 @@ margin_bottom = 617.0
 rect_min_size = Vector2( 0, 40 )
 
 [node name="btnQuit" type="Button" parent="canvasPauseMenu/pauseMenu/VBoxContainer"]
+light_mask = 2
 margin_top = 621.0
 margin_right = 310.0
 margin_bottom = 687.0
@@ -454,8 +458,8 @@ custom_fonts/font = SubResource( 13 )
 enabled_focus_mode = 0
 text = "Quit"
 flat = true
-[connection signal="end_game" from="Player" to="closeAnim/animPlayer" method="_on_Player_end_game"]
 [connection signal="end_game" from="Player" to="countDownCanvas/contdownLabel" method="_on_Player_end_game"]
+[connection signal="end_game" from="Player" to="closeAnim/animPlayer" method="_on_Player_end_game"]
 [connection signal="timeout" from="labelTimer/Timer" to="labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="keyBindingCanvas/Timer" to="keyBindingCanvas" method="_on_Timer_timeout"]
