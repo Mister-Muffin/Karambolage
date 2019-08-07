@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -10,12 +10,12 @@
 [ext_resource path="res://textures/background.png" type="Texture" id=8]
 [ext_resource path="res://scripts/Level/labelTime.gd" type="Script" id=9]
 [ext_resource path="res://textures/progress.png" type="Texture" id=10]
-[ext_resource path="res://scripts/Level/keyBindingCanvas.gd" type="Script" id=11]
-[ext_resource path="res://scripts/Level/totalEnemysLabel.gd" type="Script" id=12]
-[ext_resource path="res://scripts/Level/labelFPS.gd" type="Script" id=13]
-[ext_resource path="res://scripts/Level/pauseManager.gd" type="Script" id=14]
-[ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=16]
+[ext_resource path="res://scripts/Level/totalEnemysLabel.gd" type="Script" id=11]
+[ext_resource path="res://scripts/Level/labelFPS.gd" type="Script" id=12]
+[ext_resource path="res://scripts/Level/pauseManager.gd" type="Script" id=13]
+[ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=15]
+[ext_resource path="res://scripts/Level/keyBindingCanvas.gd" type="Script" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 200
@@ -45,46 +45,14 @@ size = 50
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 40
-font_data = ExtResource( 3 )
-
-[sub_resource type="Animation" id=6]
-resource_name = "blend"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("infoLabel:custom_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("infoLabel:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-
-[sub_resource type="DynamicFont" id=7]
 size = 20
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=6]
 size = 20
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
@@ -99,8 +67,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1920, 150 ), Vector2( 1470, 150 ) ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "close"
+[sub_resource type="Animation" id=8]
 length = 1.5
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("rectUp:rect_position:x")
@@ -123,7 +90,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.497895, 0.850947, 1.19992 )
 }
 
-[sub_resource type="GDScript" id=11]
+[sub_resource type="GDScript" id=9]
 script/source = "extends AnimationPlayer
 
 onready var light = get_node(\"../../Player/Light2D\")
@@ -154,7 +121,7 @@ func _on_Tween_tween_completed(object, key):
 	get_tree().change_scene(\"res://scenes/Restart.tscn\")
 "
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("../../canvasLayerPause/colorRectPause:color")
 tracks/0/interp = 1
@@ -192,9 +159,82 @@ tracks/2/keys = {
 "values": [ Vector2( -313.25, 0 ), Vector2( -319.2, 0 ), Vector2( 10, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=11]
 size = 50
 font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 40
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=13]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("infoLabel:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("infoLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("infoLabel:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("infoLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "slide"
+tracks/0/type = "value"
+tracks/0/path = NodePath("infoLabel:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1671, 10 ), Vector2( 1590, 10 ) ]
+}
 
 [node name="Level" type="Control"]
 margin_right = 1920.0
@@ -250,6 +290,7 @@ color = Color( 0, 0, 0, 1 )
 mode = 3
 
 [node name="labelTimer" type="Label" parent="."]
+light_mask = 2
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 104.0
@@ -291,31 +332,7 @@ text = "R"
 [node name="timer" type="Timer" parent="letter_countdown"]
 one_shot = true
 
-[node name="keyBindingCanvas" type="CanvasLayer" parent="."]
-script = ExtResource( 11 )
-
-[node name="infoLabel" type="Label" parent="keyBindingCanvas"]
-light_mask = 2
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -249.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = 65.0
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Esc: Pause"
-
-[node name="animPlayer" type="AnimationPlayer" parent="keyBindingCanvas"]
-anims/blend = SubResource( 6 )
-
-[node name="Timer" type="Timer" parent="keyBindingCanvas"]
-wait_time = 10.0
-one_shot = true
-autostart = true
-
 [node name="infoLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="infoPanel" type="Control" parent="infoLayer"]
 margin_left = 1930.0
@@ -341,26 +358,28 @@ anchor_bottom = 1.0
 light_mask = 2
 margin_right = 450.0
 margin_bottom = 24.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 text = "Monster: N/A"
-script = ExtResource( 12 )
+script = ExtResource( 11 )
 
 [node name="labelFPS" type="Label" parent="infoLayer/infoPanel/container"]
+light_mask = 2
 margin_top = 28.0
 margin_right = 450.0
 margin_bottom = 52.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 6 )
 text = "FPS: N/A"
-script = ExtResource( 13 )
+script = ExtResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="infoLayer/infoPanel"]
-anims/inout = SubResource( 9 )
+anims/inout = SubResource( 7 )
 
 [node name="pauseManager" type="Node" parent="."]
 pause_mode = 2
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 
 [node name="closeAnim" type="CanvasLayer" parent="."]
+layer = 7
 
 [node name="rectUp" type="ColorRect" parent="closeAnim"]
 anchor_right = 1.0
@@ -368,8 +387,8 @@ margin_top = -1100.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="closeAnim"]
-anims/close = SubResource( 10 )
-script = SubResource( 11 )
+anims/close = SubResource( 8 )
+script = SubResource( 9 )
 
 [node name="Tween" type="Tween" parent="closeAnim"]
 
@@ -382,7 +401,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" parent="." instance=ExtResource( 15 )]
+[node name="Border" parent="." instance=ExtResource( 14 )]
 
 [node name="canvasLayerPause" type="CanvasLayer" parent="."]
 editor/display_folded = true
@@ -403,10 +422,10 @@ light_mask = 2
 anchor_bottom = 1.0
 margin_left = -313.25
 margin_right = -3.24963
-script = ExtResource( 16 )
+script = ExtResource( 15 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="canvasPauseMenu/pauseMenu"]
-anims/anim = SubResource( 12 )
+anims/anim = SubResource( 10 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="canvasPauseMenu/pauseMenu"]
 light_mask = 2
@@ -420,7 +439,7 @@ margin_top = 393.0
 margin_right = 310.0
 margin_bottom = 459.0
 focus_mode = 0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 11 )
 enabled_focus_mode = 0
 text = "Continue"
 flat = true
@@ -437,7 +456,7 @@ margin_top = 507.0
 margin_right = 310.0
 margin_bottom = 573.0
 focus_mode = 0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 11 )
 enabled_focus_mode = 0
 text = "Exit"
 flat = true
@@ -454,17 +473,46 @@ margin_top = 621.0
 margin_right = 310.0
 margin_bottom = 687.0
 focus_mode = 0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 11 )
 enabled_focus_mode = 0
 text = "Quit"
 flat = true
+
+[node name="keyBindingCanvas" type="CanvasLayer" parent="."]
+layer = 5
+script = ExtResource( 16 )
+
+[node name="infoLabel" type="Label" parent="keyBindingCanvas"]
+pause_mode = 2
+light_mask = 2
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -249.0
+margin_top = 10.0
+margin_right = 60.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Esc: Pause"
+
+[node name="animPlayer" type="AnimationPlayer" parent="keyBindingCanvas"]
+pause_mode = 2
+anims/blend = SubResource( 13 )
+anims/fadeIn = SubResource( 14 )
+anims/slide = SubResource( 15 )
+
+[node name="Timer" type="Timer" parent="keyBindingCanvas"]
+pause_mode = 2
+wait_time = 10.0
+one_shot = true
+autostart = true
 [connection signal="end_game" from="Player" to="countDownCanvas/contdownLabel" method="_on_Player_end_game"]
 [connection signal="end_game" from="Player" to="closeAnim/animPlayer" method="_on_Player_end_game"]
 [connection signal="timeout" from="labelTimer/Timer" to="labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="keyBindingCanvas/Timer" to="keyBindingCanvas" method="_on_Timer_timeout"]
 [connection signal="animation_finished" from="closeAnim/animPlayer" to="closeAnim/animPlayer" method="_on_animPlayer_animation_finished"]
 [connection signal="tween_completed" from="closeAnim/Tween" to="closeAnim/animPlayer" method="_on_Tween_tween_completed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnContinue" to="canvasPauseMenu/pauseMenu" method="_on_btnContinue_pressed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnExit" to="canvasPauseMenu/pauseMenu" method="_on_btnExit_pressed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnQuit" to="canvasPauseMenu/pauseMenu" method="_on_btnQuit_pressed"]
+[connection signal="timeout" from="keyBindingCanvas/Timer" to="keyBindingCanvas" method="_on_Timer_timeout"]
