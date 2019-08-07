@@ -44,15 +44,15 @@ font_data = ExtResource( 3 )
 size = 50
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=5]
 size = 20
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=6]
 size = 20
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
@@ -67,7 +67,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1920, 150 ), Vector2( 1470, 150 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=8]
 length = 1.5
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("rectUp:rect_position:x")
@@ -86,11 +86,11 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( -1100, -0.25, 0, 0.249953, 557.712, 0.0066036, -0.247483, -543.961, 0.111944, -162.137, -280.018, -0.0835409, -3.05176e-005, 0.0766261, 0.00537109, -0.0250216, -0.106958, -175.011, 0.25, 0 ),
+"points": PoolRealArray( -1100, -0.25, 0, 0.249953, 557.712, 0.0066036, -0.247483, -543.961, 0.111944, -162.137, -280.018, -0.0835409, -3.05176e-05, 0.0766261, 0.00537109, -0.0250216, -0.106958, -175.011, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.497895, 0.850947, 1.19992 )
 }
 
-[sub_resource type="GDScript" id=12]
+[sub_resource type="GDScript" id=9]
 script/source = "extends AnimationPlayer
 
 onready var light = get_node(\"../../Player/Light2D\")
@@ -121,7 +121,7 @@ func _on_Tween_tween_completed(object, key):
 	get_tree().change_scene(\"res://scenes/Restart.tscn\")
 "
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("../../canvasLayerPause/colorRectPause:color")
 tracks/0/interp = 1
@@ -159,16 +159,15 @@ tracks/2/keys = {
 "values": [ Vector2( -313.25, 0 ), Vector2( -319.2, 0 ), Vector2( 10, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=11]
 size = 50
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=12]
 size = 40
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=6]
-resource_name = "blend"
+[sub_resource type="Animation" id=13]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("infoLabel:custom_colors/font_color")
@@ -195,8 +194,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "fadeIn"
+[sub_resource type="Animation" id=14]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("infoLabel:custom_colors/font_color")
@@ -334,7 +332,6 @@ text = "R"
 one_shot = true
 
 [node name="infoLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="infoPanel" type="Control" parent="infoLayer"]
 margin_left = 1930.0
@@ -360,20 +357,21 @@ anchor_bottom = 1.0
 light_mask = 2
 margin_right = 450.0
 margin_bottom = 24.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 5 )
 text = "Monster: N/A"
 script = ExtResource( 11 )
 
 [node name="labelFPS" type="Label" parent="infoLayer/infoPanel/container"]
+light_mask = 2
 margin_top = 28.0
 margin_right = 450.0
 margin_bottom = 52.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 6 )
 text = "FPS: N/A"
 script = ExtResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="infoLayer/infoPanel"]
-anims/inout = SubResource( 10 )
+anims/inout = SubResource( 7 )
 
 [node name="pauseManager" type="Node" parent="."]
 pause_mode = 2
@@ -388,8 +386,8 @@ margin_top = -1100.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="closeAnim"]
-anims/close = SubResource( 11 )
-script = SubResource( 12 )
+anims/close = SubResource( 8 )
+script = SubResource( 9 )
 
 [node name="Tween" type="Tween" parent="closeAnim"]
 
@@ -426,7 +424,7 @@ margin_right = -3.24963
 script = ExtResource( 15 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="canvasPauseMenu/pauseMenu"]
-anims/anim = SubResource( 13 )
+anims/anim = SubResource( 10 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="canvasPauseMenu/pauseMenu"]
 light_mask = 2
@@ -440,7 +438,7 @@ margin_top = 393.0
 margin_right = 310.0
 margin_bottom = 459.0
 focus_mode = 0
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 11 )
 enabled_focus_mode = 0
 text = "Continue"
 flat = true
@@ -457,7 +455,7 @@ margin_top = 507.0
 margin_right = 310.0
 margin_bottom = 573.0
 focus_mode = 0
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 11 )
 enabled_focus_mode = 0
 text = "Exit"
 flat = true
@@ -474,7 +472,7 @@ margin_top = 621.0
 margin_right = 310.0
 margin_bottom = 687.0
 focus_mode = 0
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 11 )
 enabled_focus_mode = 0
 text = "Quit"
 flat = true
@@ -484,6 +482,7 @@ layer = 5
 script = ExtResource( 16 )
 
 [node name="infoLabel" type="Label" parent="keyBindingCanvas"]
+pause_mode = 2
 light_mask = 2
 anchor_left = 1.0
 anchor_right = 1.0
@@ -491,16 +490,18 @@ margin_left = -249.0
 margin_top = 10.0
 margin_right = 60.0
 margin_bottom = 65.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Esc: Pause"
 
 [node name="animPlayer" type="AnimationPlayer" parent="keyBindingCanvas"]
-anims/blend = SubResource( 6 )
-anims/fadeIn = SubResource( 7 )
+pause_mode = 2
+anims/blend = SubResource( 13 )
+anims/fadeIn = SubResource( 14 )
 anims/slide = SubResource( 15 )
 
 [node name="Timer" type="Timer" parent="keyBindingCanvas"]
+pause_mode = 2
 wait_time = 10.0
 one_shot = true
 autostart = true
