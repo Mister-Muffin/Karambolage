@@ -11,13 +11,12 @@ var pressed = false
 func _ready():
 	set_process(true)
 	$Splash/info/animPlayer.play("blend")
-	if GLOBALS.splashDone:
-		$Main.visible = true
-		$Main/title.visible = true
-		$Main/ModeContainer/CanvasLayer/btnPlay.visible = true
-		$Main/ModeContainer/CanvasLayer2/btnPlayFast.visible = true
-		$Main/ModeContainer/CanvasLayer3/btnCave.visible = true
-		$Splash.visible = false
+	$Main.visible = true
+	$Main/title.visible = true
+	$Main/ModeContainer/CanvasLayer/btnPlay.visible = true
+	$Main/ModeContainer/CanvasLayer2/btnPlayFast.visible = true
+	$Main/ModeContainer/CanvasLayer3/btnCave.visible = true
+	$Splash.visible = false
 
 
 func _unhandled_key_input(event):
