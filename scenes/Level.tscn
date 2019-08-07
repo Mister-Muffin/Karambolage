@@ -290,6 +290,7 @@ color = Color( 0, 0, 0, 1 )
 mode = 3
 
 [node name="labelTimer" type="Label" parent="."]
+light_mask = 2
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 104.0
