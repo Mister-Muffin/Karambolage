@@ -47,9 +47,9 @@ func _on_Timer_timeout():
 	
 func switch():
 	$animPlayer.play("switch")
-	$Main.visible = true
-	$Main/title.visible = true
-	$Main/ModeContainer/CanvasLayer/btnPlay.visible = true
-	$Main/ModeContainer/CanvasLayer2/btnPlayFast.visible = true
-	$Main/ModeContainer/CanvasLayer3/btnCave.visible = true
-	$Splash.visible = false
+#	$Main.visible = true
+#	$Main/title.visible = true
+#	$Main/ModeContainer/CanvasLayer/btnPlay.visible = true
+#	$Main/ModeContainer/CanvasLayer2/btnPlayFast.visible = true
+#	$Main/ModeContainer/CanvasLayer3/btnCave.visible = true
+#	$Splash.visible = false
