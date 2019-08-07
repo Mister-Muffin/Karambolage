@@ -178,7 +178,6 @@ uppercase = true
 anims/blend = SubResource( 3 )
 
 [node name="Main" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -188,10 +187,10 @@ __meta__ = {
 [node name="title" type="Label" parent="Main"]
 visible = false
 anchor_right = 1.0
-margin_left = 17.6324
-margin_top = 16.6324
-margin_right = -1496.37
-margin_bottom = 65.6324
+margin_left = 18.1051
+margin_top = 3.95336
+margin_right = -1495.89
+margin_bottom = 52.9534
 rect_pivot_offset = Vector2( 960, 77 )
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
