@@ -3,6 +3,6 @@
 
 ![](https://img.shields.io/github/license/markusmcpegamer/karambolage)
 ![](https://img.shields.io/github/repo-size/markusmcpegamer/karambolage)
-![](https://api.codacy.com/project/badge/Grade/f1df48c8343549d69d7e80b8b6a36cf2)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1a52c7a633704feb85d1d64012798f25)](https://www.codacy.com/app/MarkusMCPEGamer/Karambolage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MarkusMCPEGamer/Karambolage&amp;utm_campaign=Badge_Grade)
 
 Collaborators: [MarkusMCPEGamer](https://github.com/MarkusMCPEGamer "GitHub"), [DaKie206](https://github.com/DaKie206 "GitHub")
