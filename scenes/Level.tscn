@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=15]
 [ext_resource path="res://scripts/Level/keyBindingCanvas.gd" type="Script" id=16]
+[ext_resource path="res://fonts/texgyreheros-regular.otf" type="DynamicFontData" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 size = 200
@@ -188,52 +189,46 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1.9, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true, true, false ]
 }
 
-[sub_resource type="Animation" id=14]
-length = 2.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("infoLabel:custom_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("infoLabel:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
+[sub_resource type="DynamicFont" id=17]
+font_data = ExtResource( 3 )
+fallback/0 = ExtResource( 17 )
 
-[sub_resource type="Animation" id=15]
-resource_name = "slide"
+[sub_resource type="Theme" id=18]
+default_font = SubResource( 17 )
+
+[sub_resource type="Animation" id=16]
+resource_name = "zoom"
+length = 0.3
+step = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("infoLabel:rect_position")
+tracks/0/path = NodePath("confDialog:rect_scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1671, 10 ), Vector2( 1590, 10 ) ]
+"values": [ Vector2( 0.1, 0.1 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("confDialog:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.01, 0.02 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 
 [node name="Level" type="Control"]
@@ -270,7 +265,7 @@ script = ExtResource( 4 )
 anims/countdown = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( 865, 544 )
+position = Vector2( 960, 540 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
 visible = false
@@ -290,6 +285,7 @@ color = Color( 0, 0, 0, 1 )
 mode = 3
 
 [node name="labelTimer" type="Label" parent="."]
+editor/display_folded = true
 light_mask = 2
 margin_left = 10.0
 margin_top = 10.0
@@ -333,6 +329,7 @@ text = "R"
 one_shot = true
 
 [node name="infoLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="infoPanel" type="Control" parent="infoLayer"]
 margin_left = 1930.0
@@ -379,27 +376,22 @@ pause_mode = 2
 script = ExtResource( 13 )
 
 [node name="closeAnim" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 7
 
 [node name="rectUp" type="ColorRect" parent="closeAnim"]
 anchor_right = 1.0
 margin_top = -1100.0
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="animPlayer" type="AnimationPlayer" parent="closeAnim"]
 anims/close = SubResource( 8 )
 script = SubResource( 9 )
 
 [node name="Tween" type="Tween" parent="closeAnim"]
-
-[node name="fullscreenControl" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 1920.0
-margin_bottom = 1080.0
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Border" parent="." instance=ExtResource( 14 )]
 
@@ -498,16 +490,38 @@ text = "Esc: Pause"
 [node name="animPlayer" type="AnimationPlayer" parent="keyBindingCanvas"]
 pause_mode = 2
 anims/blend = SubResource( 13 )
-anims/fadeIn = SubResource( 14 )
-anims/slide = SubResource( 15 )
 
 [node name="Timer" type="Timer" parent="keyBindingCanvas"]
 pause_mode = 2
 wait_time = 10.0
 one_shot = true
 autostart = true
-[connection signal="end_game" from="Player" to="countDownCanvas/contdownLabel" method="_on_Player_end_game"]
+
+[node name="Tween" type="Tween" parent="keyBindingCanvas"]
+pause_mode = 2
+
+[node name="popupLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="confDialog" type="ConfirmationDialog" parent="popupLayer"]
+pause_mode = 2
+light_mask = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 695.5
+margin_top = 447.5
+margin_right = -694.5
+margin_bottom = -447.5
+rect_scale = Vector2( 0.1, 0.1 )
+rect_pivot_offset = Vector2( 265, 92 )
+theme = SubResource( 18 )
+dialog_text = "Möchten sie das Spiel wirklich beenden?"
+
+[node name="animPlayer" type="AnimationPlayer" parent="popupLayer"]
+pause_mode = 2
+anims/zoom = SubResource( 16 )
 [connection signal="end_game" from="Player" to="closeAnim/animPlayer" method="_on_Player_end_game"]
+[connection signal="end_game" from="Player" to="countDownCanvas/contdownLabel" method="_on_Player_end_game"]
 [connection signal="timeout" from="labelTimer/Timer" to="labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="closeAnim/animPlayer" to="closeAnim/animPlayer" method="_on_animPlayer_animation_finished"]
@@ -516,3 +530,5 @@ autostart = true
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnExit" to="canvasPauseMenu/pauseMenu" method="_on_btnExit_pressed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnQuit" to="canvasPauseMenu/pauseMenu" method="_on_btnQuit_pressed"]
 [connection signal="timeout" from="keyBindingCanvas/Timer" to="keyBindingCanvas" method="_on_Timer_timeout"]
+[connection signal="confirmed" from="popupLayer/confDialog" to="canvasPauseMenu/pauseMenu" method="_on_ConfirmationDialog_confirmed"]
+[connection signal="animation_finished" from="popupLayer/animPlayer" to="canvasPauseMenu/pauseMenu" method="_on_animPlayer_animation_finished"]
