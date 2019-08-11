@@ -3,7 +3,7 @@ extends KinematicBody2D
 var detected = false
 
 func _ready():
-	position = Vector2(rand_range(64, 1920 -64), rand_range(64, 1016))
+	position = Vector2(rand_range(64, get_viewport_rect().size.x - 64), rand_range(64, get_viewport_rect().size.y - 64))
 	get_node("ExclamationMark").visible = false
 
 
