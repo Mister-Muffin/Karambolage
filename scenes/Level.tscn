@@ -118,7 +118,6 @@ func _on_Player_end_game():
 
 func _on_Tween_tween_completed(object, key):
 	light.visible = false
-	yield(get_tree().create_timer(0.3, false), \"timeout\")
 	get_tree().change_scene(\"res://scenes/Restart.tscn\")
 "
 
@@ -376,7 +375,6 @@ pause_mode = 2
 script = ExtResource( 13 )
 
 [node name="closeAnim" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = 7
 
 [node name="rectUp" type="ColorRect" parent="closeAnim"]
