@@ -53,12 +53,12 @@ func _on_btnContinue_pressed():
 
 func _on_btnExit_pressed():
 	quit = false
-	popup.visible = true
+	popup.show()
 	popupAnim.play("zoom")
 
 func _on_btnQuit_pressed():
 	quit = true
-	popup.visible = true
+	popup.show()
 	popupAnim.play("zoom")
 
 func _on_ConfirmationDialog_confirmed():
@@ -70,3 +70,12 @@ func _on_ConfirmationDialog_confirmed():
 
 func _on_animPlayer_animation_finished(anim_name):
 	if not get_tree().paused: popup.visible = false
+
+func _on_confDialog_visibility_changed():
+	if not GLOBALS.closeConfirmation && popup.visible:
+		popup.visible = false
+		if quit:
+			get_tree().quit()
+		else:
+			get_tree().paused = false
+			get_tree().change_scene("res://scenes/Start.tscn")

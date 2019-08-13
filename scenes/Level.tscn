@@ -531,4 +531,5 @@ anims/zoom = SubResource( 16 )
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnQuit" to="canvasPauseMenu/pauseMenu" method="_on_btnQuit_pressed"]
 [connection signal="timeout" from="keyBindingCanvas/Timer" to="keyBindingCanvas" method="_on_Timer_timeout"]
 [connection signal="confirmed" from="popupLayer/confDialog" to="canvasPauseMenu/pauseMenu" method="_on_ConfirmationDialog_confirmed"]
+[connection signal="visibility_changed" from="popupLayer/confDialog" to="canvasPauseMenu/pauseMenu" method="_on_confDialog_visibility_changed"]
 [connection signal="animation_finished" from="popupLayer/animPlayer" to="canvasPauseMenu/pauseMenu" method="_on_animPlayer_animation_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/Start/Start.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -6,8 +6,14 @@
 [ext_resource path="res://fonts/BabelStoneModern.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scenes/ModeButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/TitleButton.tscn" type="PackedScene" id=6]
-[ext_resource path="res://textures/whiteProgress.jpg" type="Texture" id=7]
-[ext_resource path="res://scripts/Start/mouse.gd" type="Script" id=8]
+[ext_resource path="res://scripts/Start/sideBoard.gd" type="Script" id=7]
+[ext_resource path="res://scripts/IconButton.gd" type="Script" id=8]
+[ext_resource path="res://textures/black/outline_settings_black_48dp.png" type="Texture" id=9]
+[ext_resource path="res://textures/white/outline_settings_white_48dp.png" type="Texture" id=10]
+[ext_resource path="res://scripts/Start/settingsContainer.gd" type="Script" id=11]
+[ext_resource path="res://themes/sideBoardTheme.tres" type="Theme" id=12]
+[ext_resource path="res://textures/whiteProgress.jpg" type="Texture" id=13]
+[ext_resource path="res://scripts/Start/mouse.gd" type="Script" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 120
@@ -38,15 +44,47 @@ tracks/0/keys = {
 size = 40
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="Animation" id=5]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("icon:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ), ExtResource( 10 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 35, 35 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 348, 540 )
+
+[sub_resource type="DynamicFont" id=8]
 size = 45
 font_data = ExtResource( 4 )
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=9]
 radius = 2.23607
 
-[sub_resource type="Animation" id=7]
-resource_name = "switch"
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Splash/title:custom_colors/font_color")
 tracks/0/interp = 1
@@ -144,6 +182,7 @@ __meta__ = {
 [node name="Background2" parent="." instance=ExtResource( 2 )]
 
 [node name="Splash" type="Control" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 922, 789 )
@@ -207,7 +246,6 @@ margin_bottom = 378.0
 alignment = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Main/ModeContainer"]
-editor/display_folded = true
 
 [node name="btnPlay" parent="Main/ModeContainer/CanvasLayer" instance=ExtResource( 5 )]
 margin_left = 356.0
@@ -232,7 +270,6 @@ description = "Fast"
 mode = "Fast"
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="Main/ModeContainer"]
-editor/display_folded = true
 
 [node name="btnCave" parent="Main/ModeContainer/CanvasLayer3" instance=ExtResource( 5 )]
 margin_left = 1164.0
@@ -253,6 +290,101 @@ margin_bottom = 150.0
 
 [node name="btnPlay" parent="Main/TitleContainer" instance=ExtResource( 6 )]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Main"]
+
+[node name="sideBoard" type="Control" parent="Main/CanvasLayer"]
+margin_left = 1920.0
+margin_right = 2420.0
+margin_bottom = 1080.0
+script = ExtResource( 7 )
+swipeTime = 0.7
+
+[node name="ColorRect" type="ColorRect" parent="Main/CanvasLayer/sideBoard"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 150.0
+color = Color( 0, 0, 0, 0.588235 )
+
+[node name="btnSettings" type="Control" parent="Main/CanvasLayer/sideBoard"]
+margin_left = -70.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( 35, 35 )
+mouse_filter = 1
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="Main/CanvasLayer/sideBoard/btnSettings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="animPlayer" type="AnimationPlayer" parent="Main/CanvasLayer/sideBoard/btnSettings"]
+anims/anim = SubResource( 5 )
+
+[node name="areaButton" type="Area2D" parent="Main/CanvasLayer/sideBoard/btnSettings"]
+position = Vector2( 35, 35 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/CanvasLayer/sideBoard/btnSettings/areaButton"]
+shape = SubResource( 6 )
+
+[node name="icon" type="TextureRect" parent="Main/CanvasLayer/sideBoard/btnSettings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 9 )
+expand = true
+
+[node name="button" type="Button" parent="Main/CanvasLayer/sideBoard/btnSettings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+flat = true
+
+[node name="areaControl" type="Area2D" parent="Main/CanvasLayer/sideBoard"]
+position = Vector2( 175, 540 )
+priority = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/CanvasLayer/sideBoard/areaControl"]
+position = Vector2( 175, 0 )
+shape = SubResource( 7 )
+
+[node name="Tween" type="Tween" parent="Main/CanvasLayer/sideBoard"]
+
+[node name="settingsContainer" type="VBoxContainer" parent="Main/CanvasLayer/sideBoard"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 50.0
+margin_right = -20.0
+margin_bottom = -50.0
+script = ExtResource( 11 )
+
+[node name="closeConfirmationCheck" type="CheckButton" parent="Main/CanvasLayer/sideBoard/settingsContainer"]
+margin_right = 477.0
+margin_bottom = 44.0
+focus_mode = 0
+theme = ExtResource( 12 )
+pressed = true
+enabled_focus_mode = 0
+text = "Confirm close"
+align = 1
+
+[node name="label" type="Label" parent="Main/CanvasLayer/sideBoard/settingsContainer"]
+margin_top = 48.0
+margin_right = 477.0
+margin_bottom = 84.0
+theme = ExtResource( 12 )
+text = "Settings will not be saved!"
+align = 1
+
 [node name="btnQuit" type="Button" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -263,7 +395,7 @@ margin_top = -69.0
 margin_right = -10.0
 margin_bottom = -10.0
 focus_mode = 0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 enabled_focus_mode = 0
@@ -276,7 +408,7 @@ margin_left = 143.0
 margin_top = 56.0
 margin_right = 213.0
 margin_bottom = 61.0
-texture_progress = ExtResource( 7 )
+texture_progress = ExtResource( 13 )
 nine_patch_stretch = true
 
 [node name="Timer" type="Timer" parent="btnQuit"]
@@ -284,12 +416,20 @@ wait_time = 0.5
 
 [node name="Mouse" type="Area2D" parent="."]
 editor/display_folded = true
-script = ExtResource( 8 )
+script = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse"]
-shape = SubResource( 6 )
+shape = SubResource( 9 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="."]
-anims/switch = SubResource( 7 )
+anims/switch = SubResource( 10 )
+[connection signal="area_shape_entered" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard" method="_on_Area2D_area_shape_entered"]
+[connection signal="area_shape_entered" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard/btnSettings" method="_on_areaButton_area_shape_entered"]
+[connection signal="area_shape_exited" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard" method="_on_Area2D_area_shape_exited"]
+[connection signal="area_shape_exited" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard/btnSettings" method="_on_areaButton_area_shape_exited"]
+[connection signal="pressed" from="Main/CanvasLayer/sideBoard/btnSettings/button" to="Main/CanvasLayer/sideBoard/btnSettings" method="_on_button_pressed"]
+[connection signal="area_shape_entered" from="Main/CanvasLayer/sideBoard/areaControl" to="Main/CanvasLayer/sideBoard" method="_on_areaControl_area_shape_entered"]
+[connection signal="area_shape_exited" from="Main/CanvasLayer/sideBoard/areaControl" to="Main/CanvasLayer/sideBoard" method="_on_areaControl_area_shape_exited"]
+[connection signal="toggled" from="Main/CanvasLayer/sideBoard/settingsContainer/closeConfirmationCheck" to="Main/CanvasLayer/sideBoard/settingsContainer" method="_on_closeConfirmationCheck_toggled"]
 [connection signal="pressed" from="btnQuit" to="." method="_on_btnQuit_pressed"]
 [connection signal="timeout" from="btnQuit/Timer" to="." method="_on_Timer_timeout"]

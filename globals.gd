@@ -15,3 +15,6 @@ var fast = false
 var splashDone = false
 
 var score = 0
+
+#settings
+var closeConfirmation = true
