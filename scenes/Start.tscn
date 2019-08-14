@@ -10,8 +10,8 @@
 [ext_resource path="res://scripts/IconButton.gd" type="Script" id=8]
 [ext_resource path="res://textures/black/outline_settings_black_48dp.png" type="Texture" id=9]
 [ext_resource path="res://textures/white/outline_settings_white_48dp.png" type="Texture" id=10]
-[ext_resource path="res://scripts/Start/settingsContainer.gd" type="Script" id=11]
-[ext_resource path="res://themes/sideBoardTheme.tres" type="Theme" id=12]
+[ext_resource path="res://themes/sideBoardTheme.tres" type="Theme" id=11]
+[ext_resource path="res://scripts/Start/settingsContainer.gd" type="Script" id=12]
 [ext_resource path="res://textures/whiteProgress.jpg" type="Texture" id=13]
 [ext_resource path="res://scripts/Start/mouse.gd" type="Script" id=14]
 
@@ -343,11 +343,6 @@ margin_bottom = 32.0
 texture = ExtResource( 9 )
 expand = true
 
-[node name="button" type="Button" parent="Main/CanvasLayer/sideBoard/btnSettings"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-flat = true
-
 [node name="areaControl" type="Area2D" parent="Main/CanvasLayer/sideBoard"]
 position = Vector2( 175, 540 )
 priority = 1.0
@@ -358,6 +353,18 @@ shape = SubResource( 7 )
 
 [node name="Tween" type="Tween" parent="Main/CanvasLayer/sideBoard"]
 
+[node name="label" type="Label" parent="Main/CanvasLayer/sideBoard"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = -102.0
+margin_right = -3.0
+margin_bottom = -66.0
+theme = ExtResource( 11 )
+text = "Settings will not be saved!"
+align = 1
+
 [node name="settingsContainer" type="VBoxContainer" parent="Main/CanvasLayer/sideBoard"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -365,24 +372,16 @@ margin_left = 20.0
 margin_top = 50.0
 margin_right = -20.0
 margin_bottom = -50.0
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 
 [node name="closeConfirmationCheck" type="CheckButton" parent="Main/CanvasLayer/sideBoard/settingsContainer"]
 margin_right = 477.0
 margin_bottom = 44.0
 focus_mode = 0
-theme = ExtResource( 12 )
+theme = ExtResource( 11 )
 pressed = true
 enabled_focus_mode = 0
 text = "Confirm close"
-align = 1
-
-[node name="label" type="Label" parent="Main/CanvasLayer/sideBoard/settingsContainer"]
-margin_top = 48.0
-margin_right = 477.0
-margin_bottom = 84.0
-theme = ExtResource( 12 )
-text = "Settings will not be saved!"
 align = 1
 
 [node name="btnQuit" type="Button" parent="."]
@@ -424,10 +423,7 @@ shape = SubResource( 9 )
 [node name="animPlayer" type="AnimationPlayer" parent="."]
 anims/switch = SubResource( 10 )
 [connection signal="area_shape_entered" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard" method="_on_Area2D_area_shape_entered"]
-[connection signal="area_shape_entered" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard/btnSettings" method="_on_areaButton_area_shape_entered"]
 [connection signal="area_shape_exited" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard" method="_on_Area2D_area_shape_exited"]
-[connection signal="area_shape_exited" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard/btnSettings" method="_on_areaButton_area_shape_exited"]
-[connection signal="pressed" from="Main/CanvasLayer/sideBoard/btnSettings/button" to="Main/CanvasLayer/sideBoard/btnSettings" method="_on_button_pressed"]
 [connection signal="area_shape_entered" from="Main/CanvasLayer/sideBoard/areaControl" to="Main/CanvasLayer/sideBoard" method="_on_areaControl_area_shape_entered"]
 [connection signal="area_shape_exited" from="Main/CanvasLayer/sideBoard/areaControl" to="Main/CanvasLayer/sideBoard" method="_on_areaControl_area_shape_exited"]
 [connection signal="toggled" from="Main/CanvasLayer/sideBoard/settingsContainer/closeConfirmationCheck" to="Main/CanvasLayer/sideBoard/settingsContainer" method="_on_closeConfirmationCheck_toggled"]
