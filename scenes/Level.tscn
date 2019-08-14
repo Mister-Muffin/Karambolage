@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -52,21 +52,6 @@ font_data = ExtResource( 3 )
 [sub_resource type="DynamicFont" id=6]
 size = 20
 font_data = ExtResource( 3 )
-
-[sub_resource type="Animation" id=7]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1920, 150 ), Vector2( 1470, 150 ) ]
-}
 
 [sub_resource type="Animation" id=8]
 length = 1.5
@@ -264,6 +249,7 @@ script = ExtResource( 4 )
 anims/countdown = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
+editor/display_folded = true
 position = Vector2( 960, 540 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
@@ -330,44 +316,47 @@ one_shot = true
 [node name="infoLayer" type="CanvasLayer" parent="."]
 
 [node name="infoPanel" type="Control" parent="infoLayer"]
-margin_left = 1930.0
-margin_top = 120.0
-margin_right = 2330.0
-margin_bottom = 200.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -335.0
+margin_top = -80.0
+margin_right = 335.0
 rect_min_size = Vector2( 450, 0 )
 
 [node name="background" type="ColorRect" parent="infoLayer/infoPanel"]
 light_mask = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -50.0
 color = Color( 0.679688, 0.679688, 0.679688, 0.588235 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="container" type="VBoxContainer" parent="infoLayer/infoPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="totalEnemysLabel" type="Label" parent="infoLayer/infoPanel/container"]
 light_mask = 2
-margin_right = 450.0
-margin_bottom = 24.0
+margin_top = 14.0
+margin_right = 670.0
+margin_bottom = 38.0
 custom_fonts/font = SubResource( 5 )
 text = "Monster: N/A"
 script = ExtResource( 11 )
 
 [node name="labelFPS" type="Label" parent="infoLayer/infoPanel/container"]
 light_mask = 2
-margin_top = 28.0
-margin_right = 450.0
-margin_bottom = 52.0
+margin_top = 42.0
+margin_right = 670.0
+margin_bottom = 66.0
 custom_fonts/font = SubResource( 6 )
 text = "FPS: N/A"
 script = ExtResource( 12 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="infoLayer/infoPanel"]
-anims/inout = SubResource( 7 )
+[node name="Tween" type="Tween" parent="infoLayer/infoPanel"]
 
 [node name="pauseManager" type="Node" parent="."]
 pause_mode = 2
@@ -377,6 +366,7 @@ script = ExtResource( 13 )
 layer = 7
 
 [node name="rectUp" type="ColorRect" parent="closeAnim"]
+visible = false
 anchor_right = 1.0
 margin_top = -1100.0
 color = Color( 0, 0, 0, 1 )
@@ -403,6 +393,7 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )
 
 [node name="canvasPauseMenu" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 4
 
 [node name="pauseMenu" type="Control" parent="canvasPauseMenu"]
@@ -468,6 +459,7 @@ text = "Quit"
 flat = true
 
 [node name="keyBindingCanvas" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 5
 script = ExtResource( 16 )
 
@@ -498,6 +490,7 @@ autostart = true
 pause_mode = 2
 
 [node name="popupLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 5
 
 [node name="confDialog" type="ConfirmationDialog" parent="popupLayer"]
