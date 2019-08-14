@@ -8,8 +8,15 @@ onready var keyBindingLabel = $"../../keyBindingCanvas/infoLabel"
 onready var keyBindingTween = $"../../keyBindingCanvas/Tween"
 onready var keyBindingTimer = $"../../keyBindingCanvas/Timer"
 
+var initPos = Vector2()
+var endPos = Vector2()
+
 func _ready():
 	set_process(true)
+	initPos.x = get_global_rect().position.x
+	initPos.y = get_global_rect().position.y
+	endPos.x = initPos.x + get_global_rect().size.x
+	endPos.y = initPos.y
 
 func _process(delta):	
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -27,6 +34,9 @@ func _process(delta):
 			1,
 			Tween.TRANS_BACK,
 			Tween.EASE_OUT)
+			
+			$Tween.interpolate_property(self, "rect_position", endPos, initPos, 0.5, Tween.TRANS_BACK, Tween.EASE_IN)
+			$Tween.start()
 			keyBindingTween.start()
 			keyBindingTimer.start(5)
 		else:
@@ -37,6 +47,9 @@ func _process(delta):
 			1,
 			Tween.TRANS_BACK,
 			Tween.EASE_OUT)
+			
+			$Tween.interpolate_property(self, "rect_position", initPos, endPos, 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
+			$Tween.start()
 			keyBindingTween.start()
 			$animPlayer.play("anim")
 			keyBindingLabel.text = "Esc: Continue"

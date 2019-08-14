@@ -4,14 +4,13 @@ var contCancel = false
 
 var spacePressed = false
 
-var initPosX
-var initPosY
+var initPos = Vector2()
 var endPosY
 
 func _ready():
-	initPosX = $infoLayer/infoPanel.get_global_rect().position.x
-	initPosY = $infoLayer/infoPanel.get_global_rect().position.y
-	endPosY = initPosY + $infoLayer/infoPanel.get_global_rect().size.y
+	initPos.x = $infoLayer/infoPanel.get_global_rect().position.x
+	initPos.y = $infoLayer/infoPanel.get_global_rect().position.y
+	endPosY = initPos.y + $infoLayer/infoPanel.get_global_rect().size.y
 	
 	if GLOBALS.cave:
 		get_node("Light2D").visible = true
@@ -36,8 +35,8 @@ func _process(delta):
 		
 		$infoLayer/infoPanel/Tween.interpolate_property($infoLayer/infoPanel,
 		"rect_position",
-		Vector2(initPosX, initPosY),
-		Vector2(initPosX, endPosY),
+		Vector2(initPos.x, initPos.y),
+		Vector2(initPos.x, endPosY),
 		0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
 		
 		$infoLayer/infoPanel/Tween.start()
@@ -47,8 +46,8 @@ func _process(delta):
 		
 		$infoLayer/infoPanel/Tween.interpolate_property($infoLayer/infoPanel,
 		"rect_position",
-		Vector2(initPosX, endPosY),
-		Vector2(initPosX, initPosY),
+		Vector2(initPos.x, endPosY),
+		Vector2(initPos.x, initPos.y),
 		0.5, Tween.TRANS_BACK, Tween.EASE_IN)
 		$infoLayer/infoPanel/Tween.start()
 	if Input.is_action_pressed("ui_r") || Input.is_action_pressed("quit") || Input.is_action_pressed("ui_m"):

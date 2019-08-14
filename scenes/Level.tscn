@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -13,10 +13,11 @@
 [ext_resource path="res://scripts/Level/totalEnemysLabel.gd" type="Script" id=11]
 [ext_resource path="res://scripts/Level/labelFPS.gd" type="Script" id=12]
 [ext_resource path="res://scripts/Level/pauseManager.gd" type="Script" id=13]
-[ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=15]
-[ext_resource path="res://scripts/Level/keyBindingCanvas.gd" type="Script" id=16]
-[ext_resource path="res://fonts/texgyreheros-regular.otf" type="DynamicFontData" id=17]
+[ext_resource path="res://scripts/Level/closeAnimTween.gd" type="Script" id=14]
+[ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=16]
+[ext_resource path="res://scripts/Level/keyBindingCanvas.gd" type="Script" id=17]
+[ext_resource path="res://fonts/texgyreheros-regular.otf" type="DynamicFontData" id=18]
 
 [sub_resource type="DynamicFont" id=1]
 size = 200
@@ -53,59 +54,6 @@ font_data = ExtResource( 3 )
 size = 20
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=8]
-length = 1.5
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("rectUp:rect_position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("rectUp:rect_position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( -1100, -0.25, 0, 0.249953, 557.712, 0.0066036, -0.247483, -543.961, 0.111944, -162.137, -280.018, -0.0835409, -3.05176e-05, 0.0766261, 0.00537109, -0.0250216, -0.106958, -175.011, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.497895, 0.850947, 1.19992 )
-}
-
-[sub_resource type="GDScript" id=9]
-script/source = "extends AnimationPlayer
-
-onready var light = get_node(\"../../Player/Light2D\")
-onready var tween = get_node(\"../Tween\")
-
-func _on_animPlayer_animation_finished(anim_name):
-	get_tree().change_scene(\"res://scenes/Restart.tscn\")
-
-
-func _on_Player_end_game():
-	if GLOBALS.cave:
-		tween.interpolate_property(light,
-		\"texture_scale\",
-		light.texture_scale,
-		0.01,
-		1,
-		Tween.TRANS_LINEAR,
-		Tween.EASE_IN_OUT)
-		tween.start()
-		
-	else:
-		play(\"close\")
-
-
-func _on_Tween_tween_completed(object, key):
-	light.visible = false
-	get_tree().change_scene(\"res://scenes/Restart.tscn\")
-"
-
 [sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("../../canvasLayerPause/colorRectPause:color")
@@ -130,18 +78,6 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:rect_position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.00860383, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( -313.25, 0 ), Vector2( -319.2, 0 ), Vector2( 10, 0 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="DynamicFont" id=11]
@@ -181,7 +117,7 @@ tracks/1/keys = {
 
 [sub_resource type="DynamicFont" id=14]
 font_data = ExtResource( 3 )
-fallback/0 = ExtResource( 17 )
+fallback/0 = ExtResource( 18 )
 
 [sub_resource type="Theme" id=15]
 default_font = SubResource( 14 )
@@ -366,7 +302,6 @@ script = ExtResource( 13 )
 layer = 7
 
 [node name="rectUp" type="ColorRect" parent="closeAnim"]
-visible = false
 anchor_right = 1.0
 margin_top = -1100.0
 color = Color( 0, 0, 0, 1 )
@@ -374,13 +309,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="animPlayer" type="AnimationPlayer" parent="closeAnim"]
-anims/close = SubResource( 8 )
-script = SubResource( 9 )
-
 [node name="Tween" type="Tween" parent="closeAnim"]
+script = ExtResource( 14 )
 
-[node name="Border" parent="." instance=ExtResource( 14 )]
+[node name="Border" parent="." instance=ExtResource( 15 )]
 
 [node name="canvasLayerPause" type="CanvasLayer" parent="."]
 editor/display_folded = true
@@ -402,10 +334,13 @@ light_mask = 2
 anchor_bottom = 1.0
 margin_left = -313.25
 margin_right = -3.24963
-script = ExtResource( 15 )
+script = ExtResource( 16 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="canvasPauseMenu/pauseMenu"]
 anims/anim = SubResource( 10 )
+
+[node name="Tween" type="Tween" parent="canvasPauseMenu/pauseMenu"]
+pause_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="canvasPauseMenu/pauseMenu"]
 light_mask = 2
@@ -461,7 +396,7 @@ flat = true
 [node name="keyBindingCanvas" type="CanvasLayer" parent="."]
 editor/display_folded = true
 layer = 5
-script = ExtResource( 16 )
+script = ExtResource( 17 )
 
 [node name="infoLabel" type="Label" parent="keyBindingCanvas"]
 pause_mode = 2
@@ -511,11 +446,10 @@ dialog_text = "Möchten sie das Spiel wirklich beenden?"
 pause_mode = 2
 anims/zoom = SubResource( 16 )
 [connection signal="end_game" from="Player" to="countDownCanvas/contdownLabel" method="_on_Player_end_game"]
-[connection signal="end_game" from="Player" to="closeAnim/animPlayer" method="_on_Player_end_game"]
+[connection signal="end_game" from="Player" to="closeAnim/Tween" method="_on_Player_end_game"]
 [connection signal="timeout" from="labelTimer/Timer" to="labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]
-[connection signal="animation_finished" from="closeAnim/animPlayer" to="closeAnim/animPlayer" method="_on_animPlayer_animation_finished"]
-[connection signal="tween_completed" from="closeAnim/Tween" to="closeAnim/animPlayer" method="_on_Tween_tween_completed"]
+[connection signal="tween_completed" from="closeAnim/Tween" to="closeAnim/Tween" method="_on_Tween_tween_completed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnContinue" to="canvasPauseMenu/pauseMenu" method="_on_btnContinue_pressed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnExit" to="canvasPauseMenu/pauseMenu" method="_on_btnExit_pressed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnQuit" to="canvasPauseMenu/pauseMenu" method="_on_btnQuit_pressed"]
