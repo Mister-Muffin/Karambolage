@@ -328,7 +328,6 @@ text = "R"
 one_shot = true
 
 [node name="infoLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="infoPanel" type="Control" parent="infoLayer"]
 margin_left = 1930.0
