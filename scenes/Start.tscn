@@ -182,7 +182,6 @@ __meta__ = {
 [node name="Background2" parent="." instance=ExtResource( 2 )]
 
 [node name="Splash" type="Control" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 922, 789 )
@@ -375,7 +374,7 @@ margin_bottom = -50.0
 script = ExtResource( 12 )
 
 [node name="closeConfirmationCheck" type="CheckButton" parent="Main/CanvasLayer/sideBoard/settingsContainer"]
-margin_right = 477.0
+margin_right = 460.0
 margin_bottom = 44.0
 focus_mode = 0
 theme = ExtResource( 11 )

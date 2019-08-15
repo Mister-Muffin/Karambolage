@@ -17,7 +17,9 @@
 [ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=16]
 [ext_resource path="res://scripts/Level/keyBindingCanvas.gd" type="Script" id=17]
-[ext_resource path="res://fonts/texgyreheros-regular.otf" type="DynamicFontData" id=18]
+[ext_resource path="res://themes/theme.tres" type="Theme" id=18]
+[ext_resource path="res://textures/invSlot.png" type="Texture" id=19]
+[ext_resource path="res://textures/health.png" type="Texture" id=20]
 
 [sub_resource type="DynamicFont" id=1]
 size = 200
@@ -54,7 +56,7 @@ font_data = ExtResource( 3 )
 size = 20
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("../../canvasLayerPause/colorRectPause:color")
 tracks/0/interp = 1
@@ -80,15 +82,15 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=8]
 size = 50
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=9]
 size = 40
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=10]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("infoLabel:custom_colors/font_color")
@@ -115,14 +117,7 @@ tracks/1/keys = {
 "values": [ true, true, false ]
 }
 
-[sub_resource type="DynamicFont" id=14]
-font_data = ExtResource( 3 )
-fallback/0 = ExtResource( 18 )
-
-[sub_resource type="Theme" id=15]
-default_font = SubResource( 14 )
-
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=13]
 resource_name = "zoom"
 length = 0.3
 step = 0.01
@@ -250,6 +245,7 @@ text = "R"
 one_shot = true
 
 [node name="infoLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="infoPanel" type="Control" parent="infoLayer"]
 anchor_left = 0.5
@@ -299,6 +295,7 @@ pause_mode = 2
 script = ExtResource( 13 )
 
 [node name="closeAnim" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 7
 
 [node name="rectUp" type="ColorRect" parent="closeAnim"]
@@ -337,7 +334,7 @@ margin_right = -3.24963
 script = ExtResource( 16 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="canvasPauseMenu/pauseMenu"]
-anims/anim = SubResource( 10 )
+anims/anim = SubResource( 7 )
 
 [node name="Tween" type="Tween" parent="canvasPauseMenu/pauseMenu"]
 pause_mode = 2
@@ -354,7 +351,7 @@ margin_top = 393.0
 margin_right = 310.0
 margin_bottom = 459.0
 focus_mode = 0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 8 )
 enabled_focus_mode = 0
 text = "Continue"
 flat = true
@@ -371,7 +368,7 @@ margin_top = 507.0
 margin_right = 310.0
 margin_bottom = 573.0
 focus_mode = 0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 8 )
 enabled_focus_mode = 0
 text = "Exit"
 flat = true
@@ -388,7 +385,7 @@ margin_top = 621.0
 margin_right = 310.0
 margin_bottom = 687.0
 focus_mode = 0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 8 )
 enabled_focus_mode = 0
 text = "Quit"
 flat = true
@@ -407,13 +404,13 @@ margin_left = -249.0
 margin_top = 10.0
 margin_right = 60.0
 margin_bottom = 65.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Esc: Pause"
 
 [node name="animPlayer" type="AnimationPlayer" parent="keyBindingCanvas"]
 pause_mode = 2
-anims/blend = SubResource( 13 )
+anims/blend = SubResource( 10 )
 
 [node name="Timer" type="Timer" parent="keyBindingCanvas"]
 pause_mode = 2
@@ -425,7 +422,6 @@ autostart = true
 pause_mode = 2
 
 [node name="popupLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = 5
 
 [node name="confDialog" type="ConfirmationDialog" parent="popupLayer"]
@@ -439,14 +435,94 @@ margin_right = -694.5
 margin_bottom = -447.5
 rect_scale = Vector2( 0.1, 0.1 )
 rect_pivot_offset = Vector2( 265, 92 )
-theme = SubResource( 15 )
+theme = ExtResource( 18 )
 dialog_text = "Möchten sie das Spiel wirklich beenden?"
 
 [node name="animPlayer" type="AnimationPlayer" parent="popupLayer"]
 pause_mode = 2
-anims/zoom = SubResource( 16 )
-[connection signal="end_game" from="Player" to="countDownCanvas/contdownLabel" method="_on_Player_end_game"]
+anims/zoom = SubResource( 13 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -100.0
+
+[node name="TextureProgress" type="ProgressBar" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -19.0
+margin_right = 300.0
+margin_bottom = 19.0
+theme = ExtResource( 18 )
+value = 100.0
+
+[node name="inventory" type="HBoxContainer" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -280.0
+margin_top = -40.0
+margin_right = -92.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="slot" type="CenterContainer" parent="CanvasLayer/Control/inventory"]
+margin_right = 60.0
+margin_bottom = 60.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/inventory/slot"]
+margin_right = 60.0
+margin_bottom = 60.0
+mouse_default_cursor_shape = 2
+texture = ExtResource( 19 )
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control/inventory/slot"]
+margin_right = 60.0
+margin_bottom = 60.0
+texture = ExtResource( 20 )
+
+[node name="slot2" type="CenterContainer" parent="CanvasLayer/Control/inventory"]
+margin_left = 64.0
+margin_right = 124.0
+margin_bottom = 60.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/inventory/slot2"]
+margin_right = 60.0
+margin_bottom = 60.0
+mouse_default_cursor_shape = 2
+texture = ExtResource( 19 )
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control/inventory/slot2"]
+margin_right = 60.0
+margin_bottom = 60.0
+texture = ExtResource( 20 )
+
+[node name="slot3" type="CenterContainer" parent="CanvasLayer/Control/inventory"]
+margin_left = 128.0
+margin_right = 188.0
+margin_bottom = 60.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/inventory/slot3"]
+margin_right = 60.0
+margin_bottom = 60.0
+mouse_default_cursor_shape = 2
+texture = ExtResource( 19 )
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control/inventory/slot3"]
+margin_right = 60.0
+margin_bottom = 60.0
+texture = ExtResource( 20 )
 [connection signal="end_game" from="Player" to="closeAnim/Tween" method="_on_Player_end_game"]
+[connection signal="end_game" from="Player" to="countDownCanvas/contdownLabel" method="_on_Player_end_game"]
 [connection signal="timeout" from="labelTimer/Timer" to="labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]
 [connection signal="tween_completed" from="closeAnim/Tween" to="closeAnim/Tween" method="_on_Tween_tween_completed"]
