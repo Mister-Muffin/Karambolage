@@ -16,5 +16,7 @@ var splashDone = false
 
 var score = 0
 
+var health = 100
+
 #settings
 var closeConfirmation = true

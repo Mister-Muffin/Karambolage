@@ -4,6 +4,8 @@ const pixelsToMove = 10
 var collision_info
 var speed = 4
 
+var gameEnding = false
+
 signal end_game
 
 func _physics_process(null):
@@ -23,15 +25,13 @@ func _physics_process(null):
 	if LEFT || RIGHT || UP || DOWN:
 		collision_info = move_and_collide(move_direction.normalized() * speed)
 	
-	if GLOBALS.enemysInCollision >= 1:
-		get_node("livesLabel").text = "Colliding"
-		if get_node("timer").is_stopped(): get_node("timer").start()
-		GLOBALS.countDown = true
-		yield(get_tree(), "idle_frame")
-	else:
-		$livesLabel.text = "Not Colliding"
-		$timer.stop()
-		GLOBALS.countDown = false	
+	if GLOBALS.enemysInCollision >= 1 && $timer.is_stopped():
+		GLOBALS.health = GLOBALS.health - 20
+		$timer.start(1)
+	
+	if GLOBALS.health <= 0 && not gameEnding:
+		emit_signal("end_game")
+		gameEnding = true
 #	if collision_info:
 #		if collision_info.collider.name == "Enemy":
 #			get_node("livesLabel").text = "Colliding"
@@ -44,7 +44,8 @@ func _physics_process(null):
 
 
 func _on_timer_timeout():
-	emit_signal("end_game")
+	#emit_signal("end_game")
+	pass
 
 func _on_touchUp_pressed():
 	GLOBALS.playerPos = global_position 

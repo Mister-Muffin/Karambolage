@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -18,8 +18,8 @@
 [ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=16]
 [ext_resource path="res://scripts/Level/keyBindingCanvas.gd" type="Script" id=17]
 [ext_resource path="res://themes/theme.tres" type="Theme" id=18]
-[ext_resource path="res://textures/invSlot.png" type="Texture" id=19]
-[ext_resource path="res://textures/health.png" type="Texture" id=20]
+[ext_resource path="res://scripts/Level/healthBar.gd" type="Script" id=19]
+[ext_resource path="res://scenes/inventorySlot.tscn" type="PackedScene" id=20]
 
 [sub_resource type="DynamicFont" id=1]
 size = 200
@@ -117,7 +117,7 @@ tracks/1/keys = {
 "values": [ true, true, false ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=11]
 resource_name = "zoom"
 length = 0.3
 step = 0.01
@@ -144,6 +144,28 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
+}
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0, 0.694118, 0.12549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.694118, 0, 0, 1 )
+
+[sub_resource type="Animation" id=13]
+resource_name = "lowLife"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_styles/fg")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ SubResource( 12 ), SubResource( 14 ) ]
 }
 
 [node name="Level" type="Control"]
@@ -295,7 +317,6 @@ pause_mode = 2
 script = ExtResource( 13 )
 
 [node name="closeAnim" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = 7
 
 [node name="rectUp" type="ColorRect" parent="closeAnim"]
@@ -440,17 +461,17 @@ dialog_text = "Möchten sie das Spiel wirklich beenden?"
 
 [node name="animPlayer" type="AnimationPlayer" parent="popupLayer"]
 pause_mode = 2
-anims/zoom = SubResource( 13 )
+anims/zoom = SubResource( 11 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Base" type="Control" parent="CanvasLayer"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -100.0
 
-[node name="TextureProgress" type="ProgressBar" parent="CanvasLayer/Control"]
+[node name="healthBar" type="ProgressBar" parent="CanvasLayer/Base"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -461,66 +482,46 @@ margin_right = 300.0
 margin_bottom = 19.0
 theme = ExtResource( 18 )
 value = 100.0
+percent_visible = false
+script = ExtResource( 19 )
 
-[node name="inventory" type="HBoxContainer" parent="CanvasLayer/Control"]
-anchor_left = 1.0
-anchor_top = 0.5
+[node name="Tween" type="Tween" parent="CanvasLayer/Base/healthBar"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Base/healthBar"]
+anims/lowLife = SubResource( 13 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Base/healthBar"]
 anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Health"
+align = 1
+valign = 1
+
+[node name="inventory" type="HBoxContainer" parent="CanvasLayer/Base"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -280.0
-margin_top = -40.0
-margin_right = -92.0
-margin_bottom = 20.0
+margin_left = 706.0
+margin_top = -30.0
+margin_right = 894.0
+margin_bottom = 30.0
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="slot" type="CenterContainer" parent="CanvasLayer/Control/inventory"]
-margin_right = 60.0
-margin_bottom = 60.0
+[node name="slot" parent="CanvasLayer/Base/inventory" instance=ExtResource( 20 )]
+slotNumber = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/inventory/slot"]
-margin_right = 60.0
-margin_bottom = 60.0
-mouse_default_cursor_shape = 2
-texture = ExtResource( 19 )
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control/inventory/slot"]
-margin_right = 60.0
-margin_bottom = 60.0
-texture = ExtResource( 20 )
-
-[node name="slot2" type="CenterContainer" parent="CanvasLayer/Control/inventory"]
+[node name="slot2" parent="CanvasLayer/Base/inventory" instance=ExtResource( 20 )]
 margin_left = 64.0
 margin_right = 124.0
-margin_bottom = 60.0
+slotNumber = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/inventory/slot2"]
-margin_right = 60.0
-margin_bottom = 60.0
-mouse_default_cursor_shape = 2
-texture = ExtResource( 19 )
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control/inventory/slot2"]
-margin_right = 60.0
-margin_bottom = 60.0
-texture = ExtResource( 20 )
-
-[node name="slot3" type="CenterContainer" parent="CanvasLayer/Control/inventory"]
+[node name="slot3" parent="CanvasLayer/Base/inventory" instance=ExtResource( 20 )]
 margin_left = 128.0
 margin_right = 188.0
-margin_bottom = 60.0
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/inventory/slot3"]
-margin_right = 60.0
-margin_bottom = 60.0
-mouse_default_cursor_shape = 2
-texture = ExtResource( 19 )
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control/inventory/slot3"]
-margin_right = 60.0
-margin_bottom = 60.0
-texture = ExtResource( 20 )
+slotNumber = 3
 [connection signal="end_game" from="Player" to="closeAnim/Tween" method="_on_Player_end_game"]
 [connection signal="end_game" from="Player" to="countDownCanvas/contdownLabel" method="_on_Player_end_game"]
 [connection signal="timeout" from="labelTimer/Timer" to="labelTimer" method="_on_Timer_timeout"]
