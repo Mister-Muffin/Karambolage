@@ -420,14 +420,20 @@ pause_mode = 2
 anims/zoom = SubResource( 9 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Base" type="Control" parent="CanvasLayer"]
+light_mask = 2
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -100.0
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="healthBar" type="ProgressBar" parent="CanvasLayer/Base"]
+light_mask = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -447,6 +453,7 @@ script = ExtResource( 18 )
 anims/lowLife = SubResource( 12 )
 
 [node name="Label" type="Label" parent="CanvasLayer/Base/healthBar"]
+light_mask = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "Health"
@@ -454,6 +461,7 @@ align = 1
 valign = 1
 
 [node name="inventory" type="HBoxContainer" parent="CanvasLayer/Base"]
+light_mask = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
