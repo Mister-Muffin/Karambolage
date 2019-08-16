@@ -10,8 +10,8 @@
 [ext_resource path="res://scripts/IconButton.gd" type="Script" id=8]
 [ext_resource path="res://textures/black/outline_settings_black_48dp.png" type="Texture" id=9]
 [ext_resource path="res://textures/white/outline_settings_white_48dp.png" type="Texture" id=10]
-[ext_resource path="res://themes/sideBoardTheme.tres" type="Theme" id=11]
-[ext_resource path="res://scripts/Start/settingsContainer.gd" type="Script" id=12]
+[ext_resource path="res://scripts/Start/settingsContainer.gd" type="Script" id=11]
+[ext_resource path="res://themes/sideBoardTheme.tres" type="Theme" id=12]
 [ext_resource path="res://textures/whiteProgress.jpg" type="Texture" id=13]
 [ext_resource path="res://scripts/Start/mouse.gd" type="Script" id=14]
 
@@ -217,7 +217,6 @@ uppercase = true
 anims/blend = SubResource( 3 )
 
 [node name="Main" type="Control" parent="."]
-editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -239,6 +238,7 @@ text = "Karambolage"
 align = 1
 
 [node name="ModeContainer" type="HBoxContainer" parent="Main"]
+editor/display_folded = true
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -354,18 +354,6 @@ shape = SubResource( 7 )
 
 [node name="Tween" type="Tween" parent="Main/CanvasLayer/sideBoard"]
 
-[node name="label" type="Label" parent="Main/CanvasLayer/sideBoard"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = -102.0
-margin_right = -3.0
-margin_bottom = -66.0
-theme = ExtResource( 11 )
-text = "Settings will not be saved!"
-align = 1
-
 [node name="settingsContainer" type="VBoxContainer" parent="Main/CanvasLayer/sideBoard"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -373,13 +361,13 @@ margin_left = 20.0
 margin_top = 50.0
 margin_right = -20.0
 margin_bottom = -50.0
-script = ExtResource( 12 )
+script = ExtResource( 11 )
 
 [node name="closeConfirmationCheck" type="CheckButton" parent="Main/CanvasLayer/sideBoard/settingsContainer"]
 margin_right = 460.0
 margin_bottom = 44.0
 focus_mode = 0
-theme = ExtResource( 11 )
+theme = ExtResource( 12 )
 pressed = true
 enabled_focus_mode = 0
 text = "Confirm close"

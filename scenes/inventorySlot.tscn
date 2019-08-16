@@ -76,8 +76,6 @@ texture = ExtResource( 2 )
 [node name="item" type="TextureRect" parent="container"]
 margin_right = 60.0
 margin_bottom = 60.0
-rect_rotation = 270.0
-rect_scale = Vector2( 0.01, 0.01 )
 rect_pivot_offset = Vector2( 30, 30 )
 texture = ExtResource( 3 )
 

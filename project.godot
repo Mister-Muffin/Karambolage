@@ -23,6 +23,7 @@ config/icon="res://player/player.png"
 [autoload]
 
 GLOBALS="*res://globals.gd"
+SETTINGS="*res://scripts/Settings.gd"
 
 [display]
 
