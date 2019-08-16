@@ -4,6 +4,8 @@ export (int) var slotNumber
 
 const health = 10
 
+var currHealthPacks = 0
+
 var hasItem = true
 
 func _ready():
@@ -12,24 +14,18 @@ func _ready():
 
 
 func _on_btn_button_down():
-	if hasItem && GLOBALS.health <= 80:
+	if hasItem && GLOBALS.health <= 100 - health && not $container/item.texture == null:
 		hasItem = false
 		$animPlayer.play_backwards("anim")
 		GLOBALS.health = GLOBALS.health + health
-		$timer.start()
-		$progressBar.visible = true
 
 func _process(delta):
-	$progressBar.value = (1 - $timer.time_left / 6) * 100
+	if currHealthPacks < INVENTORY.healthPacks:
+		hasItem = true
+		$animPlayer.play("anim")
+		currHealthPacks = INVENTORY.healthPacks
 	if Input.is_action_just_pressed(String(slotNumber)):
-		if hasItem && GLOBALS.health <= 100 - health:
+		if hasItem && GLOBALS.health <= 100 - health && not $container/item.texture == null:
 			hasItem = false
 			$animPlayer.play_backwards("anim")
 			GLOBALS.health = GLOBALS.health + health
-			$timer.start()
-			$progressBar.visible = true
-
-func _on_timer_timeout():
-	hasItem = true
-	$animPlayer.play("anim")
-	$progressBar.visible = false
