@@ -31,8 +31,3 @@ func _on_timer_timeout():
 	hasItem = true
 	$animPlayer.play("anim")
 	$progressBar.visible = false
-
-
-func _on_animPlayer_animation_finished(anim_name):
-	#if not hasItem: $container/item.visible = false
-	pass

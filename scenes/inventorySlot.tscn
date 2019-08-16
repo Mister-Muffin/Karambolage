@@ -123,4 +123,3 @@ percent_visible = false
 anims/anim = SubResource( 5 )
 [connection signal="button_down" from="btn" to="." method="_on_btn_button_down"]
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
-[connection signal="animation_finished" from="animPlayer" to="." method="_on_animPlayer_animation_finished"]
