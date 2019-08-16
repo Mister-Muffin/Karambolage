@@ -2,6 +2,8 @@ extends Control
 
 export (int) var slotNumber
 
+const health = 10
+
 var hasItem = true
 
 func _ready():
@@ -13,17 +15,17 @@ func _on_btn_button_down():
 	if hasItem && GLOBALS.health <= 80:
 		hasItem = false
 		$animPlayer.play_backwards("anim")
-		GLOBALS.health = GLOBALS.health + 20
+		GLOBALS.health = GLOBALS.health + health
 		$timer.start()
 		$progressBar.visible = true
 
 func _process(delta):
 	$progressBar.value = (1 - $timer.time_left / 6) * 100
 	if Input.is_action_just_pressed(String(slotNumber)):
-		if hasItem && GLOBALS.health <= 80:
+		if hasItem && GLOBALS.health <= 100 - health:
 			hasItem = false
 			$animPlayer.play_backwards("anim")
-			GLOBALS.health = GLOBALS.health + 20
+			GLOBALS.health = GLOBALS.health + health
 			$timer.start()
 			$progressBar.visible = true
 

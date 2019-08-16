@@ -300,7 +300,6 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )
 
 [node name="canvasPauseMenu" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = 4
 
 [node name="pauseMenu" type="Control" parent="canvasPauseMenu"]

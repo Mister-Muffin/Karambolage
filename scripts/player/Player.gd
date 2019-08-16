@@ -8,7 +8,8 @@ var gameEnding = false
 
 signal end_game
 
-func _physics_process(null):
+# warning-ignore:unused_argument
+func _physics_process(delta):
 	
 	GLOBALS.playerPos = global_position 
 	
@@ -26,8 +27,8 @@ func _physics_process(null):
 		collision_info = move_and_collide(move_direction.normalized() * speed)
 	
 	if GLOBALS.enemysInCollision >= 1 && $timer.is_stopped():
-		GLOBALS.health = GLOBALS.health - 20
-		$timer.start(1)
+		GLOBALS.health = GLOBALS.health - 10
+		$timer.start(0.5)
 	
 	if GLOBALS.health <= 0 && not gameEnding:
 		emit_signal("end_game")
