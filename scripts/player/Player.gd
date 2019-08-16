@@ -32,20 +32,7 @@ func _physics_process(null):
 	if GLOBALS.health <= 0 && not gameEnding:
 		emit_signal("end_game")
 		gameEnding = true
-#	if collision_info:
-#		if collision_info.collider.name == "Enemy":
-#			get_node("livesLabel").text = "Colliding"
-#			if get_node("timer").is_stopped(): get_node("timer").start()
-#			GLOBALS.countDown = true
-#	else:
-#		get_node("livesLabel").text = "Not Colliding"
-#		get_node("timer").stop()
-#		GLOBALS.countDown = false
 
-
-func _on_timer_timeout():
-	#emit_signal("end_game")
-	pass
 
 func _on_touchUp_pressed():
 	GLOBALS.playerPos = global_position 
@@ -61,4 +48,5 @@ func _on_touchUp_pressed():
 	move_direction.y = int(DOWN) - int(UP)
 	
 	if LEFT || RIGHT || UP || DOWN:
+		# warning-ignore:return_value_discarded
 		move_and_collide(move_direction.normalized() * speed)

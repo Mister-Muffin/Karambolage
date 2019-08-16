@@ -35,4 +35,3 @@ align = 1
 [node name="timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
-[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
