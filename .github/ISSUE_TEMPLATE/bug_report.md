@@ -1,11 +1,8 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-
----
-<!---title: ''
-labels: ''
-assignees: ''--->
+title: 'Bug: '
+labels: 'bug'
 
 ---
 
@@ -29,12 +26,6 @@ If applicable, add screenshots to help explain your problem.
  - OS: [e.g. Windows, Linux]
  - Browser [e.g. InternetExplorer, Edge, Chrome]
  - Version [e.g. 22]
-
-<!--**Smartphone (please complete the following information):**
- - Device: [e.g. Huawei P30, BQ Aquaris X2 Pro]
- - OS: [e.g. Android 8 (EMUI🤢 8.2), Android 9]
- - Browser [e.g. Chrome, Caterpillar]
- - Version [e.g. 22]--->
 
 **Additional context**
 Add any other context about the problem here.
