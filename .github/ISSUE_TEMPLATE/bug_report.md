@@ -34,7 +34,7 @@ If applicable, add screenshots to help explain your problem.
  - Device: [e.g. Huawei P30, BQ Aquaris X2 Pro]
  - OS: [e.g. Android 8 (EMUI🤢 8.2), Android 9]
  - Browser [e.g. Chrome, Caterpillar]
- - Version [e.g. 22]
+ - Version [e.g. 22]--->
 
 **Additional context**
 Add any other context about the problem here.
