@@ -11,7 +11,7 @@ signal end_game
 # warning-ignore:unused_argument
 func _physics_process(delta):
 	
-	GLOBALS.playerPos = global_position 
+	GLOBALS.playerPos = global_position
 	
 	var move_direction = Vector2()
 

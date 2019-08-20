@@ -67,10 +67,12 @@ func _on_btnContinue_pressed():
 func _on_btnExit_pressed():
 	quit = false
 	popup.show()
+	popup.dialog_text = "Möchten sie wirklich zurück zum Hauptmenü?"
 	popupAnim.play("zoom")
 
 func _on_btnQuit_pressed():
 	quit = true
+	popup.dialog_text = "Möchten sie das Spiel wirklich beenden?"
 	popup.show()
 	popupAnim.play("zoom")
 

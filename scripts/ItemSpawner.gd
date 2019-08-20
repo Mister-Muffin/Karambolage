@@ -1,6 +1,7 @@
 extends Node2D
 
 var item = preload("res://scenes/Item.tscn")
+var gun = preload("res://items/gun/gun.tscn")
 
 func _ready():
 	GLOBALS.powerupPos = Vector2(rand_range(100, 1820), rand_range(100, 980))

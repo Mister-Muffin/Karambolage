@@ -24,7 +24,13 @@ func _on_detectingArea_body_exited(body):
 	if body.is_in_group("Player"): detected = false
 
 func _on_collsisionArea_body_entered(body):
-	if body.is_in_group("Player"): GLOBALS.enemysInCollision = GLOBALS.enemysInCollision + 1
+	if not body.is_in_group("Player"): return
+	GLOBALS.enemysInCollision = GLOBALS.enemysInCollision + 1
+	#$Sprite.visible = false
+	#$particles.emitting = true
+	#GLOBALS.enemysInCollision = GLOBALS.enemysInCollision - 1
+	#yield(get_tree().create_timer(1.0, false), "timeout")
+	#queue_free()
 
 func _on_collsisionArea_body_exited(body):
 	if body.is_in_group("Player"): GLOBALS.enemysInCollision = GLOBALS.enemysInCollision - 1
