@@ -30,7 +30,7 @@ If applicable, add screenshots to help explain your problem.
  - Browser [e.g. InternetExplorer, Edge, Chrome]
  - Version [e.g. 22]
 
-**Smartphone (please complete the following information):**
+<!--**Smartphone (please complete the following information):**
  - Device: [e.g. Huawei P30, BQ Aquaris X2 Pro]
  - OS: [e.g. Android 8 (EMUI🤢 8.2), Android 9]
  - Browser [e.g. Chrome, Caterpillar]
