@@ -20,7 +20,7 @@ font_data = ExtResource( 3 )
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_scale")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -156,7 +156,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -1.69277e-005, -2.71797e-005 )
+position = Vector2( -1.69277e-05, -2.71797e-05 )
 shape = SubResource( 4 )
 
 [node name="TextureRect2" type="TextureRect" parent="."]

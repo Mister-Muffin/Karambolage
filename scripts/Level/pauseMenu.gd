@@ -1,65 +1,96 @@
 extends Control
 
-var keyBindingAnim
-var keyBindingLabel
+var quit = false
+onready var popupAnim = $"../../popupLayer/animPlayer"
+onready var popup = $"../../popupLayer/confDialog"
+onready var keyBindingAnim = $"../../keyBindingCanvas/animPlayer"
+onready var keyBindingLabel = $"../../keyBindingCanvas/infoLabel"
+onready var keyBindingTween = $"../../keyBindingCanvas/Tween"
+onready var keyBindingTimer = $"../../keyBindingCanvas/Timer"
+
+var initPos = Vector2()
+var endPos = Vector2()
 
 func _ready():
 	set_process(true)
+	initPos.x = get_global_rect().position.x
+	initPos.y = get_global_rect().position.y
+	endPos.x = initPos.x + get_global_rect().size.x
+	endPos.y = initPos.y
 
-func _process(delta):
-	
-	keyBindingAnim = $"../../keyBindingCanvas/animPlayer"
-	keyBindingLabel = $"../../keyBindingCanvas/infoLabel"
-	
-	if GLOBALS.labelVisible == null:
-		GLOBALS.labelVisible = keyBindingLabel.visible
-	
+func _process(delta):	
 	if Input.is_action_just_pressed("ui_cancel"):
 		if get_tree().paused:
 			get_tree().paused = false
 			$animPlayer.play_backwards("anim")
 			
-			if not GLOBALS.labelVisible:
-				keyBindingAnim.play("blend")
-				setLabelVisible(false)
-				
-			keyBindingLabel.text = "Esc: Pause"
-			keyBindingAnim.play_backwards("slide")
-			GLOBALS.labelVisible = null
+			popupAnim.play_backwards("zoom")
 			
+			keyBindingLabel.text = "Esc: Pause"
+			keyBindingTween.interpolate_property(keyBindingLabel,
+			"rect_position",
+			Vector2(1590,10),
+			Vector2(1671,10),
+			1,
+			Tween.TRANS_BACK,
+			Tween.EASE_OUT)
+			
+			$Tween.interpolate_property(self, "rect_position", endPos, initPos, 0.5, Tween.TRANS_BACK, Tween.EASE_IN)
+			$Tween.start()
+			keyBindingTween.start()
+			keyBindingTimer.start(5)
 		else:
-			keyBindingAnim.play("slide")
+			keyBindingTween.interpolate_property(keyBindingLabel,
+			"rect_position",
+			Vector2(1671,10),
+			Vector2(1590,10),
+			1,
+			Tween.TRANS_BACK,
+			Tween.EASE_OUT)
+			
+			$Tween.interpolate_property(self, "rect_position", initPos, endPos, 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
+			$Tween.start()
+			keyBindingTween.start()
 			$animPlayer.play("anim")
 			keyBindingLabel.text = "Esc: Continue"
-			if not GLOBALS.labelVisible:
-				setLabelVisible(true)
-				keyBindingAnim.play("fadeIn")
+			if not keyBindingLabel.visible:
+				keyBindingAnim.play_backwards("blend")
 				
-			
 			get_tree().paused = true
-	else:
-		if not get_tree().paused:
-			GLOBALS.labelVisible = null
-			
 
 
 func _on_btnContinue_pressed():
 	get_tree().paused = false
 	$animPlayer.play_backwards("anim")
-
+	popupAnim.play_backwards("zoom")
 
 func _on_btnExit_pressed():
-	get_tree().paused = false
-	get_tree().change_scene("res://scenes/Start.tscn")
-
+	quit = false
+	popup.show()
+	popup.dialog_text = "Möchten sie wirklich zurück zum Hauptmenü?"
+	popupAnim.play("zoom")
 
 func _on_btnQuit_pressed():
-	get_tree().quit()
+	quit = true
+	popup.dialog_text = "Möchten sie das Spiel wirklich beenden?"
+	popup.show()
+	popupAnim.play("zoom")
 
-func setLabelVisible(vis):
-	if vis:
-		var col = keyBindingLabel.get("custom_colors/font_color")
-		keyBindingLabel.set("custom_colors/font_color", Color("ffffff"))
-		keyBindingLabel.visible = true
+func _on_ConfirmationDialog_confirmed():
+	if quit:
+		get_tree().quit()
 	else:
-		keyBindingLabel.visible = false
+		get_tree().paused = false
+		get_tree().change_scene("res://scenes/Start.tscn")
+
+func _on_animPlayer_animation_finished(anim_name):
+	if not get_tree().paused: popup.visible = false
+
+func _on_confDialog_visibility_changed():
+	if not GLOBALS.closeConfirmation && popup.visible:
+		popup.visible = false
+		if quit:
+			get_tree().quit()
+		else:
+			get_tree().paused = false
+			get_tree().change_scene("res://scenes/Start.tscn")

@@ -77,8 +77,10 @@ radius = 392.02
 [node name="Enemy" type="KinematicBody2D" groups=[
 "Enemy",
 ]]
-position = Vector2( 188, 188 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="mainCollisionShape2" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -115,6 +117,7 @@ __meta__ = {
 "Area",
 ]]
 editor/display_folded = true
+visible = false
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -125,6 +128,7 @@ shape = SubResource( 5 )
 
 [node name="collsisionArea" type="Area2D" parent="."]
 editor/display_folded = true
+visible = false
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -138,6 +142,7 @@ __meta__ = {
 
 [node name="warningArea" type="Area2D" parent="."]
 editor/display_folded = true
+visible = false
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
