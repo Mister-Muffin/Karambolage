@@ -8,6 +8,7 @@ script/source = "extends Control
 func _ready():
 	$ColorRect/labelScore.text = \"Score: \" + String(GLOBALS.score)
 	GLOBALS.enemys = 0
+	GLOBALS.health = 100
 
 func _on_btnRestart_pressed():
 	restart()
@@ -25,11 +26,9 @@ func exit(): get_tree().change_scene(\"res://scenes/Start.tscn\")"
 size = 64
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=17]
+[sub_resource type="DynamicFont" id=3]
 size = 35
 font_data = ExtResource( 1 )
-
-[sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
@@ -39,18 +38,18 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=7]
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="DynamicFont" id=9]
 size = 35
 font_data = ExtResource( 1 )
 
-[sub_resource type="InputEventKey" id=9]
+[sub_resource type="InputEventKey" id=10]
 pressed = true
 scancode = 82
 
-[sub_resource type="ShortCut" id=10]
-shortcut = SubResource( 9 )
-
-[sub_resource type="StyleBoxEmpty" id=11]
+[sub_resource type="ShortCut" id=11]
+shortcut = SubResource( 10 )
 
 [sub_resource type="StyleBoxEmpty" id=12]
 
@@ -58,11 +57,13 @@ shortcut = SubResource( 9 )
 
 [sub_resource type="StyleBoxEmpty" id=14]
 
-[sub_resource type="InputEventKey" id=15]
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="InputEventKey" id=16]
 scancode = 69
 
-[sub_resource type="ShortCut" id=16]
-shortcut = SubResource( 15 )
+[sub_resource type="ShortCut" id=17]
+shortcut = SubResource( 16 )
 
 [node name="Restart" type="Control"]
 anchor_right = 1.0
@@ -100,7 +101,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = -21.0
 margin_bottom = 21.0
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 3 )
 text = "Score: XX"
 align = 1
 valign = 1
@@ -112,13 +113,13 @@ margin_left = 20.5
 margin_top = -79.5
 margin_right = 246.5
 margin_bottom = -19.5
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/focus = SubResource( 5 )
-custom_styles/disabled = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 8 )
-shortcut = SubResource( 10 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
+shortcut = SubResource( 11 )
 text = "restart [r]"
 
 [node name="btnETMenu" type="Button" parent="ColorRect"]
@@ -130,13 +131,13 @@ margin_left = -345.5
 margin_top = -79.5
 margin_right = -19.5
 margin_bottom = -19.5
-custom_styles/hover = SubResource( 11 )
-custom_styles/pressed = SubResource( 12 )
-custom_styles/focus = SubResource( 13 )
-custom_styles/disabled = SubResource( 14 )
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 8 )
-shortcut = SubResource( 16 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
+shortcut = SubResource( 17 )
 text = "exit to menu [e]"
 [connection signal="pressed" from="ColorRect/btnRestart" to="." method="_on_btnRestart_pressed"]
 [connection signal="pressed" from="ColorRect/btnETMenu" to="." method="_on_btnETMenu_pressed"]

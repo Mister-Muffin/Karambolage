@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/IconButton.gd" type="Script" id=1]
+[ext_resource path="res://textures/black/outline-crop_din-24px.svg" type="Texture" id=2]
+[ext_resource path="res://textures/white/outline_crop_din_white_48dp.png" type="Texture" id=3]
+[ext_resource path="res://textures/black/outline-arrow_forward-24px.svg" type="Texture" id=4]
+[ext_resource path="res://textures/white/outline_arrow_forward_white_48dp.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=8]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect2:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 3 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TextureRect2/TextureRect:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ), ExtResource( 5 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 35, 35 )
+
+[node name="btnIcon" type="Control"]
+margin_right = 70.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( 35, 35 )
+mouse_filter = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="animPlayer" type="AnimationPlayer" parent="."]
+anims/anim = SubResource( 8 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 35, 35 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 9 )
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+editor/display_folded = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.0
+margin_top = -24.0
+margin_right = 24.0
+margin_bottom = 24.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="button" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+flat = true
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_Area2D_area_shape_entered"]
+[connection signal="area_shape_exited" from="Area2D" to="." method="_on_Area2D_area_shape_exited"]
+[connection signal="pressed" from="button" to="." method="_on_button_pressed"]

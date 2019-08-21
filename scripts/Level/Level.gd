@@ -2,7 +2,16 @@ extends Control
 
 var contCancel = false
 
+var spacePressed = false
+
+var initPos = Vector2()
+var endPosY
+
 func _ready():
+	initPos.x = $infoLayer/infoPanel.get_global_rect().position.x
+	initPos.y = $infoLayer/infoPanel.get_global_rect().position.y
+	endPosY = initPos.y + $infoLayer/infoPanel.get_global_rect().size.y
+	
 	if GLOBALS.cave:
 		get_node("Light2D").visible = true
 		get_node("Player/Light2D").visible = true
@@ -20,10 +29,27 @@ func _unhandled_input(event):
 			get_tree().quit()
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_select"):
-		$infoLayer/infoPanel/AnimationPlayer.play("inout")
-	if Input.is_action_just_released("ui_select"):
-		$infoLayer/infoPanel/AnimationPlayer.play_backwards("inout")
+	if Input.is_action_just_pressed("ui_select") && not spacePressed:
+		
+		spacePressed = true
+		
+		$infoLayer/infoPanel/Tween.interpolate_property($infoLayer/infoPanel,
+		"rect_position",
+		Vector2(initPos.x, initPos.y),
+		Vector2(initPos.x, endPosY),
+		0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
+		
+		$infoLayer/infoPanel/Tween.start()
+	if Input.is_action_just_released("ui_select") && spacePressed:
+		
+		spacePressed = false
+		
+		$infoLayer/infoPanel/Tween.interpolate_property($infoLayer/infoPanel,
+		"rect_position",
+		Vector2(initPos.x, endPosY),
+		Vector2(initPos.x, initPos.y),
+		0.5, Tween.TRANS_BACK, Tween.EASE_IN)
+		$infoLayer/infoPanel/Tween.start()
 	if Input.is_action_pressed("ui_r") || Input.is_action_pressed("quit") || Input.is_action_pressed("ui_m"):
 		contCancel = true
 		if get_node("letter_countdown/timer").is_stopped(): get_node("letter_countdown/timer").start()
