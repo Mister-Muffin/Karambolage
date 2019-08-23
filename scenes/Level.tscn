@@ -127,8 +127,8 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="StyleBoxFlat" id=13]
-bg_color = Color( 0.792157, 0, 0, 1 )
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.0980392, 0.65098, 0, 1 )
 
 [sub_resource type="Animation" id=11]
 resource_name = "changeColor"
@@ -136,7 +136,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:custom_styles/fg:bg_color")
 tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/loop_wrap = false
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
@@ -442,7 +442,7 @@ margin_top = -19.0
 margin_right = 300.0
 margin_bottom = 19.0
 theme = ExtResource( 17 )
-custom_styles/fg = SubResource( 13 )
+custom_styles/fg = SubResource( 10 )
 value = 100.0
 percent_visible = false
 script = ExtResource( 18 )
