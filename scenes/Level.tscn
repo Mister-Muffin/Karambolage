@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -128,25 +128,22 @@ tracks/1/keys = {
 }
 
 [sub_resource type="StyleBoxFlat" id=10]
-bg_color = Color( 0, 0.694118, 0.12549, 1 )
+bg_color = Color( 0.0980392, 0.65098, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=11]
-bg_color = Color( 0.694118, 0, 0, 1 )
-
-[sub_resource type="Animation" id=12]
-resource_name = "lowLife"
+[sub_resource type="Animation" id=11]
+resource_name = "changeColor"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:custom_styles/fg")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
+tracks/0/path = NodePath(".:custom_styles/fg:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ SubResource( 10 ), SubResource( 11 ) ]
+"values": [ Color( 0.0980392, 0.65098, 0, 1 ), Color( 0.792157, 0, 0, 1 ) ]
 }
 
 [node name="Level" type="Control"]
@@ -445,6 +442,7 @@ margin_top = -19.0
 margin_right = 300.0
 margin_bottom = 19.0
 theme = ExtResource( 17 )
+custom_styles/fg = SubResource( 10 )
 value = 100.0
 percent_visible = false
 script = ExtResource( 18 )
@@ -452,7 +450,7 @@ script = ExtResource( 18 )
 [node name="Tween" type="Tween" parent="CanvasLayer/Base/healthBar"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Base/healthBar"]
-anims/lowLife = SubResource( 12 )
+anims/changeColor = SubResource( 11 )
 
 [node name="Label" type="Label" parent="CanvasLayer/Base/healthBar"]
 light_mask = 2

@@ -27,6 +27,8 @@ var score = 0
 # warning-ignore:unused_class_variable
 var health = 100
 
+var colorChanged = false
+
 #settings
 # warning-ignore:unused_class_variable
 var closeConfirmation = true
