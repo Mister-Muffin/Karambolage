@@ -11,6 +11,7 @@ func _ready():
 	initPos.x = $infoLayer/infoPanel.get_global_rect().position.x
 	initPos.y = $infoLayer/infoPanel.get_global_rect().position.y
 	endPosY = initPos.y + $infoLayer/infoPanel.get_global_rect().size.y
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 	if GLOBALS.cave:
 		get_node("Light2D").visible = true

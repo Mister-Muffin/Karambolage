@@ -18,9 +18,10 @@ func _ready():
 	endPos.x = initPos.x + get_global_rect().size.x
 	endPos.y = initPos.y
 
-func _process(delta):	
+func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if get_tree().paused:
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			get_tree().paused = false
 			$animPlayer.play_backwards("anim")
 			
@@ -40,6 +41,7 @@ func _process(delta):
 			keyBindingTween.start()
 			keyBindingTimer.start(5)
 		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			keyBindingTween.interpolate_property(keyBindingLabel,
 			"rect_position",
 			Vector2(1671,10),
@@ -61,8 +63,24 @@ func _process(delta):
 
 func _on_btnContinue_pressed():
 	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$animPlayer.play_backwards("anim")
+	
 	popupAnim.play_backwards("zoom")
+	
+	keyBindingLabel.text = "Esc: Pause"
+	keyBindingTween.interpolate_property(keyBindingLabel,
+	"rect_position",
+	Vector2(1590,10),
+	Vector2(1671,10),
+	1,
+	Tween.TRANS_BACK,
+	Tween.EASE_OUT)
+	
+	$Tween.interpolate_property(self, "rect_position", endPos, initPos, 0.5, Tween.TRANS_BACK, Tween.EASE_IN)
+	$Tween.start()
+	keyBindingTween.start()
+	keyBindingTimer.start(5)
 
 func _on_btnExit_pressed():
 	quit = false

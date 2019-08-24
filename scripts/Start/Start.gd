@@ -54,4 +54,3 @@ func switch():
 	$Main/ModeContainer/CanvasLayer2/btnPlayFast.visible = true
 	$Main/ModeContainer/CanvasLayer3/btnCave.visible = true
 	$Splash.visible = false
-#

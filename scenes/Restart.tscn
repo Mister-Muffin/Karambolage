@@ -9,6 +9,7 @@ func _ready():
 	$ColorRect/labelScore.text = \"Score: \" + String(GLOBALS.score)
 	GLOBALS.enemys = 0
 	GLOBALS.health = 100
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_btnRestart_pressed():
 	restart()
