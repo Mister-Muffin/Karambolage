@@ -1,13 +1,14 @@
 extends Control
 
-var quit = false
 onready var popupAnim = $"../../popupLayer/animPlayer"
 onready var popup = $"../../popupLayer/confDialog"
+onready var popupTween = $"../../popupLayer/Tween"
 onready var keyBindingAnim = $"../../keyBindingCanvas/animPlayer"
 onready var keyBindingLabel = $"../../keyBindingCanvas/infoLabel"
 onready var keyBindingTween = $"../../keyBindingCanvas/Tween"
 onready var keyBindingTimer = $"../../keyBindingCanvas/Timer"
 
+var quit = false
 var initPos = Vector2()
 var endPos = Vector2()
 
@@ -21,78 +22,75 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if get_tree().paused:
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			get_tree().paused = false
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			$animPlayer.play_backwards("anim")
 			
-			popupAnim.play_backwards("zoom")
+			if popup.visible: hidePopup()
 			
-			keyBindingLabel.text = "Esc: Pause"
-			keyBindingTween.interpolate_property(keyBindingLabel,
-			"rect_position",
-			Vector2(1590,10),
-			Vector2(1671,10),
-			1,
-			Tween.TRANS_BACK,
-			Tween.EASE_OUT)
+			switchKeyBindingState(false)
 			
 			$Tween.interpolate_property(self, "rect_position", endPos, initPos, 0.5, Tween.TRANS_BACK, Tween.EASE_IN)
 			$Tween.start()
-			keyBindingTween.start()
 			keyBindingTimer.start(5)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			keyBindingTween.interpolate_property(keyBindingLabel,
-			"rect_position",
-			Vector2(1671,10),
-			Vector2(1590,10),
-			1,
-			Tween.TRANS_BACK,
-			Tween.EASE_OUT)
+			switchKeyBindingState(true)
 			
 			$Tween.interpolate_property(self, "rect_position", initPos, endPos, 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
 			$Tween.start()
 			keyBindingTween.start()
 			$animPlayer.play("anim")
-			keyBindingLabel.text = "Esc: Continue"
 			if not keyBindingLabel.visible:
 				keyBindingAnim.play_backwards("blend")
-				
 			get_tree().paused = true
 
+func switchKeyBindingState(var now_paused):
+	if now_paused:
+		keyBindingTween.interpolate_property(keyBindingLabel,
+		"rect_position",
+		Vector2(1671,10),
+		Vector2(1590,10),
+		1,
+		Tween.TRANS_BACK,
+		Tween.EASE_OUT)
+		keyBindingTween.start()
+		keyBindingLabel.text = "Esc: Continue"
+
+	else:
+		keyBindingLabel.text = "Esc: Pause"
+		keyBindingTween.interpolate_property(keyBindingLabel,
+		"rect_position",
+		Vector2(1590,10),
+		Vector2(1671,10),
+		1,
+		Tween.TRANS_BACK,
+		Tween.EASE_OUT)
+		keyBindingTween.start()
 
 func _on_btnContinue_pressed():
 	get_tree().paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
 	$animPlayer.play_backwards("anim")
 	
-	popupAnim.play_backwards("zoom")
+	if popup.visible: hidePopup()
 	
-	keyBindingLabel.text = "Esc: Pause"
-	keyBindingTween.interpolate_property(keyBindingLabel,
-	"rect_position",
-	Vector2(1590,10),
-	Vector2(1671,10),
-	1,
-	Tween.TRANS_BACK,
-	Tween.EASE_OUT)
+	switchKeyBindingState(false)
 	
 	$Tween.interpolate_property(self, "rect_position", endPos, initPos, 0.5, Tween.TRANS_BACK, Tween.EASE_IN)
 	$Tween.start()
-	keyBindingTween.start()
 	keyBindingTimer.start(5)
 
 func _on_btnExit_pressed():
 	quit = false
-	popup.show()
 	popup.dialog_text = "Möchten sie wirklich zurück zum Hauptmenü?"
-	popupAnim.play("zoom")
+	showPopup()
 
 func _on_btnQuit_pressed():
 	quit = true
 	popup.dialog_text = "Möchten sie das Spiel wirklich beenden?"
-	popup.show()
-	popupAnim.play("zoom")
+	showPopup()
 
 func _on_ConfirmationDialog_confirmed():
 	if quit:
@@ -101,14 +99,28 @@ func _on_ConfirmationDialog_confirmed():
 		get_tree().paused = false
 		get_tree().change_scene("res://scenes/Start.tscn")
 
-func _on_animPlayer_animation_finished(anim_name):
-	if not get_tree().paused: popup.visible = false
+#func _on_animPlayer_animation_finished(anim_name):
+#	if not get_tree().paused: popup.visible = false
 
-func _on_confDialog_visibility_changed():
-	if not GLOBALS.closeConfirmation && popup.visible:
-		popup.visible = false
-		if quit:
-			get_tree().quit()
-		else:
-			get_tree().paused = false
-			get_tree().change_scene("res://scenes/Start.tscn")
+#func _on_confDialog_visibility_changed():
+##	if not GLOBALS.closeConfirmation && popup.visible:
+##		popup.visible = false
+##		if quit:
+##			get_tree().quit()
+##		else:
+##			get_tree().paused = false
+##			get_tree().change_scene("res://scenes/Start.tscn")
+#	pass
+
+func showPopup():
+	popup.show()
+	popupTween.interpolate_property(popup, "rect_scale", 0.1, 1, 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
+	popupTween.start()
+
+func hidePopup():
+	popupTween.interpolate_property(popup, "rect_scale", 1, 0.1, 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
+	popupTween.start()
+	popup.hide()
+
+func _on_Tween_tween_completed(object, key):
+	if not get_tree().paused: popup.visible = false

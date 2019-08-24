@@ -1,4 +1,4 @@
-extends Position2D
+extends Node
 
 var enemy = preload("res://enemy/Enemy.tscn")
 
