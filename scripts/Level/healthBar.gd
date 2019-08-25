@@ -1,8 +1,6 @@
 extends ProgressBar
 
-const shake_amount = 100
 var currHealth = 100
-
 
 func _ready():
 	set_process(true)
