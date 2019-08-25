@@ -222,6 +222,7 @@ text = "R"
 one_shot = true
 
 [node name="infoLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="infoPanel" type="Control" parent="infoLayer"]
 anchor_left = 0.5
@@ -298,6 +299,7 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )
 
 [node name="canvasPauseMenu" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 4
 
 [node name="pauseMenu" type="Control" parent="canvasPauseMenu"]
@@ -397,6 +399,7 @@ autostart = true
 pause_mode = 2
 
 [node name="popupLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 5
 
 [node name="confDialog" type="ConfirmationDialog" parent="popupLayer"]

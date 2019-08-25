@@ -38,7 +38,7 @@ func _on_button_pressed():
 	elif mode == "Fast":
 		GLOBALS.fast = true
 		GLOBALS.cave = false
-	else: 
+	else:
 		GLOBALS.fast = false
 		GLOBALS.cave = false
 	get_tree().change_scene(ScenePath)

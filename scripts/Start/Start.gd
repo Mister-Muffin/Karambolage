@@ -7,6 +7,7 @@ func _on_Button_button_down():
 	get_tree().change_scene("res://scenes/Level.tscn")
 
 func _ready():
+	Engine.time_scale = 1
 	GLOBALS.closeConfirmation = SETTINGS.get_setting("settings", "closeConf")
 	set_process(true)
 	$Splash/info/animPlayer.play("blend")

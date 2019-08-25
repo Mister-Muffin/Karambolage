@@ -13,6 +13,9 @@ func _ready():
 	endPosY = initPos.y + $infoLayer/infoPanel.get_global_rect().size.y
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
+	if GLOBALS.fast: Engine.time_scale = 1.5
+	else: Engine.time_scale = 1
+	
 	if GLOBALS.cave:
 		get_node("Light2D").visible = true
 		get_node("Player/Light2D").visible = true
@@ -31,7 +34,6 @@ func _unhandled_input(event):
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_select") && not spacePressed:
-		
 		spacePressed = true
 		
 		$infoLayer/infoPanel/Tween.interpolate_property($infoLayer/infoPanel,
@@ -76,4 +78,5 @@ func _on_timer_timeout():
 	if Input.is_action_pressed("quit"):
 		get_tree().change_scene("res://scenes/ReleaseToQuit.tscn")
 	if Input.is_action_pressed("ui_m"):
-		get_node("closeAnim/animPlayer").play("close")
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().change_scene("res://scenes/Start.tscn")
