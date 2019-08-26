@@ -425,6 +425,7 @@ pause_mode = 2
 anims/zoom = SubResource( 9 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 2
 
 [node name="Base" type="Control" parent="CanvasLayer"]
@@ -484,6 +485,8 @@ __meta__ = {
 slotNumber = 1
 
 [node name="ItemSpawner" parent="." instance=ExtResource( 20 )]
+
+[node name="container" type="Node" parent="."]
 [connection signal="end_game" from="Player" to="closeAnim/Tween" method="_on_Player_end_game"]
 [connection signal="timeout" from="labelTimer/Timer" to="labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]

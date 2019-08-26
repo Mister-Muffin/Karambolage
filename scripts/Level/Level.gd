@@ -7,6 +7,8 @@ var spacePressed = false
 var initPos = Vector2()
 var endPosY
 
+var spawned = false
+
 func _ready():
 	initPos.x = $infoLayer/infoPanel.get_global_rect().position.x
 	initPos.y = $infoLayer/infoPanel.get_global_rect().position.y
@@ -31,8 +33,13 @@ func _unhandled_input(event):
 			get_node("Player").move_and_collide(pos)
 		elif event.pressed and event.button_index == BUTTON_RIGHT:
 			get_tree().quit()
+		
 
 func _process(delta):
+	if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down"):
+		if not spawned:
+			spawned = true
+			$container.add_child(preload("res://player/Player.tscn").instance())
 	if Input.is_action_just_pressed("ui_select") && not spacePressed:
 		spacePressed = true
 		
