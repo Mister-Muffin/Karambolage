@@ -17,6 +17,8 @@ var splashDone = false
 var score = 0
 
 var health = 100
+var endurance = 100
+var enduranceUsing = false
 
 var colorChanged = false
 
