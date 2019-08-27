@@ -2,7 +2,10 @@ extends KinematicBody2D
 
 const pixelsToMove = 1
 var collision_info
-var speed = 4
+
+const slowSpeed = 250
+const sprintSpeed = 500
+var speed
 
 onready var enduranceTimer = $enduranceTimer
 
@@ -32,6 +35,7 @@ func _ready():
 		$torch.visible = true
 	else:
 		$torch.visible = false
+	speed = slowSpeed
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
@@ -62,20 +66,20 @@ func _physics_process(delta):
 			if enduranceTimer.is_stopped():
 				GLOBALS.endurance = GLOBALS.endurance - speedEnduranceDown
 				enduranceTimer.start()
-				speed = 8
+				speed = sprintSpeed
 				$particles.emitting = true
 			yield(get_tree(), "idle_frame")
 	elif GLOBALS.endurance <= 0:
-		speed = 4
+		speed = slowSpeed
 		$particles.emitting = false
 	if not SHIFT && first && GLOBALS.endurance <= 100 && enduranceTimer.is_stopped():
 		GLOBALS.endurance = GLOBALS.endurance + speedEnduranceUp
 		enduranceTimer.start()
-		speed = 4
+		speed = slowSpeed
 		$particles.emitting = false
 	
 	if LEFT || RIGHT || UP || DOWN:
-		collision_info = move_and_collide(move_direction.normalized() * speed)
+		collision_info = move_and_collide(move_direction.normalized() * speed * delta)
 	
 	if GLOBALS.enemysInCollision >= 1 && $timer.is_stopped():
 		GLOBALS.health = GLOBALS.health - 10
