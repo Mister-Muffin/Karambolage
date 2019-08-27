@@ -6,6 +6,9 @@ var speed = 4
 
 onready var enduranceTimer = $enduranceTimer
 
+const speedEnduranceUp = 0.5 #Speed regenerating endurance
+const speedEnduranceDown = 2 #Speed using endurance
+
 var gameEnding = false
 
 var LEFT = Input.is_action_pressed("ui_a")
@@ -48,14 +51,15 @@ func _physics_process(delta):
 	
 	if SHIFT && first && GLOBALS.endurance >= 10 && enduranceTimer.is_stopped():
 		while SHIFT && GLOBALS.endurance > 0:
-			GLOBALS.endurance = GLOBALS.endurance - 1
-			enduranceTimer.start(0.1)
-			speed = 8
+			if enduranceTimer.is_stopped():
+				GLOBALS.endurance = GLOBALS.endurance - speedEnduranceDown
+				enduranceTimer.start()
+				speed = 8
 			yield(get_tree(), "idle_frame")
-	if GLOBALS.endurance <= 0: speed = 4
+	elif GLOBALS.endurance <= 0: speed = 4
 	if not SHIFT && first && GLOBALS.endurance <= 100 && enduranceTimer.is_stopped():
-		GLOBALS.endurance = GLOBALS.endurance + 1
-		enduranceTimer.start(0.2)
+		GLOBALS.endurance = GLOBALS.endurance + speedEnduranceUp
+		enduranceTimer.start()
 		speed = 4
 	
 	if LEFT || RIGHT || UP || DOWN:

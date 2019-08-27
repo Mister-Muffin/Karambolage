@@ -23,4 +23,5 @@ wait_time = 3.0
 one_shot = true
 
 [node name="enduranceTimer" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
