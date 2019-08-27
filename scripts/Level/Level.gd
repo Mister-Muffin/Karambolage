@@ -20,9 +20,7 @@ func _ready():
 	
 	if GLOBALS.cave:
 		get_node("Light2D").visible = true
-		get_node("Player/Light2D").visible = true
 	else:
-		get_node("Player/Light2D").visible = false
 		get_node("Light2D").visible = false
 
 func _unhandled_input(event):

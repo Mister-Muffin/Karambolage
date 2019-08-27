@@ -1,13 +1,13 @@
 extends KinematicBody2D
 
-const pixelsToMove = 10
+const pixelsToMove = 1
 var collision_info
 var speed = 4
 
 onready var enduranceTimer = $enduranceTimer
 
-const speedEnduranceUp = 0.5 #Speed regenerating endurance
-const speedEnduranceDown = 2 #Speed using endurance
+export var speedEnduranceUp = 0.5 #Speed regenerating endurance
+export var speedEnduranceDown = 2 #Speed using endurance
 
 var gameEnding = false
 
@@ -17,7 +17,7 @@ var UP = Input.is_action_pressed("ui_w")
 var DOWN = Input.is_action_pressed("ui_s")
 var SHIFT
 
-var first = true
+var first = true #true when first player
 
 signal end_game
 
@@ -27,9 +27,17 @@ func _ready():
 		first = true
 	else:
 		first = false
+		
+	if GLOBALS.cave:
+		$torch.visible = true
+	else:
+		$torch.visible = false
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
+	if GLOBALS.cave && not gameEnding:
+		$Tween.interpolate_property($torch, "texture_scale", $torch.texture_scale, $torch.texture_scale + 0.15, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Tween.start()
 	if first:
 		LEFT = Input.is_action_pressed("ui_a")
 		RIGHT = Input.is_action_pressed("ui_d")
@@ -55,12 +63,16 @@ func _physics_process(delta):
 				GLOBALS.endurance = GLOBALS.endurance - speedEnduranceDown
 				enduranceTimer.start()
 				speed = 8
+				$particles.emitting = true
 			yield(get_tree(), "idle_frame")
-	elif GLOBALS.endurance <= 0: speed = 4
+	elif GLOBALS.endurance <= 0:
+		speed = 4
+		$particles.emitting = false
 	if not SHIFT && first && GLOBALS.endurance <= 100 && enduranceTimer.is_stopped():
 		GLOBALS.endurance = GLOBALS.endurance + speedEnduranceUp
 		enduranceTimer.start()
 		speed = 4
+		$particles.emitting = false
 	
 	if LEFT || RIGHT || UP || DOWN:
 		collision_info = move_and_collide(move_direction.normalized() * speed)
@@ -72,16 +84,21 @@ func _physics_process(delta):
 	if GLOBALS.health <= 0 && not gameEnding:
 		emit_signal("end_game")
 		gameEnding = true
+		$Tween.interpolate_property($torch, "texture_scale", $torch.texture_scale, 0.01, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Tween.start()
 
+#func _on_touchUp_pressed():
+#	GLOBALS.playerPos = global_position 
+#
+#	var move_direction = Vector2()
+#
+#	move_direction.x = int(RIGHT) - int(LEFT)
+#	move_direction.y = int(DOWN) - int(UP)
+#
+#	if LEFT || RIGHT || UP || DOWN:
+#		# warning-ignore:return_value_discarded
+#		move_and_collide(move_direction.normalized() * speed)	
 
-func _on_touchUp_pressed():
-	GLOBALS.playerPos = global_position 
-		
-	var move_direction = Vector2()
-	
-	move_direction.x = int(RIGHT) - int(LEFT)
-	move_direction.y = int(DOWN) - int(UP)
-	
-	if LEFT || RIGHT || UP || DOWN:
-		# warning-ignore:return_value_discarded
-		move_and_collide(move_direction.normalized() * speed)
+func _on_Tween_tween_completed(object, key):
+	if $torch.texture_scale < 1 && first:
+		get_tree().change_scene("res://scenes/Restart.tscn")
