@@ -168,6 +168,7 @@ position = Vector2( 960, 540 )
 [node name="EnemySpawner" parent="." instance=ExtResource( 4 )]
 
 [node name="Light2D" type="Light2D" parent="."]
+visible = false
 position = Vector2( 960, 540 )
 scale = Vector2( 32, 18 )
 texture = ExtResource( 5 )
