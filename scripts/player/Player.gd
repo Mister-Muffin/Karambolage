@@ -100,5 +100,5 @@ func _process(delta):
 		$Tween.start()
 
 func _on_Tween_tween_completed(object, key):
-	if $torch.texture_scale < 1 && first:
+	if $torch.texture_scale < 1 && first && GLOBALS.cave:
 		get_tree().change_scene("res://scenes/Restart.tscn")

@@ -19,4 +19,7 @@ func _on_Player_end_game():
 
 
 func _on_Tween_tween_completed(object, key):
+	$"../waitBeforeQuit".start()
+
+func _on_waitBeforeQuit_timeout():
 	get_tree().change_scene("res://scenes/Restart.tscn")

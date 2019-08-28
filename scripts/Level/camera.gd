@@ -13,7 +13,8 @@ func _ready():
 
 func _physics_process(delta):
 	if tmpHealth > GLOBALS.health:
-		shake(delta)
+		if GLOBALS.health >= 0:
+			shake(delta)
 		tmpHealth = GLOBALS.health
 	else:
 		tmpHealth = GLOBALS.health

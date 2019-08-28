@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -131,6 +131,27 @@ tracks/1/keys = {
 
 [sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0.0980392, 0.65098, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 0 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 1, 1, 1, 0 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.580392, 0.580392, 0.580392, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="Animation" id=11]
 resource_name = "changeColor"
@@ -149,10 +170,28 @@ tracks/0/keys = {
 }
 
 [sub_resource type="StyleBoxFlat" id=12]
-bg_color = Color( 0, 0.356863, 0.803922, 1 )
+bg_color = Color( 0, 0.407843, 0.803922, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 0 )
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
 
-[sub_resource type="StyleBoxFlat" id=13]
-bg_color = Color( 0.215686, 0.215686, 0.215686, 1 )
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 1, 1, 1, 0 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.580392, 0.580392, 0.580392, 1 )
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
 
 [sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 660, 60 )
@@ -225,6 +264,7 @@ text = "R"
 one_shot = true
 
 [node name="infoLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="infoPanel" type="Control" parent="infoLayer"]
 anchor_left = 0.5
@@ -274,7 +314,6 @@ pause_mode = 2
 script = ExtResource( 11 )
 
 [node name="closeAnim" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = 7
 
 [node name="rectUp" type="ColorRect" parent="closeAnim"]
@@ -287,6 +326,10 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="closeAnim"]
 script = ExtResource( 12 )
+
+[node name="waitBeforeQuit" type="Timer" parent="closeAnim"]
+wait_time = 0.5
+one_shot = true
 
 [node name="Border" parent="." instance=ExtResource( 13 )]
 
@@ -450,6 +493,7 @@ margin_bottom = 39.0
 rect_min_size = Vector2( 300, 38 )
 theme = ExtResource( 16 )
 custom_styles/fg = SubResource( 10 )
+custom_styles/bg = SubResource( 15 )
 value = 100.0
 percent_visible = false
 script = ExtResource( 18 )
@@ -482,7 +526,7 @@ margin_right = 400.0
 margin_bottom = -2.0
 rect_min_size = Vector2( 300, 32 )
 custom_styles/fg = SubResource( 12 )
-custom_styles/bg = SubResource( 13 )
+custom_styles/bg = SubResource( 16 )
 value = 100.0
 percent_visible = false
 script = ExtResource( 19 )
@@ -524,11 +568,14 @@ slotNumber = 1
 [node name="Tween" type="Tween" parent="CanvasLayer/Base"]
 
 [node name="baseArea" type="Area2D" parent="."]
-editor/display_folded = true
 position = Vector2( 960, 1020 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="baseArea"]
+visible = false
 shape = SubResource( 14 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ItemSpawner" parent="." instance=ExtResource( 21 )]
 
@@ -542,6 +589,7 @@ script = ExtResource( 22 )
 [connection signal="timeout" from="labelTimer/Timer" to="labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]
 [connection signal="tween_completed" from="closeAnim/Tween" to="closeAnim/Tween" method="_on_Tween_tween_completed"]
+[connection signal="timeout" from="closeAnim/waitBeforeQuit" to="closeAnim/Tween" method="_on_waitBeforeQuit_timeout"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnContinue" to="canvasPauseMenu/pauseMenu" method="_on_btnContinue_pressed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnExit" to="canvasPauseMenu/pauseMenu" method="_on_btnExit_pressed"]
 [connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnQuit" to="canvasPauseMenu/pauseMenu" method="_on_btnQuit_pressed"]
