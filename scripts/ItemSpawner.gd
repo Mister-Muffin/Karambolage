@@ -1,4 +1,4 @@
-extends Node2D
+extends Position2D
 
 var item = preload("res://scenes/Item.tscn")
 var gun = preload("res://items/gun/gun.tscn")

@@ -20,7 +20,7 @@ color = Color( 0, 0.501961, 0.988235, 1 )
 hue_variation = 1.0
 hue_variation_random = 1.0
 
-[node name="ItemSpawner" type="Node2D"]
+[node name="ItemSpawner" type="Position2D"]
 script = ExtResource( 1 )
 
 [node name="container" type="Node" parent="."]
