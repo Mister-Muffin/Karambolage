@@ -31,12 +31,16 @@ func _ready():
 		first = true
 	else:
 		first = false
+		position = Vector2(get_viewport_rect().size.x / 2, get_viewport_rect().size.y / 2)
+		add_to_group("Player2")
+		remove_from_group("Player")
 		
 	if GLOBALS.cave:
 		$torch.visible = true
 	else:
 		$torch.visible = false
 	speed = slowSpeed
+
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
@@ -56,8 +60,11 @@ func _physics_process(delta):
 		UP = Input.is_action_pressed("ui_up")
 		DOWN = Input.is_action_pressed("ui_down")
 	
-	GLOBALS.playerPos = global_position
-	
+	if first:
+		GLOBALS.playerPos1 = global_position
+	else:
+		GLOBALS.playerPos2 = global_position
+
 	move_direction.x = int(RIGHT) - int(LEFT)
 	move_direction.y = int(DOWN) - int(UP)
 	

@@ -1,6 +1,7 @@
 extends Node
 
-var playerPos
+var playerPos1
+var playerPos2
 
 var countDown = false
 
