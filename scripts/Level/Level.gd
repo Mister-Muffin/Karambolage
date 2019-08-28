@@ -32,7 +32,7 @@ func _unhandled_input(event):
 		elif event.pressed and event.button_index == BUTTON_RIGHT:
 			get_tree().quit()
 	if event is InputEventKey:
-		if event.pressed and event.scancode == KEY_RIGHT:
+		if event.pressed and event.scancode == KEY_RIGHT or event.scancode == KEY_LEFT or event.scancode == KEY_UP or event.scancode == KEY_DOWN:
 			if not spawned:
 				spawned = true
 				$container.add_child(preload("res://player/Player.tscn").instance())

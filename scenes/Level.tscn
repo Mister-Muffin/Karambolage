@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -16,11 +16,12 @@
 [ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=14]
 [ext_resource path="res://scripts/Level/keyBindingCanvas.gd" type="Script" id=15]
 [ext_resource path="res://themes/theme.tres" type="Theme" id=16]
-[ext_resource path="res://scripts/Level/healthBar.gd" type="Script" id=17]
-[ext_resource path="res://scripts/Level/enduranceBar.gd" type="Script" id=18]
-[ext_resource path="res://scenes/inventorySlot.tscn" type="PackedScene" id=19]
-[ext_resource path="res://scenes/ItemSpawner.tscn" type="PackedScene" id=20]
-[ext_resource path="res://scripts/Level/camera.gd" type="Script" id=21]
+[ext_resource path="res://scripts/Level/Base.gd" type="Script" id=17]
+[ext_resource path="res://scripts/Level/healthBar.gd" type="Script" id=18]
+[ext_resource path="res://scripts/Level/enduranceBar.gd" type="Script" id=19]
+[ext_resource path="res://scenes/inventorySlot.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/ItemSpawner.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scripts/Level/camera.gd" type="Script" id=22]
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
@@ -152,6 +153,9 @@ bg_color = Color( 0, 0.356863, 0.803922, 1 )
 
 [sub_resource type="StyleBoxFlat" id=13]
 bg_color = Color( 0.215686, 0.215686, 0.215686, 1 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 660, 60 )
 
 [node name="Level" type="Control"]
 margin_right = 1920.0
@@ -297,6 +301,7 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )
 
 [node name="canvasPauseMenu" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 4
 
 [node name="pauseMenu" type="Control" parent="canvasPauseMenu"]
@@ -430,6 +435,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -120.0
+script = ExtResource( 17 )
 
 [node name="healthBar" type="ProgressBar" parent="CanvasLayer/Base"]
 light_mask = 2
@@ -446,7 +452,7 @@ theme = ExtResource( 16 )
 custom_styles/fg = SubResource( 10 )
 value = 100.0
 percent_visible = false
-script = ExtResource( 17 )
+script = ExtResource( 18 )
 
 [node name="Tween" type="Tween" parent="CanvasLayer/Base/healthBar"]
 
@@ -479,7 +485,7 @@ custom_styles/fg = SubResource( 12 )
 custom_styles/bg = SubResource( 13 )
 value = 100.0
 percent_visible = false
-script = ExtResource( 18 )
+script = ExtResource( 19 )
 
 [node name="Label" type="Label" parent="CanvasLayer/Base/energyBar"]
 anchor_right = 1.0
@@ -512,17 +518,26 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="slot" parent="CanvasLayer/Base/inventory" instance=ExtResource( 19 )]
+[node name="slot" parent="CanvasLayer/Base/inventory" instance=ExtResource( 20 )]
 slotNumber = 1
 
-[node name="ItemSpawner" parent="." instance=ExtResource( 20 )]
+[node name="Tween" type="Tween" parent="CanvasLayer/Base"]
+
+[node name="baseArea" type="Area2D" parent="."]
+editor/display_folded = true
+position = Vector2( 960, 1020 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="baseArea"]
+shape = SubResource( 14 )
+
+[node name="ItemSpawner" parent="." instance=ExtResource( 21 )]
 
 [node name="container" type="Node" parent="."]
 
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
-script = ExtResource( 21 )
+script = ExtResource( 22 )
 [connection signal="end_game" from="Player" to="closeAnim/Tween" method="_on_Player_end_game"]
 [connection signal="timeout" from="labelTimer/Timer" to="labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]
@@ -533,3 +548,5 @@ script = ExtResource( 21 )
 [connection signal="timeout" from="keyBindingCanvas/Timer" to="keyBindingCanvas" method="_on_Timer_timeout"]
 [connection signal="confirmed" from="popupLayer/confDialog" to="canvasPauseMenu/pauseMenu" method="_on_ConfirmationDialog_confirmed"]
 [connection signal="tween_completed" from="popupLayer/Tween" to="canvasPauseMenu/pauseMenu" method="_on_Tween_tween_completed"]
+[connection signal="body_entered" from="baseArea" to="CanvasLayer/Base" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="baseArea" to="CanvasLayer/Base" method="_on_Area2D_body_exited"]
