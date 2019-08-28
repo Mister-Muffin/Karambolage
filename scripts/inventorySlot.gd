@@ -24,6 +24,7 @@ func _process(delta):
 		hasItem = true
 		$animPlayer.play("anim")
 		currHealthPacks = INVENTORY.healthPacks
+		$"container/textureRect/animPlayer".play("zoom")
 	if Input.is_action_just_pressed(String(slotNumber)):
 		if hasItem && not $container/item.texture == null:
 			hasItem = false
