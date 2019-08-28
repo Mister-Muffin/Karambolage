@@ -1,7 +1,6 @@
 extends Label
 
 var timeSurvived = 0
-onready var light = get_node("../Player/Light2D")
 
 func _on_Timer_timeout():
 	timeSurvived = timeSurvived + 1

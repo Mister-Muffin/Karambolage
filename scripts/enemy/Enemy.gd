@@ -6,17 +6,19 @@ func _ready():
 	position = Vector2(rand_range(64, get_viewport_rect().size.x - 64), rand_range(64, get_viewport_rect().size.y - 64))
 	get_node("ExclamationMark").visible = false
 
-
-func _on_detectingArea_body_entered(body):
-	if body.is_in_group("Player"): detected = true
-	while body.is_in_group("Player") && detected:
+func _physics_process(delta):
+	if detected:
 		if not get_tree().paused:
 			get_node("ExclamationMark").visible = true
 			get_node("ExclamationMark/animPlayer").play("axclamMark")
 			var direction = (GLOBALS.playerPos - global_position).normalized()
-			move_and_collide(direction * 100 * get_physics_process_delta_time())
+			move_and_collide(direction * 100 * delta)
 			yield(get_tree(), "idle_frame")
 		else: yield(get_tree(), "idle_frame")
+
+
+func _on_detectingArea_body_entered(body):
+	if body.is_in_group("Player"): detected = true
 
 
 func _on_detectingArea_body_exited(body):

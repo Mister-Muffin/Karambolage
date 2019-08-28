@@ -3,3 +3,5 @@
 LICENSE
 README.md
 config.cfg
+/.mono/*
+Properties/AssemblyInfo.cs
