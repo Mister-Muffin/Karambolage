@@ -43,7 +43,7 @@ func _physics_process(delta):
 	if GLOBALS.cave && not gameEnding:
 		$Tween.interpolate_property($torch, "texture_scale", $torch.texture_scale, $torch.texture_scale + 0.15, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Tween.start()
-		
+
 	if first:
 		LEFT = Input.is_action_pressed("ui_a")
 		RIGHT = Input.is_action_pressed("ui_d")
@@ -63,20 +63,7 @@ func _physics_process(delta):
 	
 	if LEFT || RIGHT || UP || DOWN:
 		collision_info = move_and_collide(move_direction.normalized() * speed * delta)
-	
-	
 
-#func _on_touchUp_pressed():
-#	GLOBALS.playerPos = global_position 
-#
-#	var move_direction = Vector2()
-#
-#	move_direction.x = int(RIGHT) - int(LEFT)
-#	move_direction.y = int(DOWN) - int(UP)
-#
-#	if LEFT || RIGHT || UP || DOWN:
-#		# warning-ignore:return_value_discarded
-#		move_and_collide(move_direction.normalized() * speed)
 
 func _process(delta):
 	if SHIFT && first && GLOBALS.endurance >= 10 && enduranceTimer.is_stopped():
