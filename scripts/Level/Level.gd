@@ -31,13 +31,14 @@ func _unhandled_input(event):
 			get_node("Player").move_and_collide(pos)
 		elif event.pressed and event.button_index == BUTTON_RIGHT:
 			get_tree().quit()
+	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_RIGHT:
+			if not spawned:
+				spawned = true
+				$container.add_child(preload("res://player/Player.tscn").instance())
 		
 
-func _process(delta):
-	if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down"):
-		if not spawned:
-			spawned = true
-			$container.add_child(preload("res://player/Player.tscn").instance())
+func _process(delta):		
 	if Input.is_action_just_pressed("ui_select") && not spacePressed:
 		spacePressed = true
 		
@@ -68,9 +69,8 @@ func _process(delta):
 		if Input.is_action_pressed("ui_m"):
 			get_node("letter_countdown/letterLabel").text = "M"
 		get_node("letter_countdown").visible = true
-		while not get_node("letter_countdown/timer").is_stopped() && contCancel:
+		if not get_node("letter_countdown/timer").is_stopped() && contCancel:
 			get_node("letter_countdown/progressBar").value = (get_node("letter_countdown/timer").time_left / 1 * 100)
-			yield(get_tree(), "idle_frame")
 	
 	if Input.is_action_just_released("ui_r") || Input.is_action_just_released("quit") || Input.is_action_just_released("ui_m"):
 		contCancel = false
