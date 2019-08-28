@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://scripts/Level/enduranceBar.gd" type="Script" id=18]
 [ext_resource path="res://scenes/inventorySlot.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/ItemSpawner.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scripts/Level/camera.gd" type="Script" id=21]
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
@@ -517,6 +518,11 @@ slotNumber = 1
 [node name="ItemSpawner" parent="." instance=ExtResource( 20 )]
 
 [node name="container" type="Node" parent="."]
+
+[node name="camera" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+script = ExtResource( 21 )
 [connection signal="end_game" from="Player" to="closeAnim/Tween" method="_on_Player_end_game"]
 [connection signal="timeout" from="labelTimer/Timer" to="labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]

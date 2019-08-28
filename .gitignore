@@ -5,3 +5,5 @@ README.md
 config.cfg
 /.mono/*
 Properties/AssemblyInfo.cs
+Karambolage.csproj
+Karambolage.sln
