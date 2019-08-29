@@ -141,7 +141,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id=15]
+[sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 1, 1, 1, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -153,8 +153,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="Animation" id=11]
-resource_name = "changeColor"
+[sub_resource type="Animation" id=12]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:custom_styles/fg:bg_color")
@@ -169,7 +168,7 @@ tracks/0/keys = {
 "values": [ Color( 0.0980392, 0.65098, 0, 1 ), Color( 0.792157, 0, 0, 1 ) ]
 }
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=13]
 bg_color = Color( 0, 0.407843, 0.803922, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -181,7 +180,7 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[sub_resource type="StyleBoxFlat" id=16]
+[sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 1, 1, 1, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -193,7 +192,7 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 660, 60 )
 
 [node name="Level" type="Control"]
@@ -493,7 +492,7 @@ margin_bottom = 39.0
 rect_min_size = Vector2( 300, 38 )
 theme = ExtResource( 16 )
 custom_styles/fg = SubResource( 10 )
-custom_styles/bg = SubResource( 15 )
+custom_styles/bg = SubResource( 11 )
 value = 100.0
 percent_visible = false
 script = ExtResource( 18 )
@@ -501,7 +500,7 @@ script = ExtResource( 18 )
 [node name="Tween" type="Tween" parent="CanvasLayer/Base/healthBar"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Base/healthBar"]
-anims/changeColor = SubResource( 11 )
+anims/changeColor = SubResource( 12 )
 
 [node name="Label" type="Label" parent="CanvasLayer/Base/healthBar"]
 light_mask = 2
@@ -525,8 +524,8 @@ margin_top = -34.0
 margin_right = 400.0
 margin_bottom = -2.0
 rect_min_size = Vector2( 300, 32 )
-custom_styles/fg = SubResource( 12 )
-custom_styles/bg = SubResource( 16 )
+custom_styles/fg = SubResource( 13 )
+custom_styles/bg = SubResource( 14 )
 value = 100.0
 percent_visible = false
 script = ExtResource( 19 )
@@ -572,7 +571,7 @@ position = Vector2( 960, 1020 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="baseArea"]
 visible = false
-shape = SubResource( 14 )
+shape = SubResource( 15 )
 __meta__ = {
 "_edit_lock_": true
 }
