@@ -21,6 +21,8 @@ var UP = Input.is_action_pressed("ui_w")
 var DOWN = Input.is_action_pressed("ui_s")
 var SHIFT
 
+var moving = false
+
 var first = true #true when first player
 
 signal end_game
@@ -70,11 +72,16 @@ func _physics_process(delta):
 	
 	if LEFT || RIGHT || UP || DOWN:
 		collision_info = move_and_collide(move_direction.normalized() * speed * delta)
+		if not moving:
+			moving = true
+	else:
+		if moving:
+			moving = false
 
 
 func _process(delta):
-	if SHIFT && first && GLOBALS.endurance >= 10 && enduranceTimer.is_stopped():
-		while SHIFT && GLOBALS.endurance > 0:
+	if SHIFT && moving && first && GLOBALS.endurance >= 10 && enduranceTimer.is_stopped():
+		while SHIFT && GLOBALS.endurance > 0 && moving:
 			if enduranceTimer.is_stopped():
 				GLOBALS.endurance = GLOBALS.endurance - speedEnduranceDown
 				enduranceTimer.start()
