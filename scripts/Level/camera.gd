@@ -2,7 +2,7 @@ extends Camera2D
 
 var tmpHealth = 100
 
-export var magnitude = 10.0
+export var magnitude = 5.0
 export var lifeTime = 0.2
 var timeLeft = 1.0
 
