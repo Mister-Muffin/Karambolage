@@ -1,38 +1,17 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://fonts/BabelStoneModern.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scripts/Restart.gd" type="Script" id=1]
+[ext_resource path="res://fonts/BabelStoneModern.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Control
-
-func _ready():
-	$ColorRect/labelScore.text = \"Score: \" + String(GLOBALS.score)
-	GLOBALS.enemys = 0
-	GLOBALS.health1 = 100
-	GLOBALS.health2 = 100
-	GLOBALS.endurance = 100
-	GLOBALS.players = 0
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-func _on_btnRestart_pressed():
-	restart()
-	
-func _on_btnETMenu_pressed():
-	exit()
-
-# warning-ignore:return_value_discarded
-func restart(): get_tree().change_scene(\"res://scenes/Level.tscn\")
-
-# warning-ignore:return_value_discarded
-func exit(): get_tree().change_scene(\"res://scenes/Start.tscn\")"
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 64
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=3]
 size = 35
-font_data = ExtResource( 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
@@ -42,18 +21,18 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=7]
 
-[sub_resource type="StyleBoxEmpty" id=8]
-
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=8]
 size = 35
-font_data = ExtResource( 1 )
+font_data = ExtResource( 2 )
 
-[sub_resource type="InputEventKey" id=10]
+[sub_resource type="InputEventKey" id=9]
 pressed = true
 scancode = 82
 
-[sub_resource type="ShortCut" id=11]
-shortcut = SubResource( 10 )
+[sub_resource type="ShortCut" id=10]
+shortcut = SubResource( 9 )
+
+[sub_resource type="StyleBoxEmpty" id=11]
 
 [sub_resource type="StyleBoxEmpty" id=12]
 
@@ -61,18 +40,16 @@ shortcut = SubResource( 10 )
 
 [sub_resource type="StyleBoxEmpty" id=14]
 
-[sub_resource type="StyleBoxEmpty" id=15]
-
-[sub_resource type="InputEventKey" id=16]
+[sub_resource type="InputEventKey" id=15]
 scancode = 69
 
-[sub_resource type="ShortCut" id=17]
-shortcut = SubResource( 16 )
+[sub_resource type="ShortCut" id=16]
+shortcut = SubResource( 15 )
 
 [node name="Restart" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = SubResource( 1 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -95,7 +72,7 @@ __meta__ = {
 anchor_right = 1.0
 margin_top = 20.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "GAME OVER!"
 align = 1
 
@@ -105,7 +82,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = -21.0
 margin_bottom = 21.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Score: XX"
 align = 1
 valign = 1
@@ -117,13 +94,13 @@ margin_left = 20.5
 margin_top = -79.5
 margin_right = 246.5
 margin_bottom = -19.5
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 9 )
-shortcut = SubResource( 11 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+shortcut = SubResource( 10 )
 text = "restart [r]"
 
 [node name="btnETMenu" type="Button" parent="ColorRect"]
@@ -135,13 +112,13 @@ margin_left = -345.5
 margin_top = -79.5
 margin_right = -19.5
 margin_bottom = -19.5
-custom_styles/hover = SubResource( 12 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/focus = SubResource( 14 )
-custom_styles/disabled = SubResource( 15 )
-custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 9 )
-shortcut = SubResource( 17 )
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = SubResource( 12 )
+custom_styles/focus = SubResource( 13 )
+custom_styles/disabled = SubResource( 14 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+shortcut = SubResource( 16 )
 text = "exit to menu [e]"
 [connection signal="pressed" from="ColorRect/btnRestart" to="." method="_on_btnRestart_pressed"]
 [connection signal="pressed" from="ColorRect/btnETMenu" to="." method="_on_btnETMenu_pressed"]

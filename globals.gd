@@ -20,7 +20,8 @@ var score = 0
 
 var health1 = 100
 var health2 = 100
-var endurance = 100
+var endurance1 = 100
+var endurance2 = 100
 var enduranceUsing = false
 
 var players = 0

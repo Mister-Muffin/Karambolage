@@ -64,6 +64,7 @@ func _physics_process(delta):
 		RIGHT = Input.is_action_pressed("ui_right")
 		UP = Input.is_action_pressed("ui_up")
 		DOWN = Input.is_action_pressed("ui_down")
+		SHIFT = Input.is_action_pressed("ui_second_sprint")
 	
 	if first:
 		GLOBALS.playerPos1 = global_position
@@ -83,22 +84,40 @@ func _physics_process(delta):
 
 
 func _process(delta):
-	if SHIFT && moving && first && GLOBALS.endurance >= 10 && enduranceTimer.is_stopped():
-		while SHIFT && GLOBALS.endurance > 0 && moving:
-			if enduranceTimer.is_stopped():
-				GLOBALS.endurance = GLOBALS.endurance - speedEnduranceDown
-				enduranceTimer.start()
-				speed = sprintSpeed
-				$particles.emitting = true
-			yield(get_tree(), "idle_frame")
-	elif GLOBALS.endurance <= 0:
-		speed = slowSpeed
-		$particles.emitting = false
-	if not SHIFT && first && GLOBALS.endurance <= 100 && enduranceTimer.is_stopped():
-		GLOBALS.endurance = GLOBALS.endurance + speedEnduranceUp
-		enduranceTimer.start()
-		speed = slowSpeed
-		$particles.emitting = false
+	if first:
+		if SHIFT && moving && GLOBALS.endurance1 >= 10 && enduranceTimer.is_stopped():
+			while SHIFT && GLOBALS.endurance1 > 0 && moving:
+				if enduranceTimer.is_stopped():
+					GLOBALS.endurance1 -= speedEnduranceDown
+					enduranceTimer.start()
+					speed = sprintSpeed
+					$particles.emitting = true
+				yield(get_tree(), "idle_frame")
+		elif GLOBALS.endurance1 <= 0:
+			speed = slowSpeed
+			$particles.emitting = false
+		if not SHIFT && GLOBALS.endurance1 <= 100 && enduranceTimer.is_stopped():
+			GLOBALS.endurance1 = GLOBALS.endurance1 + speedEnduranceUp
+			enduranceTimer.start()
+			speed = slowSpeed
+			$particles.emitting = false
+	else:
+		if SHIFT && moving && GLOBALS.endurance2 >= 10 && enduranceTimer.is_stopped():
+			while SHIFT && GLOBALS.endurance2 > 0 && moving:
+				if enduranceTimer.is_stopped():
+					GLOBALS.endurance2 -= speedEnduranceDown
+					enduranceTimer.start()
+					speed = sprintSpeed
+					$particles.emitting = true
+				yield(get_tree(), "idle_frame")
+		elif GLOBALS.endurance2 <= 0:
+			speed = slowSpeed
+			$particles.emitting = false
+		if not SHIFT && GLOBALS.endurance2 <= 100 && enduranceTimer.is_stopped():
+			GLOBALS.endurance2 = GLOBALS.endurance2 + speedEnduranceUp
+			enduranceTimer.start()
+			speed = slowSpeed
+			$particles.emitting = false
 
 	if GLOBALS.enemysInCollision1 >= 1 && $timer.is_stopped() && first:
 		dealDamage()
