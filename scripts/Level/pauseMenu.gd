@@ -113,13 +113,12 @@ func _on_ConfirmationDialog_confirmed():
 
 func showPopup():
 	popup.show()
-	popupTween.interpolate_property(popup, "rect_scale", 0.1, 1, 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
+	popupTween.interpolate_property(popup, "rect_scale", popup.get("rect_scale"), Vector2(1, 1), 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
 	popupTween.start()
 
 func hidePopup():
-	popupTween.interpolate_property(popup, "rect_scale", 1, 0.1, 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
+	popupTween.interpolate_property(popup, "rect_scale", popup.get("rect_scale"), Vector2(0.1, 0.1), 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	popupTween.start()
-	popup.hide()
 
 func _on_Tween_tween_completed(object, key):
 	if not get_tree().paused: popup.visible = false

@@ -490,7 +490,6 @@ dialog_text = "Möchten sie das Spiel wirklich beenden?"
 pause_mode = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = 2
 
 [node name="Base" type="Control" parent="CanvasLayer"]
