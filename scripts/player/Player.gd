@@ -10,6 +10,7 @@ var speed
 
 const hitDelay = 0.5
 
+onready var playerNumber = get_node("playerNumber")
 onready var enduranceTimer = $enduranceTimer
 
 export var speedEnduranceUp = 0.5 #Speed regenerating endurance
@@ -39,6 +40,8 @@ func _ready():
 		position = Vector2(get_viewport_rect().size.x / 2, get_viewport_rect().size.y / 2)
 		add_to_group("Player2")
 		remove_from_group("Player1")
+		playerNumber.text = "P2"
+		playerNumber.visible = true
 		
 	if GLOBALS.cave:
 		$torch.visible = true
@@ -65,11 +68,7 @@ func _physics_process(delta):
 		UP = Input.is_action_pressed("ui_up")
 		DOWN = Input.is_action_pressed("ui_down")
 		SHIFT = Input.is_action_pressed("ui_second_sprint")
-	
-	if first:
-		GLOBALS.playerPos1 = global_position
-	else:
-		GLOBALS.playerPos2 = global_position
+
 
 	move_direction.x = int(RIGHT) - int(LEFT)
 	move_direction.y = int(DOWN) - int(UP)
@@ -85,6 +84,9 @@ func _physics_process(delta):
 
 func _process(delta):
 	if first:
+		if GLOBALS.players >= 2 && not playerNumber.visible:
+			playerNumber.text = "P1"
+			playerNumber.visible = true
 		if SHIFT && moving && GLOBALS.endurance1 >= 10 && enduranceTimer.is_stopped():
 			while SHIFT && GLOBALS.endurance1 > 0 && moving:
 				if enduranceTimer.is_stopped():
@@ -97,7 +99,7 @@ func _process(delta):
 			speed = slowSpeed
 			$particles.emitting = false
 		if not SHIFT && GLOBALS.endurance1 <= 100 && enduranceTimer.is_stopped():
-			GLOBALS.endurance1 = GLOBALS.endurance1 + speedEnduranceUp
+			GLOBALS.endurance1 += speedEnduranceUp
 			enduranceTimer.start()
 			speed = slowSpeed
 			$particles.emitting = false

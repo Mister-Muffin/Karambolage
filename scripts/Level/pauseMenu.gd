@@ -1,12 +1,11 @@
 extends Control
 
-onready var popupAnim = $"../../popupLayer/animPlayer"
-onready var popup = $"../../popupLayer/confDialog"
-onready var popupTween = $"../../popupLayer/Tween"
-onready var keyBindingAnim = $"../../keyBindingCanvas/animPlayer"
-onready var keyBindingLabel = $"../../keyBindingCanvas/infoLabel"
-onready var keyBindingTween = $"../../keyBindingCanvas/Tween"
-onready var keyBindingTimer = $"../../keyBindingCanvas/Timer"
+onready var popup = get_node("../../popupLayer/confDialog")
+onready var popupTween = get_node("../../popupLayer/Tween")
+onready var keyBindingAnim = get_node("../../keyBindingCanvas/animPlayer")
+onready var keyBindingLabel = get_node("../../keyBindingCanvas/infoLabel")
+onready var keyBindingTween = get_node("../../keyBindingCanvas/Tween")
+onready var keyBindingTimer = get_node("../../keyBindingCanvas/Timer")
 
 var quit = false
 var initPos = Vector2()

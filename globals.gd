@@ -1,8 +1,5 @@
 extends Node
 
-var playerPos1
-var playerPos2
-
 var countDown = false
 
 var enemys = 0

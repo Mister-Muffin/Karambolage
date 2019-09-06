@@ -4,12 +4,14 @@ var detected1 = false
 var detected2 = false
 
 var direction
+var player
 var move = false
 export (int) var speed = 100
 
 func _ready():
 	position = Vector2(rand_range(28, get_viewport_rect().size.x - 28), rand_range(28, get_viewport_rect().size.y - 28))
 	get_node("ExclamationMark").visible = false
+	player = get_tree().get_nodes_in_group("Player1")
 
 func _physics_process(delta):
 	if move:
@@ -21,9 +23,11 @@ func _process(delta):
 			get_node("ExclamationMark").visible = true
 		get_node("ExclamationMark/animPlayer").play("axclamMark")
 		if detected1:
-			direction = (GLOBALS.playerPos1 - global_position).normalized() 
+			player = get_tree().get_nodes_in_group("Player1")
+			direction = (player[0].position - global_position).normalized() 
 		if detected2:
-			direction = (GLOBALS.playerPos2 - global_position).normalized()
+			player = get_tree().get_nodes_in_group("Player2")
+			direction = (player[0].position - global_position).normalized()
 		move = true
 		#yield(get_tree(), "idle_frame")
 	else:
