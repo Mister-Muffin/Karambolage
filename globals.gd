@@ -9,7 +9,8 @@ var enemys = 0
 
 var cave = true
 
-var enemysInCollision = 0
+var enemysInCollision1 = 0
+var enemysInCollision2 = 0
 
 var fast = false
 
@@ -17,11 +18,10 @@ var splashDone = false
 
 var score = 0
 
-var health = 100
+var health1 = 100
+var health2 = 100
 var endurance = 100
 var enduranceUsing = false
-
-var colorChanged = false
 
 var players = 0
 

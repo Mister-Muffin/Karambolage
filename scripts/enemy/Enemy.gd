@@ -8,7 +8,7 @@ var move = false
 export (int) var speed = 100
 
 func _ready():
-	position = Vector2(rand_range(64, get_viewport_rect().size.x - 64), rand_range(64, get_viewport_rect().size.y - 64))
+	position = Vector2(rand_range(28, get_viewport_rect().size.x - 28), rand_range(28, get_viewport_rect().size.y - 28))
 	get_node("ExclamationMark").visible = false
 
 func _physics_process(delta):
@@ -21,7 +21,7 @@ func _process(delta):
 			get_node("ExclamationMark").visible = true
 		get_node("ExclamationMark/animPlayer").play("axclamMark")
 		if detected1:
-			direction = (GLOBALS.playerPos1 - global_position).normalized()
+			direction = (GLOBALS.playerPos1 - global_position).normalized() 
 		if detected2:
 			direction = (GLOBALS.playerPos2 - global_position).normalized()
 		move = true
@@ -32,24 +32,25 @@ func _process(delta):
 
 
 func _on_detectingArea_body_entered(body):
-	if body.is_in_group("AnyPlayer"): detected1 = true
+	#if body.is_in_group("AnyPlayer"): detected1 = true
 	if body.is_in_group("Player1"): detected1 = true
 	if body.is_in_group("Player2"): detected2 = true
 
 
 func _on_detectingArea_body_exited(body):
 	get_node("ExclamationMark").visible = false
-	if body.is_in_group("AnyPlayer"): detected1 = false
+	#if body.is_in_group("AnyPlayer"): detected1 = false
 	if body.is_in_group("Player1"): detected1 = true
 	if body.is_in_group("Player2"): detected2 = true
 
 func _on_collsisionArea_body_entered(body):
-	if not body.is_in_group("AnyPlayer"): return
-	GLOBALS.enemysInCollision = GLOBALS.enemysInCollision + 1
+	if body.is_in_group("Player1"): GLOBALS.enemysInCollision1 += 1
+	if body.is_in_group("Player2"): GLOBALS.enemysInCollision2 += 1
 
 
 func _on_collsisionArea_body_exited(body):
-	if body.is_in_group("AnyPlayer"): GLOBALS.enemysInCollision = GLOBALS.enemysInCollision - 1
+	if body.is_in_group("Player1"): GLOBALS.enemysInCollision1 -= 1
+	if body.is_in_group("Player2"): GLOBALS.enemysInCollision2 -= 1
 
 
 func _on_warningArea_body_entered(body):

@@ -8,6 +8,8 @@ const slowSpeed = 250
 const sprintSpeed = 500
 var speed
 
+const hitDelay = 0.5
+
 onready var enduranceTimer = $enduranceTimer
 
 export var speedEnduranceUp = 0.5 #Speed regenerating endurance
@@ -32,10 +34,11 @@ func _ready():
 		GLOBALS.players = GLOBALS.players + 1
 		first = true
 	else:
+		GLOBALS.players += 1
 		first = false
 		position = Vector2(get_viewport_rect().size.x / 2, get_viewport_rect().size.y / 2)
 		add_to_group("Player2")
-		remove_from_group("Player")
+		remove_from_group("Player1")
 		
 	if GLOBALS.cave:
 		$torch.visible = true
@@ -96,16 +99,31 @@ func _process(delta):
 		enduranceTimer.start()
 		speed = slowSpeed
 		$particles.emitting = false
-	if GLOBALS.enemysInCollision >= 1 && $timer.is_stopped():
-		GLOBALS.health = GLOBALS.health - 10
-		$timer.start(0.5)
+
+	if GLOBALS.enemysInCollision1 >= 1 && $timer.is_stopped() && first:
+		dealDamage()
+		$timer.start(hitDelay)
+	if GLOBALS.enemysInCollision2 >= 1 && $timer.is_stopped() && not first:
+		dealDamage()
+		$timer.start(hitDelay)
 	
-	if GLOBALS.health <= 0 && not gameEnding:
-		emit_signal("end_game")
-		gameEnding = true
-		$Tween.interpolate_property($torch, "texture_scale", $torch.texture_scale, 0.01, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		$Tween.start()
+	if GLOBALS.health1 <= 0 && not gameEnding && first: #this should only manage the first plyer
+		endGame()
+	if GLOBALS.health2 <= 0 && not gameEnding && first: #same
+		endGame()
 
 func _on_Tween_tween_completed(object, key):
 	if $torch.texture_scale < 1 && first && GLOBALS.cave:
 		get_tree().change_scene("res://scenes/Restart.tscn")
+
+func dealDamage():
+	if first:
+		GLOBALS.health1 -= 10
+	else:
+		GLOBALS.health2 -= 10
+
+func endGame():
+	emit_signal("end_game")
+	gameEnding = true
+	$Tween.interpolate_property($torch, "texture_scale", $torch.texture_scale, 0.01, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.start()

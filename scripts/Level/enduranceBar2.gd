@@ -22,10 +22,11 @@ func _process(delta):
 		GLOBALS.endurance = GLOBALS.endurance + 1
 		timer.start()
 	if GLOBALS.players >= 2 && not moved:
+		visible = true
 		move()
 		moved = true
 
 func move():
 	var moveTween = $moveTween
-	moveTween.interpolate_property(self, "rect_position", get("rect_position"), Vector2(130, get("rect_position").y), 0.5, Tween.TRANS_CIRC, Tween.EASE_OUT)
+	moveTween.interpolate_property(self, "rect_position", get("rect_position"), Vector2(990, get("rect_position").y), 0.5, Tween.TRANS_CIRC, Tween.EASE_OUT)
 	moveTween.start()

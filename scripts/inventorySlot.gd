@@ -36,9 +36,12 @@ func updateHealth():
 		if currHealthPacks <= 0:
 			hasItem = false
 			$animPlayer.play_backwards("anim")
-			GLOBALS.health = GLOBALS.health + health
+			GLOBALS.health1 += health
+			GLOBALS.health2 += health
 		if currHealthPacks > 0:
 			hasItem = true
-			GLOBALS.health = GLOBALS.health + health
-		if GLOBALS.health > 100: GLOBALS.health = 100
+			GLOBALS.health1 += health
+			GLOBALS.health2 += health
+		if GLOBALS.health1 > 100: GLOBALS.health1 = 100
+		if GLOBALS.health2 > 100: GLOBALS.health2 = 100
 	$number.text = String(currHealthPacks)

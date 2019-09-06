@@ -8,7 +8,8 @@ script/source = "extends Control
 func _ready():
 	$ColorRect/labelScore.text = \"Score: \" + String(GLOBALS.score)
 	GLOBALS.enemys = 0
-	GLOBALS.health = 100
+	GLOBALS.health1 = 100
+	GLOBALS.health2 = 100
 	GLOBALS.endurance = 100
 	GLOBALS.players = 0
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

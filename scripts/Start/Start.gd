@@ -13,7 +13,8 @@ func _ready():
 	$Splash/info/animPlayer.play("blend")
 	if GLOBALS.splashDone: switch()
 	GLOBALS.enemys = 0
-	GLOBALS.health = 100
+	GLOBALS.health1 = 100
+	GLOBALS.health2 = 100
 
 
 func _unhandled_key_input(event):
