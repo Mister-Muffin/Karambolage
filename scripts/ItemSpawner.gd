@@ -12,7 +12,7 @@ func _on_timer_timeout():
 
 func spawn():
 	var item = itemScene.instance()
-	item.type = types[1]
+	item.type = types[rand_range(0, 2)]
 	item.global_position = pos
 	$container.add_child(item)
 

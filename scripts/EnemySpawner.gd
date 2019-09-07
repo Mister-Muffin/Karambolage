@@ -17,5 +17,5 @@ func _on_timer_timeout():
 	spawn()
 
 func spawn():
-	#get_node("container").add_child(enemy.instance())
+	get_node("container").add_child(enemy.instance())
 	GLOBALS.enemys = GLOBALS.enemys + 1

@@ -24,7 +24,6 @@ config/icon="res://player/player.png"
 
 GLOBALS="*res://globals.gd"
 SETTINGS="*res://scripts/Settings.gd"
-INVENTORY="*res://scripts/Inventory.gd"
 
 [display]
 
