@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/player.png" type="Texture" id=2]
@@ -8,7 +8,14 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 27, 27 )
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.137255, 1 )
+colors = PoolColorArray( 1, 0.884766, 0, 1, 1, 0.439453, 0, 1, 0.637695, 0.637695, 0.637695, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
 emission_shape = 1
 emission_sphere_radius = 17.69
 flag_disable_z = true
@@ -17,11 +24,11 @@ angular_velocity = -3.34965e+38
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 4.0
-color = Color( 0, 0.439216, 1, 1 )
+color_ramp = SubResource( 3 )
 
 [node name="Player" type="KinematicBody2D" groups=[
-"Player1",
 "AnyPlayer",
+"Player1",
 ]]
 script = ExtResource( 1 )
 
@@ -42,10 +49,10 @@ one_shot = true
 [node name="particles" type="Particles2D" parent="."]
 show_behind_parent = true
 emitting = false
-amount = 20
+amount = 100
 lifetime = 0.5
 local_coords = false
-process_material = SubResource( 2 )
+process_material = SubResource( 4 )
 
 [node name="torch" type="Light2D" parent="."]
 visible = false
