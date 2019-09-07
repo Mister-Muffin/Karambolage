@@ -21,6 +21,8 @@ var endurance1 = 100
 var endurance2 = 100
 var enduranceUsing = false
 
+var powerupType
+
 var players = 0
 
 #settings
@@ -28,3 +30,8 @@ var players = 0
 var closeConfirmation = true
 
 var powerupPos = Vector2()
+
+#inventory
+
+var itemSlot1 = ""
+var itemSlot2 = ""
