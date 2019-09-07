@@ -306,6 +306,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -50.0
 color = Color( 0.679688, 0.679688, 0.679688, 0.588235 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="container" type="VBoxContainer" parent="infoLayer/infoPanel"]
 anchor_right = 1.0

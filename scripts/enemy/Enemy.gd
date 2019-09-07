@@ -44,8 +44,8 @@ func _on_detectingArea_body_entered(body):
 func _on_detectingArea_body_exited(body):
 	get_node("ExclamationMark").visible = false
 	#if body.is_in_group("AnyPlayer"): detected1 = false
-	if body.is_in_group("Player1"): detected1 = true
-	if body.is_in_group("Player2"): detected2 = true
+	if body.is_in_group("Player1"): detected1 = false
+	if body.is_in_group("Player2"): detected2 = false
 
 func _on_collsisionArea_body_entered(body):
 	if body.is_in_group("Player1"): GLOBALS.enemysInCollision1 += 1
