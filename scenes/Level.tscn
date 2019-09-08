@@ -510,6 +510,7 @@ __meta__ = {
 
 [node name="background" type="ColorRect" parent="uiElements/infoPanel"]
 light_mask = 2
+
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -50.0
@@ -641,8 +642,11 @@ autostart = true
 pause_mode = 2
 
 [node name="confDialog" type="ConfirmationDialog" parent="uiElements"]
+
 pause_mode = 2
+visible = true
 light_mask = 2
+
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -654,6 +658,7 @@ margin_bottom = 92.5
 rect_scale = Vector2( 0.1, 0.1 )
 rect_pivot_offset = Vector2( 265, 92 )
 theme = SubResource( 12 )
+
 dialog_text = "Möchten sie das Spiel wirklich beenden?"
 
 [node name="confDialogTween" type="Tween" parent="uiElements"]
@@ -672,6 +677,7 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="closeAnim"]
+
 script = ExtResource( 19 )
 
 [node name="waitBeforeQuit" type="Timer" parent="closeAnim"]
@@ -698,6 +704,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+
 [node name="ItemSpawner" parent="." instance=ExtResource( 20 )]
 
 [node name="Border" parent="." instance=ExtResource( 21 )]
@@ -711,6 +718,7 @@ script = ExtResource( 22 )
 [node name="EnemySpawner" parent="." instance=ExtResource( 23 )]
 
 [node name="container" type="Node" parent="."]
+
 [connection signal="end_game" from="Player" to="closeAnim/Tween" method="_on_Player_end_game"]
 [connection signal="timeout" from="uiElements/gameElements/labelTimer/Timer" to="uiElements/gameElements/labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="uiElements/gameElements/letterCountdown/timer" to="." method="_on_timer_timeout"]

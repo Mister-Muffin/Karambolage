@@ -30,6 +30,7 @@ var players = 0
 var closeConfirmation = true
 
 var powerupPos = Vector2()
+var popupShown = false
 
 #inventory
 

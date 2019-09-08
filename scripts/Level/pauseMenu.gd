@@ -44,6 +44,7 @@ func _process(delta):
 			$Tween.interpolate_property(self, "rect_position", endPos, initPos, 0.5, Tween.TRANS_BACK, Tween.EASE_IN)
 			$Tween.start()
 			keyBindingTimer.start(5)
+
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			switchKeyBindingState(true)
