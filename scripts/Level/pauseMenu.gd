@@ -1,11 +1,11 @@
 extends Control
 
-onready var popup = get_node("../../popupLayer/confDialog")
-onready var popupTween = get_node("../../popupLayer/Tween")
-onready var keyBindingAnim = get_node("../../keyBindingCanvas/animPlayer")
-onready var keyBindingLabel = get_node("../../keyBindingCanvas/infoLabel")
-onready var keyBindingTween = get_node("../../keyBindingCanvas/Tween")
-onready var keyBindingTimer = get_node("../../keyBindingCanvas/Timer")
+onready var popup = get_node("../confDialog")
+onready var popupTween = get_node("../confDialogTween")
+onready var keyBindingAnim = get_node("../keyBinding/animPlayer")
+onready var keyBindingLabel = get_node("../keyBinding/infoLabel")
+onready var keyBindingTween = get_node("../keyBinding/Tween")
+onready var keyBindingTimer = get_node("../keyBinding/Timer")
 
 var quit = false
 var initPos = Vector2()
