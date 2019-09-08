@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -22,7 +22,8 @@
 [ext_resource path="res://scenes/ItemSpawner.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scripts/Level/camera.gd" type="Script" id=22]
-[ext_resource path="res://scenes/EnemySpawner.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scripts/Level/pauseManager.gd" type="Script" id=23]
+[ext_resource path="res://scenes/EnemySpawner.tscn" type="PackedScene" id=24]
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
@@ -609,16 +610,15 @@ text = "Quit"
 flat = true
 
 [node name="keyBinding" type="Node" parent="uiElements"]
-editor/display_folded = true
 
 [node name="infoLabel" type="Label" parent="uiElements/keyBinding"]
 pause_mode = 2
 light_mask = 2
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -531.0
+margin_left = -532.0
 margin_top = 10.0
-margin_right = -9.0
+margin_right = -10.0
 margin_bottom = 160.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -715,7 +715,11 @@ anchor_mode = 0
 current = true
 script = ExtResource( 22 )
 
-[node name="EnemySpawner" parent="." instance=ExtResource( 23 )]
+[node name="pauseManager" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 23 )
+
+[node name="EnemySpawner" parent="." instance=ExtResource( 24 )]
 
 [node name="container" type="Node" parent="."]
 

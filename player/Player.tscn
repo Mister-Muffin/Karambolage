@@ -1,13 +1,19 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/player.png" type="Texture" id=2]
-[ext_resource path="res://player/pixel_gratient.tres" type="Texture" id=3]
-[ext_resource path="res://textures/light.png" type="Texture" id=4]
-[ext_resource path="res://themes/theme.tres" type="Theme" id=5]
+[ext_resource path="res://textures/light.png" type="Texture" id=3]
+[ext_resource path="res://themes/theme.tres" type="Theme" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 27, 27 )
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.137255, 1 )
+colors = PoolColorArray( 1, 0.884766, 0, 1, 1, 0.439453, 0, 1, 0.637695, 0.637695, 0.637695, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
 [sub_resource type="ParticlesMaterial" id=4]
 emission_shape = 1
@@ -18,7 +24,7 @@ angular_velocity = -3.34965e+38
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 4.0
-color_ramp = ExtResource( 3 )
+color_ramp = SubResource( 3 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "AnyPlayer",
@@ -43,14 +49,14 @@ one_shot = true
 [node name="particles" type="Particles2D" parent="."]
 show_behind_parent = true
 emitting = false
-amount = 200
-lifetime = 2.0
+amount = 100
+lifetime = 0.5
 local_coords = false
 process_material = SubResource( 4 )
 
 [node name="torch" type="Light2D" parent="."]
 visible = false
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 texture_scale = 3.5
 
 [node name="Tween" type="Tween" parent="."]
@@ -66,7 +72,7 @@ margin_left = -20.0
 margin_top = 3.0
 margin_right = 20.0
 margin_bottom = 27.0
-theme = ExtResource( 5 )
+theme = ExtResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "P2"
 align = 1

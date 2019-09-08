@@ -27,10 +27,6 @@ func _ready():
 	endPosKeyBinding.y = initPosKeyBinding.y
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_p"):
-		if get_tree().paused:
-			get_tree().paused = false
-		else: get_tree().paused = true
 	if Input.is_action_just_pressed("ui_cancel"):
 		if get_tree().paused:
 			get_tree().paused = false
@@ -110,6 +106,19 @@ func _on_ConfirmationDialog_confirmed():
 	else:
 		get_tree().paused = false
 		get_tree().change_scene("res://scenes/Start.tscn")
+
+#func _on_animPlayer_animation_finished(anim_name):
+#	if not get_tree().paused: popup.visible = false
+
+#func _on_confDialog_visibility_changed():
+##	if not GLOBALS.closeConfirmation && popup.visible:
+##		popup.visible = false
+##		if quit:
+##			get_tree().quit()
+##		else:
+##			get_tree().paused = false
+##			get_tree().change_scene("res://scenes/Start.tscn")
+#	pass
 
 func showPopup():
 	popup.show()
