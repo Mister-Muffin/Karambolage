@@ -1,8 +1,6 @@
 extends Control
 
 var quit = false
-onready var popupAnim = $"../../popupLayer/animPlayer"
-onready var popup = $"../../popupLayer/confDialog"
 onready var keyBindingAnim = $"../../keyBindingCanvas/animPlayer"
 onready var keyBindingLabel = $"../../keyBindingCanvas/infoLabel"
 onready var keyBindingTween = $"../../keyBindingCanvas/Tween"
@@ -65,7 +63,6 @@ func _process(delta):
 func _on_btnContinue_pressed():
 	get_tree().paused = false
 	$animPlayer.play_backwards("anim")
-	popupAnim.play_backwards("zoom")
 
 func _on_btnExit_pressed():
 	quit = false
@@ -83,11 +80,11 @@ func _on_ConfirmationDialog_confirmed():
 		get_tree().change_scene("res://scenes/Start.tscn")
 
 func _on_animPlayer_animation_finished(anim_name):
-	if not get_tree().paused: popup.visible = false
+	if not get_tree().paused: $"../../popupLayer".closePopup()
 
 func _on_confDialog_visibility_changed():
-	if not GLOBALS.closeConfirmation && popup.visible:
-		popup.visible = false
+	if not GLOBALS.closeConfirmation && $"../../popupLayer/confDialog".visible:
+		$"../../popupLayer".closePopup()
 		if quit:
 			get_tree().quit()
 		else:

@@ -13,11 +13,34 @@ func _ready():
 #	pass
 
 func showPopup(text):
-	$confDialog.show()
+	hideLight()
 	$confDialog.dialog_text = text
-	GLOBALS.popupShown = true
 	$animPlayer.play("zoom")
+	GLOBALS.popupShown = true
 
 func closePopup():
 	$animPlayer.play_backwards("zoom")
 	GLOBALS.popupShown = false
+
+func _on_confDialog_visibility_changed():
+	print("Popup visibility changed")
+	print($confDialog.visible)
+	print("--------------")
+	if($confDialog.visible):
+		print()
+	elif(GLOBALS.popupShown):
+		GLOBALS.popupShown = false
+		showLight()
+	
+func hideLight():
+	if GLOBALS.cave:
+		$"../canvasLayerPause/colorRectPause".color.a = 255
+		if($"../canvasLayerPause/colorRectPause".color.a == 255):
+			$"../Light2D".visible = false
+		else:
+			hideLight()
+	
+func showLight():
+	if GLOBALS.cave:
+		$"../Light2D".visible = true
+		$"../canvasLayerPause/colorRectPause".color.a = 200
