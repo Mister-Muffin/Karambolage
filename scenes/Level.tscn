@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -16,10 +16,11 @@
 [ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=15]
 [ext_resource path="res://scripts/Level/keyBindingCanvas.gd" type="Script" id=16]
-[ext_resource path="res://themes/theme.tres" type="Theme" id=17]
-[ext_resource path="res://scripts/Level/healthBar.gd" type="Script" id=18]
-[ext_resource path="res://scenes/inventorySlot.tscn" type="PackedScene" id=19]
-[ext_resource path="res://scenes/ItemSpawner.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/popupLayer.gd" type="Script" id=17]
+[ext_resource path="res://themes/theme.tres" type="Theme" id=18]
+[ext_resource path="res://scripts/Level/healthBar.gd" type="Script" id=19]
+[ext_resource path="res://scenes/inventorySlot.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/ItemSpawner.tscn" type="PackedScene" id=21]
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
@@ -399,9 +400,11 @@ pause_mode = 2
 
 [node name="popupLayer" type="CanvasLayer" parent="."]
 layer = 5
+script = ExtResource( 17 )
 
 [node name="confDialog" type="ConfirmationDialog" parent="popupLayer"]
 pause_mode = 2
+visible = true
 light_mask = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -409,9 +412,8 @@ margin_left = 695.5
 margin_top = 447.5
 margin_right = -694.5
 margin_bottom = -447.5
-rect_scale = Vector2( 0.1, 0.1 )
 rect_pivot_offset = Vector2( 265, 92 )
-theme = ExtResource( 17 )
+theme = ExtResource( 18 )
 dialog_text = "Möchten sie das Spiel wirklich beenden?"
 
 [node name="animPlayer" type="AnimationPlayer" parent="popupLayer"]
@@ -441,11 +443,11 @@ margin_left = -300.0
 margin_top = -19.0
 margin_right = 300.0
 margin_bottom = 19.0
-theme = ExtResource( 17 )
+theme = ExtResource( 18 )
 custom_styles/fg = SubResource( 10 )
 value = 100.0
 percent_visible = false
-script = ExtResource( 18 )
+script = ExtResource( 19 )
 
 [node name="Tween" type="Tween" parent="CanvasLayer/Base/healthBar"]
 
@@ -474,10 +476,10 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="slot" parent="CanvasLayer/Base/inventory" instance=ExtResource( 19 )]
+[node name="slot" parent="CanvasLayer/Base/inventory" instance=ExtResource( 20 )]
 slotNumber = 1
 
-[node name="ItemSpawner" parent="." instance=ExtResource( 20 )]
+[node name="ItemSpawner" parent="." instance=ExtResource( 21 )]
 [connection signal="end_game" from="Player" to="closeAnim/Tween" method="_on_Player_end_game"]
 [connection signal="timeout" from="labelTimer/Timer" to="labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]

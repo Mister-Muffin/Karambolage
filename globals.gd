@@ -35,3 +35,5 @@ var closeConfirmation = true
 
 # warning-ignore:unused_class_variable
 var powerupPos = Vector2()
+
+var popupShown = false
