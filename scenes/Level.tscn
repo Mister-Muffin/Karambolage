@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -15,8 +15,8 @@
 [ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=14]
 [ext_resource path="res://scripts/Level/keyBindingCanvas.gd" type="Script" id=15]
-[ext_resource path="res://themes/theme.tres" type="Theme" id=16]
-[ext_resource path="res://scripts/Level/Base.gd" type="Script" id=17]
+[ext_resource path="res://scripts/Level/Base.gd" type="Script" id=16]
+[ext_resource path="res://themes/theme.tres" type="Theme" id=17]
 [ext_resource path="res://scripts/Level/healthBar.gd" type="Script" id=18]
 [ext_resource path="res://scripts/Level/healthBar2.gd" type="Script" id=19]
 [ext_resource path="res://scripts/Level/enduranceBar.gd" type="Script" id=20]
@@ -101,6 +101,26 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true, true, false ]
 }
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.215686, 0.215686, 0.215686, 1 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.0980392, 0.65098, 0, 1 )
+
+[sub_resource type="DynamicFont" id=21]
+size = 20
+font_data = ExtResource( 6 )
+
+[sub_resource type="Theme" id=22]
+default_font = SubResource( 21 )
+Dialogs/constants/button_margin = 64
+Dialogs/constants/margin = 8
+ProgressBar/colors/font_color = Color( 0.941176, 0.941176, 0.941176, 1 )
+ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+ProgressBar/fonts/font = null
+ProgressBar/styles/bg = SubResource( 19 )
+ProgressBar/styles/fg = SubResource( 20 )
 
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.0980392, 0.65098, 0, 1 )
@@ -343,7 +363,6 @@ pause_mode = 2
 script = ExtResource( 11 )
 
 [node name="closeAnim" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = 7
 
 [node name="rectUp" type="ColorRect" parent="closeAnim"]
@@ -391,7 +410,6 @@ anims/anim = SubResource( 5 )
 pause_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="canvasPauseMenu/pauseMenu"]
-editor/display_folded = true
 light_mask = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -451,13 +469,16 @@ pause_mode = 2
 light_mask = 2
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -249.0
+margin_left = -532.0
 margin_top = 10.0
-margin_right = 60.0
-margin_bottom = 65.0
+margin_right = -10.0
+margin_bottom = 160.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Esc: Pause"
+text = "Esc: Pause/Menu
+WASD: Move
+Arrow keys: 2nd player"
+align = 2
 
 [node name="animPlayer" type="AnimationPlayer" parent="keyBindingCanvas"]
 pause_mode = 2
@@ -486,13 +507,14 @@ margin_right = -694.5
 margin_bottom = -447.5
 rect_scale = Vector2( 0.1, 0.1 )
 rect_pivot_offset = Vector2( 265, 92 )
-theme = ExtResource( 16 )
+theme = SubResource( 22 )
 dialog_text = "Möchten sie das Spiel wirklich beenden?"
 
 [node name="Tween" type="Tween" parent="popupLayer"]
 pause_mode = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 2
 
 [node name="Base" type="Control" parent="CanvasLayer"]
@@ -501,7 +523,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -120.0
-script = ExtResource( 17 )
+script = ExtResource( 16 )
 
 [node name="healthBar" type="ProgressBar" parent="CanvasLayer/Base"]
 editor/display_folded = true
@@ -514,7 +536,7 @@ margin_left = -400.0
 margin_right = 400.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 300, 38 )
-theme = ExtResource( 16 )
+theme = ExtResource( 17 )
 custom_styles/fg = SubResource( 9 )
 custom_styles/bg = SubResource( 10 )
 value = 100.0
@@ -551,7 +573,7 @@ margin_left = -400.0
 margin_right = 400.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 300, 38 )
-theme = ExtResource( 16 )
+theme = ExtResource( 17 )
 custom_styles/fg = SubResource( 12 )
 custom_styles/bg = SubResource( 13 )
 value = 100.0
@@ -598,7 +620,7 @@ script = ExtResource( 20 )
 [node name="Label" type="Label" parent="CanvasLayer/Base/energyBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 16 )
+theme = ExtResource( 17 )
 text = "Energy"
 align = 1
 valign = 1
@@ -636,7 +658,7 @@ script = ExtResource( 21 )
 [node name="Label" type="Label" parent="CanvasLayer/Base/energyBar2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 16 )
+theme = ExtResource( 17 )
 text = "Energy"
 align = 1
 valign = 1

@@ -13,6 +13,8 @@ var textures = [
 	load("res://textures/energy.png")
 ]
 
+signal addEnergy
+
 func _ready():
 	if slotNumber == 1:
 		type = "health"
@@ -23,13 +25,6 @@ func _ready():
 	$number.text = String(itemCount)
 	set_process(true)
 
-
-func _on_btn_button_down():
-	if itemCount >= 1:
-		remove_item()
-		if type == "health":
-			updateHealth()
-	$number.text = String(itemCount)
 
 func _process(delta):
 	if Input.is_action_just_pressed(String(slotNumber)) && not type == null:
@@ -50,12 +45,7 @@ func updateHealth():
 		GLOBALS.health2 = 100
 
 func updateEnergy():
-	GLOBALS.endurance1 += 30
-	GLOBALS.endurance2 += 30
-	if GLOBALS.endurance1 > 100:
-		GLOBALS.endurance1 = 100
-	if GLOBALS.endurance2 > 100:
-		GLOBALS.endurance2 = 100
+	get_tree().call_group("AnyPlayer", "addEnergy")
 
 func item_collected():
 	if hasItem:

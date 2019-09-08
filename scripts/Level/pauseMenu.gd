@@ -11,12 +11,20 @@ var quit = false
 var initPos = Vector2()
 var endPos = Vector2()
 
+var initPosKeyBinding = Vector2()
+var endPosKeyBinding = Vector2()
+
+var keyBindingText
+
 func _ready():
 	set_process(true)
-	initPos.x = get_global_rect().position.x
-	initPos.y = get_global_rect().position.y
+	keyBindingText = keyBindingLabel.text
+	initPos = get_global_rect().position
 	endPos.x = initPos.x + get_global_rect().size.x
 	endPos.y = initPos.y
+	initPosKeyBinding = keyBindingLabel.get("rect_position")
+	endPosKeyBinding.x = initPosKeyBinding.x + keyBindingLabel.get("rect_size").x
+	endPosKeyBinding.y = initPosKeyBinding.y
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -38,7 +46,6 @@ func _process(delta):
 			
 			$Tween.interpolate_property(self, "rect_position", initPos, endPos, 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
 			$Tween.start()
-			keyBindingTween.start()
 			$animPlayer.play("anim")
 			if not keyBindingLabel.visible:
 				keyBindingAnim.play_backwards("blend")
@@ -48,20 +55,21 @@ func switchKeyBindingState(var now_paused):
 	if now_paused:
 		keyBindingTween.interpolate_property(keyBindingLabel,
 		"rect_position",
-		Vector2(1671,10),
-		Vector2(1590,10),
+		endPosKeyBinding,
+		initPosKeyBinding,
 		1,
 		Tween.TRANS_BACK,
 		Tween.EASE_OUT)
-		keyBindingTween.start()
+		if not keyBindingLabel.visible:
+			keyBindingTween.start()
+			
 		keyBindingLabel.text = "Esc: Continue"
-
 	else:
-		keyBindingLabel.text = "Esc: Pause"
+		keyBindingLabel.text = keyBindingText
 		keyBindingTween.interpolate_property(keyBindingLabel,
 		"rect_position",
-		Vector2(1590,10),
-		Vector2(1671,10),
+		initPosKeyBinding,
+		endPosKeyBinding,
 		1,
 		Tween.TRANS_BACK,
 		Tween.EASE_OUT)

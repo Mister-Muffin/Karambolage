@@ -1,8 +1,6 @@
 extends Tween
 
-onready var light = get_node("../../Player/Light2D")
 onready var rect = get_node("../rectUp")
-
 
 func _on_Player_end_game():
 	var initPos = Vector2(rect.get_global_rect().position.x, rect.get_global_rect().position.y)
@@ -16,7 +14,6 @@ func _on_Player_end_game():
 		Tween.TRANS_BOUNCE,
 		Tween.EASE_OUT)
 		start()
-
 
 func _on_Tween_tween_completed(object, key):
 	$"../waitBeforeQuit".start()

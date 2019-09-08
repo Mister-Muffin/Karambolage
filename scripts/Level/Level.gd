@@ -66,8 +66,6 @@ func _process(delta):
 			get_node("letter_countdown/letterLabel").text = "Q"
 		if Input.is_action_pressed("ui_r"):
 			get_node("letter_countdown/letterLabel").text = "R"
-		if Input.is_action_pressed("ui_m"):
-			get_node("letter_countdown/letterLabel").text = "M"
 		get_node("letter_countdown").visible = true
 		if not get_node("letter_countdown/timer").is_stopped() && contCancel:
 			get_node("letter_countdown/progressBar").value = (get_node("letter_countdown/timer").time_left / 1 * 100)
@@ -82,6 +80,3 @@ func _on_timer_timeout():
 		get_tree().change_scene("res://scenes/Restart.tscn")
 	if Input.is_action_pressed("quit"):
 		get_tree().change_scene("res://scenes/ReleaseToQuit.tscn")
-	if Input.is_action_pressed("ui_m"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		get_tree().change_scene("res://scenes/Start.tscn")

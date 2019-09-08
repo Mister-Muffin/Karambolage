@@ -3,18 +3,18 @@ extends KinematicBody2D
 var collision_info
 var move_direction = Vector2()
 
-
 const slowSpeed = 250
 const sprintSpeed = 500
 var speed
+var energy = 100
 
 const hitDelay = 0.5
 
 onready var playerNumber = get_node("playerNumber")
 onready var enduranceTimer = $enduranceTimer
 
-export var speedEnduranceUp = 0.5 #Speed regenerating endurance
-export var speedEnduranceDown = 2 #Speed using endurance
+const speedEnduranceUp = 0.5 #Speed regenerating energy
+const speedEnduranceDown = 2 #Speed using energy
 
 var gameEnding = false
 
@@ -50,7 +50,6 @@ func _ready():
 	speed = slowSpeed
 
 
-# warning-ignore:unused_argument
 func _physics_process(delta):
 	if GLOBALS.cave && not gameEnding:
 		$Tween.interpolate_property($torch, "texture_scale", $torch.texture_scale, $torch.texture_scale + 0.15, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
@@ -83,43 +82,25 @@ func _physics_process(delta):
 
 
 func _process(delta):
-	if first:
-		if GLOBALS.players >= 2 && not playerNumber.visible:
-			playerNumber.text = "P1"
-			playerNumber.visible = true
-		if SHIFT && moving && GLOBALS.endurance1 >= 10 && enduranceTimer.is_stopped():
-			while SHIFT && GLOBALS.endurance1 > 0 && moving:
-				if enduranceTimer.is_stopped():
-					GLOBALS.endurance1 -= speedEnduranceDown
-					enduranceTimer.start()
-					speed = sprintSpeed
-					$particles.emitting = true
-				yield(get_tree(), "idle_frame")
-		elif GLOBALS.endurance1 <= 0:
-			speed = slowSpeed
-			$particles.emitting = false
-		if not SHIFT && GLOBALS.endurance1 <= 100 && enduranceTimer.is_stopped():
-			GLOBALS.endurance1 += speedEnduranceUp
-			enduranceTimer.start()
-			speed = slowSpeed
-			$particles.emitting = false
-	else:
-		if SHIFT && moving && GLOBALS.endurance2 >= 10 && enduranceTimer.is_stopped():
-			while SHIFT && GLOBALS.endurance2 > 0 && moving:
-				if enduranceTimer.is_stopped():
-					GLOBALS.endurance2 -= speedEnduranceDown
-					enduranceTimer.start()
-					speed = sprintSpeed
-					$particles.emitting = true
-				yield(get_tree(), "idle_frame")
-		elif GLOBALS.endurance2 <= 0:
-			speed = slowSpeed
-			$particles.emitting = false
-		if not SHIFT && GLOBALS.endurance2 <= 100 && enduranceTimer.is_stopped():
-			GLOBALS.endurance2 = GLOBALS.endurance2 + speedEnduranceUp
-			enduranceTimer.start()
-			speed = slowSpeed
-			$particles.emitting = false
+	if GLOBALS.players >= 2 && not playerNumber.visible && first:
+		playerNumber.text = "P1"
+		playerNumber.visible = true
+	if SHIFT && moving && energy >= 10 && enduranceTimer.is_stopped():
+		while SHIFT && energy > 0 && moving:
+			if enduranceTimer.is_stopped():
+				energy -= speedEnduranceDown
+				enduranceTimer.start()
+				speed = sprintSpeed
+				$particles.emitting = true
+			yield(get_tree(), "idle_frame")
+	elif energy <= 0:
+		speed = slowSpeed
+		$particles.emitting = false
+	if not SHIFT && energy <= 100 && enduranceTimer.is_stopped():
+		energy += speedEnduranceUp
+		enduranceTimer.start()
+		speed = slowSpeed
+		$particles.emitting = false
 
 	if GLOBALS.enemysInCollision1 >= 1 && $timer.is_stopped() && first:
 		dealDamage()
@@ -128,10 +109,12 @@ func _process(delta):
 		dealDamage()
 		$timer.start(hitDelay)
 	
-	if GLOBALS.health1 <= 0 && not gameEnding && first: #this should only manage the first plyer
+	if GLOBALS.health1 <= 0 && not gameEnding:
 		endGame()
-	if GLOBALS.health2 <= 0 && not gameEnding && first: #same
+	if GLOBALS.health2 <= 0 && not gameEnding:
 		endGame()
+
+	syncEnergy() #set th globals equal to the local variable
 
 func _on_Tween_tween_completed(object, key):
 	if $torch.texture_scale < 1 && first && GLOBALS.cave:
@@ -144,7 +127,23 @@ func dealDamage():
 		GLOBALS.health2 -= 10
 
 func endGame():
-	emit_signal("end_game")
 	gameEnding = true
-	$Tween.interpolate_property($torch, "texture_scale", $torch.texture_scale, 0.01, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$Tween.start()
+	if first:
+		emit_signal("end_game")
+	if GLOBALS.cave:
+		$Tween.interpolate_property($torch, "texture_scale", $torch.texture_scale, 0.01, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Tween.start()
+
+func syncEnergy():
+	if first:
+		GLOBALS.endurance1 = energy
+	else:
+		GLOBALS.endurance2 = energy
+
+func addEnergy():
+	energy += 30
+	if energy > 100:
+		energy = 100
+	if energy > 100:
+		energy = 100
+	syncEnergy()

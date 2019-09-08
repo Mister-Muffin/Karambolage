@@ -63,6 +63,7 @@ texture_scale = 3.5
 
 [node name="playerNumber" type="Label" parent="."]
 visible = false
+light_mask = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
