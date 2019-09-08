@@ -12,9 +12,7 @@ func _ready():
 	set_process(true)
 	$Splash/info/animPlayer.play("blend")
 	if GLOBALS.splashDone: switch()
-	GLOBALS.enemys = 0
-	GLOBALS.health1 = 100
-	GLOBALS.health2 = 100
+	resetGlobals()
 
 
 func _unhandled_key_input(event):
@@ -56,3 +54,11 @@ func switch():
 	$Main/ModeContainer/CanvasLayer2/btnPlayFast.visible = true
 	$Main/ModeContainer/CanvasLayer3/btnCave.visible = true
 	$Splash.visible = false
+
+func resetGlobals():
+	GLOBALS.enemys = 0
+	GLOBALS.health1 = 100
+	GLOBALS.health2 = 100
+	GLOBALS.endurance1 = 100
+	GLOBALS.endurance2 = 100
+	GLOBALS.players = 0
