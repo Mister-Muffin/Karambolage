@@ -237,7 +237,6 @@ __meta__ = {
 [node name="Background2" parent="." instance=ExtResource( 2 )]
 
 [node name="Splash" type="Control" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 922, 789 )
@@ -564,8 +563,10 @@ anims/fade_in = SubResource( 26 )
 [node name="tween" type="Tween" parent="Restart"]
 
 [node name="camera" type="Camera2D" parent="."]
+position = Vector2( 0, -1080 )
 anchor_mode = 0
 current = true
+editor_draw_limits = true
 [connection signal="area_shape_entered" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard" method="_on_Area2D_area_shape_entered"]
 [connection signal="area_shape_exited" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard" method="_on_Area2D_area_shape_exited"]
 [connection signal="area_shape_entered" from="Main/CanvasLayer/sideBoard/areaControl" to="Main/CanvasLayer/sideBoard" method="_on_areaControl_area_shape_entered"]

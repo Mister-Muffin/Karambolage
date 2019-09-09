@@ -313,7 +313,6 @@ text = "R"
 one_shot = true
 
 [node name="Base" type="Control" parent="uiElements/gameElements"]
-editor/display_folded = true
 light_mask = 2
 anchor_top = 1.0
 anchor_right = 1.0
@@ -433,7 +432,6 @@ one_shot = true
 [node name="moveTween" type="Tween" parent="uiElements/gameElements/Base/energyBar"]
 
 [node name="energyBar2" type="ProgressBar" parent="uiElements/gameElements/Base"]
-editor/display_folded = true
 visible = false
 light_mask = 2
 anchor_left = 0.5
@@ -476,9 +474,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 750.0
+margin_left = 440.0
 margin_top = -30.0
-margin_right = 874.0
+margin_right = 564.0
 margin_bottom = 30.0
 alignment = 2
 __meta__ = {
@@ -492,6 +490,8 @@ slotNumber = 1
 margin_left = 64.0
 margin_right = 124.0
 slotNumber = 2
+
+[node name="moveTween" type="Tween" parent="uiElements/gameElements/Base/inventory"]
 
 [node name="Tween" type="Tween" parent="uiElements/gameElements/Base"]
 
@@ -513,7 +513,7 @@ light_mask = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -50.0
-color = Color( 0.679688, 0.679688, 0.679688, 0.588235 )
+color = Color( 0.678431, 0.678431, 0.678431, 0.588235 )
 
 [node name="container" type="VBoxContainer" parent="uiElements/infoPanel"]
 editor/display_folded = true
@@ -608,7 +608,6 @@ text = "Quit"
 flat = true
 
 [node name="keyBinding" type="Node" parent="uiElements"]
-editor/display_folded = true
 
 [node name="infoLabel" type="Label" parent="uiElements/keyBinding"]
 pause_mode = 2
@@ -660,6 +659,7 @@ dialog_text = "Möchten sie das Spiel wirklich beenden?"
 pause_mode = 2
 
 [node name="closeAnim" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 3
 
 [node name="rectUp" type="ColorRect" parent="closeAnim"]

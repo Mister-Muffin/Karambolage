@@ -17,7 +17,7 @@ func _on_btnRestart_pressed():
 	restart()
 	
 func _on_btnETMenu_pressed():
-	tween.interpolate_property(camera, "position", initColorScale, endColorScale, 0.5, Tween.TRANS_EXPO, Tween.EASE_OUT)
+	tween.interpolate_property(camera, "position", initColorScale, endColorScale, 1, Tween.TRANS_EXPO, Tween.EASE_OUT)
 	tween.start()
 	switch()
 
