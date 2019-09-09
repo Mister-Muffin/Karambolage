@@ -33,7 +33,7 @@ font_data = ExtResource( 5 )
 size = 50
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.0980392, 0.65098, 0, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -45,7 +45,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id=14]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 1, 1, 1, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -57,7 +57,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=5]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:custom_styles/fg:bg_color")
@@ -72,7 +72,7 @@ tracks/0/keys = {
 "values": [ Color( 0.0980392, 0.65098, 0, 1 ), Color( 0.792157, 0, 0, 1 ) ]
 }
 
-[sub_resource type="StyleBoxFlat" id=16]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.0980392, 0.65098, 0, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -84,7 +84,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id=17]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 1, 1, 1, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -96,7 +96,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=8]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:custom_styles/fg:bg_color")
@@ -111,7 +111,7 @@ tracks/0/keys = {
 "values": [ Color( 0.0980392, 0.65098, 0, 1 ), Color( 0.792157, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=9]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:custom_styles/fg:bg_color")
@@ -126,7 +126,7 @@ tracks/0/keys = {
 "values": [ Color( 0.0980392, 0.65098, 0, 1 ), Color( 0.792157, 0, 0, 1 ) ]
 }
 
-[sub_resource type="StyleBoxFlat" id=20]
+[sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0, 0.407843, 0.803922, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -138,7 +138,7 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[sub_resource type="StyleBoxFlat" id=21]
+[sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 1, 1, 1, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -150,15 +150,15 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=12]
 size = 20
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=13]
 size = 20
 font_data = ExtResource( 5 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=14]
 tracks/0/type = "value"
 tracks/0/path = NodePath("../../canvasLayerPause/colorRectPause:color")
 tracks/0/interp = 1
@@ -184,15 +184,15 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=15]
 size = 50
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=16]
 size = 40
 font_data = ExtResource( 5 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=17]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("infoLabel:custom_colors/font_color")
@@ -219,25 +219,25 @@ tracks/1/keys = {
 "values": [ true, true, false ]
 }
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 0.215686, 0.215686, 0.215686, 1 )
 
-[sub_resource type="StyleBoxFlat" id=10]
+[sub_resource type="StyleBoxFlat" id=19]
 bg_color = Color( 0.0980392, 0.65098, 0, 1 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=20]
 size = 20
 font_data = ExtResource( 5 )
 
-[sub_resource type="Theme" id=12]
-default_font = SubResource( 11 )
+[sub_resource type="Theme" id=21]
+default_font = SubResource( 20 )
 Dialogs/constants/button_margin = 64
 Dialogs/constants/margin = 8
 ProgressBar/colors/font_color = Color( 0.941176, 0.941176, 0.941176, 1 )
 ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
 ProgressBar/fonts/font = null
-ProgressBar/styles/bg = SubResource( 9 )
-ProgressBar/styles/fg = SubResource( 10 )
+ProgressBar/styles/bg = SubResource( 18 )
+ProgressBar/styles/fg = SubResource( 19 )
 
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 660, 60 )
@@ -267,7 +267,6 @@ mode = 3
 layer = 2
 
 [node name="gameElements" type="CanvasLayer" parent="uiElements"]
-editor/display_folded = true
 
 [node name="labelTimer" type="Label" parent="uiElements/gameElements"]
 editor/display_folded = true
@@ -314,7 +313,6 @@ text = "R"
 one_shot = true
 
 [node name="Base" type="Control" parent="uiElements/gameElements"]
-editor/display_folded = true
 light_mask = 2
 anchor_top = 1.0
 anchor_right = 1.0
@@ -334,8 +332,8 @@ margin_right = 400.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 300, 38 )
 theme = ExtResource( 9 )
-custom_styles/fg = SubResource( 13 )
-custom_styles/bg = SubResource( 14 )
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
 value = 100.0
 percent_visible = false
 script = ExtResource( 10 )
@@ -343,7 +341,7 @@ script = ExtResource( 10 )
 [node name="Tween" type="Tween" parent="uiElements/gameElements/Base/healthBar"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="uiElements/gameElements/Base/healthBar"]
-anims/changeColor = SubResource( 15 )
+anims/changeColor = SubResource( 5 )
 
 [node name="Label" type="Label" parent="uiElements/gameElements/Base/healthBar"]
 light_mask = 2
@@ -371,8 +369,8 @@ margin_right = 400.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 300, 38 )
 theme = ExtResource( 9 )
-custom_styles/fg = SubResource( 16 )
-custom_styles/bg = SubResource( 17 )
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 7 )
 value = 100.0
 percent_visible = false
 script = ExtResource( 11 )
@@ -380,8 +378,8 @@ script = ExtResource( 11 )
 [node name="Tween" type="Tween" parent="uiElements/gameElements/Base/healthBar2"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="uiElements/gameElements/Base/healthBar2"]
-"anims/Eingefügte Animation" = SubResource( 18 )
-anims/changeColor = SubResource( 19 )
+"anims/Eingefügte Animation" = SubResource( 8 )
+anims/changeColor = SubResource( 9 )
 
 [node name="Label" type="Label" parent="uiElements/gameElements/Base/healthBar2"]
 light_mask = 2
@@ -397,7 +395,6 @@ __meta__ = {
 [node name="moveTween" type="Tween" parent="uiElements/gameElements/Base/healthBar2"]
 
 [node name="energyBar" type="ProgressBar" parent="uiElements/gameElements/Base"]
-editor/display_folded = true
 light_mask = 2
 anchor_left = 0.5
 anchor_top = 0.5
@@ -408,13 +405,14 @@ margin_top = -34.0
 margin_right = 400.0
 margin_bottom = -2.0
 rect_min_size = Vector2( 300, 32 )
-custom_styles/fg = SubResource( 20 )
-custom_styles/bg = SubResource( 21 )
+custom_styles/fg = SubResource( 10 )
+custom_styles/bg = SubResource( 11 )
 value = 100.0
 percent_visible = false
 script = ExtResource( 12 )
 
 [node name="Label" type="Label" parent="uiElements/gameElements/Base/energyBar"]
+light_mask = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 9 )
@@ -446,8 +444,8 @@ margin_top = -34.0
 margin_right = 400.0
 margin_bottom = -2.0
 rect_min_size = Vector2( 300, 32 )
-custom_styles/fg = SubResource( 20 )
-custom_styles/bg = SubResource( 21 )
+custom_styles/fg = SubResource( 10 )
+custom_styles/bg = SubResource( 11 )
 value = 100.0
 percent_visible = false
 script = ExtResource( 13 )
@@ -511,7 +509,6 @@ __meta__ = {
 
 [node name="background" type="ColorRect" parent="uiElements/infoPanel"]
 light_mask = 2
-
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -50.0
@@ -528,7 +525,7 @@ light_mask = 2
 margin_top = 14.0
 margin_right = 670.0
 margin_bottom = 38.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 12 )
 text = "Monster: N/A"
 script = ExtResource( 15 )
 
@@ -537,7 +534,7 @@ light_mask = 2
 margin_top = 42.0
 margin_right = 670.0
 margin_bottom = 66.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 13 )
 text = "FPS: N/A"
 script = ExtResource( 16 )
 
@@ -553,7 +550,7 @@ margin_right = -3.24963
 script = ExtResource( 17 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="uiElements/pauseMenu"]
-anims/anim = SubResource( 5 )
+anims/anim = SubResource( 14 )
 
 [node name="Tween" type="Tween" parent="uiElements/pauseMenu"]
 pause_mode = 2
@@ -570,7 +567,7 @@ margin_top = 393.0
 margin_right = 310.0
 margin_bottom = 459.0
 focus_mode = 0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 15 )
 enabled_focus_mode = 0
 text = "Continue"
 flat = true
@@ -587,7 +584,7 @@ margin_top = 507.0
 margin_right = 310.0
 margin_bottom = 573.0
 focus_mode = 0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 15 )
 enabled_focus_mode = 0
 text = "Exit"
 flat = true
@@ -604,12 +601,13 @@ margin_top = 621.0
 margin_right = 310.0
 margin_bottom = 687.0
 focus_mode = 0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 15 )
 enabled_focus_mode = 0
 text = "Quit"
 flat = true
 
 [node name="keyBinding" type="Node" parent="uiElements"]
+editor/display_folded = true
 
 [node name="infoLabel" type="Label" parent="uiElements/keyBinding"]
 pause_mode = 2
@@ -620,7 +618,7 @@ margin_left = -532.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = 160.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 16 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Esc: Pause/Menu
 WASD: Move
@@ -630,7 +628,7 @@ script = ExtResource( 18 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="uiElements/keyBinding"]
 pause_mode = 2
-anims/blend = SubResource( 8 )
+anims/blend = SubResource( 17 )
 
 [node name="Timer" type="Timer" parent="uiElements/keyBinding"]
 pause_mode = 2
@@ -642,11 +640,8 @@ autostart = true
 pause_mode = 2
 
 [node name="confDialog" type="ConfirmationDialog" parent="uiElements"]
-
 pause_mode = 2
-visible = true
 light_mask = 2
-
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -657,8 +652,7 @@ margin_right = 265.0
 margin_bottom = 92.5
 rect_scale = Vector2( 0.1, 0.1 )
 rect_pivot_offset = Vector2( 265, 92 )
-theme = SubResource( 12 )
-
+theme = SubResource( 21 )
 dialog_text = "Möchten sie das Spiel wirklich beenden?"
 
 [node name="confDialogTween" type="Tween" parent="uiElements"]
@@ -677,7 +671,6 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="closeAnim"]
-
 script = ExtResource( 19 )
 
 [node name="waitBeforeQuit" type="Timer" parent="closeAnim"]
@@ -704,7 +697,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-
 [node name="ItemSpawner" parent="." instance=ExtResource( 20 )]
 
 [node name="Border" parent="." instance=ExtResource( 21 )]
@@ -722,7 +714,6 @@ script = ExtResource( 23 )
 [node name="EnemySpawner" parent="." instance=ExtResource( 24 )]
 
 [node name="container" type="Node" parent="."]
-
 [connection signal="end_game" from="Player" to="closeAnim/Tween" method="_on_Player_end_game"]
 [connection signal="timeout" from="uiElements/gameElements/labelTimer/Timer" to="uiElements/gameElements/labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="uiElements/gameElements/letterCountdown/timer" to="." method="_on_timer_timeout"]
