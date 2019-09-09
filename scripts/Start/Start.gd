@@ -11,7 +11,14 @@ func _ready():
 	GLOBALS.closeConfirmation = SETTINGS.get_setting("settings", "closeConf")
 	set_process(true)
 	$Splash/info/animPlayer.play("blend")
-	if GLOBALS.splashDone: switch()
+	if GLOBALS.splashDone:
+		if not GLOBALS.health1 <= 0 && not GLOBALS.health2 <= 0:
+			switch()
+	if GLOBALS.health1 <= 0 || GLOBALS.health2 <= 0:
+		$camera.position = Vector2(0, 1080)
+		get_node("Main/CanvasLayer/sideBoard/btnSettings").visible = false
+	else:
+		$camera.position = Vector2(0, 0)
 	resetGlobals()
 
 
@@ -50,9 +57,9 @@ func _on_Timer_timeout():
 func switch():
 	$Main.visible = true
 	$Main/title.visible = true
-	$Main/ModeContainer/CanvasLayer/btnPlay.visible = true
-	$Main/ModeContainer/CanvasLayer2/btnPlayFast.visible = true
-	$Main/ModeContainer/CanvasLayer3/btnCave.visible = true
+	$Main/ModeContainer/btnPlay.visible = true
+	$Main/ModeContainer/btnPlayFast.visible = true
+	$Main/ModeContainer/btnCave.visible = true
 	$Splash.visible = false
 
 func resetGlobals():

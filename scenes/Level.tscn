@@ -313,6 +313,7 @@ text = "R"
 one_shot = true
 
 [node name="Base" type="Control" parent="uiElements/gameElements"]
+editor/display_folded = true
 light_mask = 2
 anchor_top = 1.0
 anchor_right = 1.0
@@ -659,7 +660,6 @@ dialog_text = "Möchten sie das Spiel wirklich beenden?"
 pause_mode = 2
 
 [node name="closeAnim" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = 3
 
 [node name="rectUp" type="ColorRect" parent="closeAnim"]
