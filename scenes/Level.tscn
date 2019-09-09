@@ -264,9 +264,11 @@ color = Color( 0, 0, 0, 1 )
 mode = 3
 
 [node name="uiElements" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 2
 
 [node name="gameElements" type="CanvasLayer" parent="uiElements"]
+editor/display_folded = true
 
 [node name="labelTimer" type="Label" parent="uiElements/gameElements"]
 editor/display_folded = true
@@ -395,6 +397,7 @@ __meta__ = {
 [node name="moveTween" type="Tween" parent="uiElements/gameElements/Base/healthBar2"]
 
 [node name="energyBar" type="ProgressBar" parent="uiElements/gameElements/Base"]
+editor/display_folded = true
 light_mask = 2
 anchor_left = 0.5
 anchor_top = 0.5
@@ -432,6 +435,7 @@ one_shot = true
 [node name="moveTween" type="Tween" parent="uiElements/gameElements/Base/energyBar"]
 
 [node name="energyBar2" type="ProgressBar" parent="uiElements/gameElements/Base"]
+editor/display_folded = true
 visible = false
 light_mask = 2
 anchor_left = 0.5
@@ -469,6 +473,7 @@ one_shot = true
 [node name="moveTween" type="Tween" parent="uiElements/gameElements/Base/energyBar2"]
 
 [node name="inventory" type="HBoxContainer" parent="uiElements/gameElements/Base"]
+editor/display_folded = true
 light_mask = 2
 anchor_left = 0.5
 anchor_top = 0.5
