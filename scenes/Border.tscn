@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 540 )
+size = Vector2( 10, 540 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 970, 10 )
+size = Vector2( 970, 10 )
 
 [node name="Border" type="Node2D"]
 __meta__ = {

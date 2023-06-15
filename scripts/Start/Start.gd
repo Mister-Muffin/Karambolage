@@ -4,7 +4,7 @@ var pressed = false
 
 func _on_Button_button_down():
 	GLOBALS.cave = false
-	get_tree().change_scene("res://scenes/Level.tscn")
+	get_tree().change_scene_to_file("res://scenes/Level.tscn")
 
 func _ready():
 	Engine.time_scale = 1
@@ -24,35 +24,35 @@ func _ready():
 
 func _unhandled_key_input(event):
 	if event is InputEventKey:
-		if event.pressed and event.scancode == KEY_ENTER:
+		if event.pressed and event.keycode == KEY_ENTER:
 			$animPlayer.play("switch")
 			GLOBALS.splashDone = true
-	if event.pressed && event.scancode == 32:
+	if event.pressed && event.keycode == 32:
 		GLOBALS.cave = false
-		get_tree().change_scene("res://scenes/Level.tscn")
-	if event.pressed and event.scancode == 81:
+		get_tree().change_scene_to_file("res://scenes/Level.tscn")
+	if event.pressed and event.keycode == 81:
 		if $btnQuit/Timer.is_stopped(): $btnQuit/Timer.start()
-		$btnQuit/TextureProgress.visible = true
+		$btnQuit/TextureProgressBar.visible = true
 		pressed = true
-	if not event.pressed and event.scancode == 81:
+	if not event.pressed and event.keycode == 81:
 		$btnQuit/Timer.stop()
-		$btnQuit/TextureProgress.visible = false
+		$btnQuit/TextureProgressBar.visible = false
 		pressed = false
 
 func _process(delta):
 	while pressed:
-		$btnQuit/TextureProgress.value = (1 - $btnQuit/Timer.time_left / 0.5) * 100
-		yield(get_tree(), "idle_frame")
+		$btnQuit/TextureProgressBar.value = (1 - $btnQuit/Timer.time_left / 0.5) * 100
+		await get_tree().idle_frame
 
 func _on_btnCave_button_down():
 	GLOBALS.cave = true
-	get_tree().change_scene("res://scenes/Level.tscn")
+	get_tree().change_scene_to_file("res://scenes/Level.tscn")
 
 func _on_btnQuit_pressed():
 	get_tree().quit()
 
 func _on_Timer_timeout():
-	get_tree().change_scene("res://scenes/ReleaseToQuit.tscn")
+	get_tree().change_scene_to_file("res://scenes/ReleaseToQuit.tscn")
 	
 func switch():
 	$Main.visible = true

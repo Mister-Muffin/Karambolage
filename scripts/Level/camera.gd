@@ -3,8 +3,8 @@ extends Camera2D
 var tmpHealth1 = 100
 var tmpHealth2 = 100
 
-export var magnitude = 5.0
-export var lifeTime = 0.2
+@export var magnitude = 5.0
+@export var lifeTime = 0.2
 var timeLeft = 1.0
 
 var isShaking = false
@@ -35,10 +35,10 @@ func shake(delta):
 	isShaking = true
 
 	while timeLeft > 0:
-		position = Vector2(rand_range(-magnitude, magnitude), rand_range(-magnitude, magnitude))
+		position = Vector2(randf_range(-magnitude, magnitude), randf_range(-magnitude, magnitude))
 
 		timeLeft -= delta
-		yield(get_tree(), "idle_frame")
+		await get_tree().idle_frame
 	
 	timeLeft = lifeTime
 	isShaking = false

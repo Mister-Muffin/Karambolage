@@ -2,7 +2,7 @@ extends Control
 
 var entered = false
 
-export var title = "Play"
+@export var title = "Play"
 
 func _ready():
 	$title.text = title

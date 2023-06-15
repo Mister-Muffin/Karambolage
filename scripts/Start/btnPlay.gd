@@ -2,11 +2,11 @@ extends Control
 
 var entered = false
 
-export var title = "Play"
-export var description = ""
-export (String, "Normal", "Cave", "Fast") var mode
+@export var title = "Play"
+@export var description = ""
+@export (String, "Normal", "Cave", "Fast") var mode
 
-export var ScenePath = "res://scenes/Level.tscn"
+@export var ScenePath = "res://scenes/Level.tscn"
 
 func _ready():
 	set_process(true)
@@ -41,4 +41,4 @@ func _on_button_pressed():
 	else:
 		GLOBALS.fast = false
 		GLOBALS.cave = false
-	get_tree().change_scene(ScenePath)
+	get_tree().change_scene_to_file(ScenePath)

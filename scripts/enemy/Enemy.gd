@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 var detected1 = false
 var detected2 = false
@@ -6,10 +6,10 @@ var detected2 = false
 var direction
 var player
 var move = false
-export (int) var speed = 100
+@export (int) var speed = 100
 
 func _ready():
-	position = Vector2(rand_range(28, get_viewport_rect().size.x - 28), rand_range(28, get_viewport_rect().size.y - 28))
+	position = Vector2(randf_range(28, get_viewport_rect().size.x - 28), randf_range(28, get_viewport_rect().size.y - 28))
 	get_node("ExclamationMark").visible = false
 	player = get_tree().get_nodes_in_group("Player1")
 
@@ -61,7 +61,7 @@ func _on_warningArea_body_entered(body):
 	if body.is_in_group("AnyPlayer"):
 		$ExclamationMark.visible = true
 		if not $ExclamationMark/animPlayer.is_playing(): $ExclamationMark/animPlayer.play("question")
-		yield(get_tree(), "idle_frame")
+		await get_tree().idle_frame
 
 
 func _on_warningArea_body_exited(body):

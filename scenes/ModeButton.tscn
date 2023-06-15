@@ -1,32 +1,32 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/Start/btnPlay.gd" type="Script" id=1]
-[ext_resource path="res://fonts/good times rg.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://fonts/BabelStoneModern.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://textures/black/outline-crop_din-24px.svg" type="Texture" id=4]
-[ext_resource path="res://textures/white/outline_crop_din_white_48dp.png" type="Texture" id=5]
-[ext_resource path="res://textures/black/outline-arrow_forward-24px.svg" type="Texture" id=6]
-[ext_resource path="res://textures/white/outline_arrow_forward_white_48dp.png" type="Texture" id=7]
+[ext_resource path="res://fonts/good times rg.ttf" type="FontFile" id=2]
+[ext_resource path="res://fonts/BabelStoneModern.ttf" type="FontFile" id=3]
+[ext_resource path="res://textures/black/outline-crop_din-24px.svg" type="Texture2D" id=4]
+[ext_resource path="res://textures/white/outline_crop_din_white_48dp.png" type="Texture2D" id=5]
+[ext_resource path="res://textures/black/outline-arrow_forward-24px.svg" type="Texture2D" id=6]
+[ext_resource path="res://textures/white/outline_arrow_forward_white_48dp.png" type="Texture2D" id=7]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 50
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 25
 font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=3]
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_scale")
+tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ) ]
 }
@@ -37,32 +37,32 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("mode:custom_colors/font_color")
+tracks/2/path = NodePath("mode:theme_override_colors/font_color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("title:custom_colors/font_color")
+tracks/3/path = NodePath("title:theme_override_colors/font_color")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -73,8 +73,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 4 ), ExtResource( 5 ) ]
 }
@@ -85,20 +85,20 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 6 ), ExtResource( 7 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 200, 65 )
+size = Vector2( 200, 65 )
 
 [node name="btnPlay" type="Control"]
-margin_right = 400.0
-margin_bottom = 130.0
-rect_min_size = Vector2( 400, 130 )
-rect_pivot_offset = Vector2( 200, 65 )
+offset_right = 400.0
+offset_bottom = 130.0
+custom_minimum_size = Vector2( 400, 130 )
+pivot_offset = Vector2( 200, 65 )
 mouse_filter = 1
 script = ExtResource( 1 )
 __meta__ = {
@@ -117,13 +117,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -120.5
-margin_top = -46.5
-margin_right = 120.5
-margin_bottom = 26.5
+offset_left = -120.5
+offset_top = -46.5
+offset_right = 120.5
+offset_bottom = 26.5
 focus_mode = 1
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+theme_override_fonts/font = SubResource( 1 )
+theme_override_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Play"
 align = 1
 uppercase = true
@@ -133,13 +133,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -159.0
-margin_top = 17.5
-margin_right = 159.0
-margin_bottom = 54.5
-rect_pivot_offset = Vector2( 259, 97.5 )
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+offset_left = -159.0
+offset_top = 17.5
+offset_right = 159.0
+offset_bottom = 54.5
+pivot_offset = Vector2( 259, 97.5 )
+theme_override_fonts/font = SubResource( 2 )
+theme_override_colors/font_color = Color( 0, 0, 0, 1 )
 text = "-Normal-"
 align = 1
 
@@ -160,10 +160,10 @@ shape = SubResource( 4 )
 editor/display_folded = true
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 20.0
-margin_top = -32.0
-margin_right = 84.0
-margin_bottom = 32.0
+offset_left = 20.0
+offset_top = -32.0
+offset_right = 84.0
+offset_bottom = 32.0
 texture = ExtResource( 4 )
 expand = true
 __meta__ = {
@@ -175,10 +175,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -24.0
-margin_top = -24.0
-margin_right = 24.0
-margin_bottom = 24.0
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
 texture = ExtResource( 6 )
 expand = true
 

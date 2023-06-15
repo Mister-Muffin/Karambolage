@@ -1,6 +1,6 @@
 extends Control
 
-export (int) var slotNumber
+@export (int) var slotNumber
 
 const health = 20
 
@@ -91,7 +91,7 @@ func remove_item():
 		update_global_slot("")
 		$animPlayer.play_backwards("anim")
 		
-func update_global_slot(var new_type):
+func update_global_slot(new_type):
 	if slotNumber == 1:
 		GLOBALS.itemSlot1 = new_type
 	if slotNumber == 2:

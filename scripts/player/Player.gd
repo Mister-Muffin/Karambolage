@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 var collision_info
 var move_direction = Vector2()
@@ -10,8 +10,8 @@ var energy = 100
 
 const hitDelay = 0.5
 
-onready var playerNumber = get_node("playerNumber")
-onready var enduranceTimer = $enduranceTimer
+@onready var playerNumber = get_node("playerNumber")
+@onready var enduranceTimer = $enduranceTimer
 
 const speedEnduranceUp = 0.5 #Speed regenerating energy
 const speedEnduranceDown = 2 #Speed using energy
@@ -92,7 +92,7 @@ func _process(delta):
 				enduranceTimer.start()
 				speed = sprintSpeed
 				$particles.emitting = true
-			yield(get_tree(), "idle_frame")
+			await get_tree().idle_frame
 	elif energy <= 0:
 		speed = slowSpeed
 		$particles.emitting = false
@@ -118,7 +118,7 @@ func _process(delta):
 
 func _on_Tween_tween_completed(object, key):
 	if $torch.texture_scale < 1 && first && GLOBALS.cave:
-		get_tree().change_scene("res://scenes/Start.tscn")
+		get_tree().change_scene_to_file("res://scenes/Start.tscn")
 
 func dealDamage():
 	if first:

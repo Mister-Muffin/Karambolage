@@ -1,7 +1,7 @@
 extends Control
 
-onready var tween = get_node("tween")
-onready var camera = get_node("../camera")
+@onready var tween = get_node("tween")
+@onready var camera = get_node("../camera")
 
 const initColorScale = Vector2(0, 1080)
 const endColorScale = Vector2(0, 0)
@@ -25,10 +25,10 @@ func _on_tween_tween_all_completed():
 	get_node("../Main/CanvasLayer/sideBoard/btnSettings").visible = true
 
 # warning-ignore:return_value_discarded
-func restart(): get_tree().change_scene("res://scenes/Level.tscn")
+func restart(): get_tree().change_scene_to_file("res://scenes/Level.tscn")
 
 # warning-ignore:return_value_discarded
-func exit(): get_tree().change_scene("res://scenes/Start.tscn")
+func exit(): get_tree().change_scene_to_file("res://scenes/Start.tscn")
 
 func switch():
 	get_node("../Main").visible = true

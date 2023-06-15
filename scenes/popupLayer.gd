@@ -36,11 +36,11 @@ func hideLight():
 	if GLOBALS.cave:
 		$"../canvasLayerPause/colorRectPause".color.a = 255
 		if($"../canvasLayerPause/colorRectPause".color.a == 255):
-			$"../Light2D".visible = false
+			$"../PointLight2D".visible = false
 		else:
 			hideLight()
 	
 func showLight():
 	if GLOBALS.cave:
-		$"../Light2D".visible = true
+		$"../PointLight2D".visible = true
 		$"../canvasLayerPause/colorRectPause".color.a = 200

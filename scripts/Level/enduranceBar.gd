@@ -1,6 +1,6 @@
 extends ProgressBar
 
-onready var timer = $regenerationTimer
+@onready var timer = $regenerationTimer
 var moved = false
 
 var tmpEnergy
@@ -27,5 +27,5 @@ func _process(delta):
 
 func move():
 	var moveTween = $moveTween
-	moveTween.interpolate_property(self, "rect_position", get("rect_position"), Vector2(130, get("rect_position").y), 0.5, Tween.TRANS_CIRC, Tween.EASE_OUT)
+	moveTween.interpolate_property(self, "position", get("position"), Vector2(130, get("position").y), 0.5, Tween.TRANS_CIRC, Tween.EASE_OUT)
 	moveTween.start()
