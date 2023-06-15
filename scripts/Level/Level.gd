@@ -1,11 +1,12 @@
 extends Control
 
 @onready var infoPanel = get_node("uiElements/infoPanel")
-@onready var infoPanelTween = get_node("uiElements/infoPanel/Tween")
 @onready var letterCountdown = get_node("uiElements/gameElements/letterCountdown")
 @onready var letterCountdownTimer = get_node("uiElements/gameElements/letterCountdown/timer")
 @onready var letterCountdownLabel = get_node("uiElements/gameElements/letterCountdown/letterLabel")
 @onready var letterCountdownProgress = get_node("uiElements/gameElements/letterCountdown/progressBar")
+
+var infoPanelTween: Tween
 
 var contCancel = false
 
@@ -17,6 +18,9 @@ var endPosY
 var spawned = false
 
 func _ready():
+	infoPanelTween = get_tree().create_tween()
+	infoPanelTween.set_trans(Tween.TRANS_BACK)
+	
 	initPos.x = infoPanel.get_global_rect().position.x
 	initPos.y = infoPanel.get_global_rect().position.y
 	endPosY = initPos.y + infoPanel.get_global_rect().size.y
@@ -49,23 +53,15 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_select") && not spacePressed:
 		spacePressed = true
 		
-		infoPanelTween.interpolate_property(infoPanel,
-		"position",
-		Vector2(initPos.x, initPos.y),
-		Vector2(initPos.x, endPosY),
-		0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
+		infoPanelTween.set_ease(Tween.EASE_OUT)
+		infoPanelTween.tween_property(infoPanel, "position", Vector2(initPos.x, endPosY), 0.5)
 		
-		infoPanelTween.start()
 	if Input.is_action_just_released("ui_select") && spacePressed:
-		
 		spacePressed = false
 		
-		infoPanelTween.interpolate_property(infoPanel,
-		"position",
-		Vector2(initPos.x, endPosY),
-		Vector2(initPos.x, initPos.y),
-		0.5, Tween.TRANS_BACK, Tween.EASE_IN)
-		infoPanelTween.start()
+		infoPanelTween.set_ease(Tween.EASE_IN)
+		infoPanelTween.interpolate_property(infoPanel, "position", Vector2(initPos.x, initPos.y), 0.5)
+		
 	if Input.is_action_pressed("ui_r") || Input.is_action_pressed("quit") || Input.is_action_pressed("ui_m"):
 		contCancel = true
 		if letterCountdownTimer.is_stopped(): letterCountdownTimer.start()

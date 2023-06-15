@@ -24,7 +24,8 @@ func _process(delta):
 			shrinking = true
 		else: shrinking = false
 		#value = tmpEnergy
-		tween.tween_property(self, "value", GLOBALS.endurance1, 0.2)
+		if tween.is_valid():
+			tween.tween_property(self, "value", GLOBALS.endurance1, 0.2)
 	if GLOBALS.endurance1 < 100 && timer.is_stopped() && not shrinking:
 		GLOBALS.endurance1 = GLOBALS.endurance1 + 1
 		timer.start()

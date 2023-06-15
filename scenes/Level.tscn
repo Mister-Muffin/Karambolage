@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Level/Level.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://d267mpawqf7ih" path="res://scenes/Background.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://player/Player.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cu4ptfibfkx75" path="res://player/Player.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://c01spc8qlt38q" path="res://textures/background.png" id="4"]
 [ext_resource type="FontFile" uid="uid://vfec85wc02fo" path="res://fonts/BabelStoneModern.ttf" id="5"]
 [ext_resource type="Script" path="res://scripts/Level/labelTime.gd" id="6"]
@@ -496,14 +496,6 @@ layout_mode = 2
 theme_override_fonts/font = SubResource("13")
 text = "FPS: N/A"
 script = ExtResource("16")
-
-[node name="Tween" type="Tween" parent="uiElements/infoPanel"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
 
 [node name="pauseMenu" type="Control" parent="uiElements"]
 process_mode = 2
