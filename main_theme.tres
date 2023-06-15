@@ -7,3 +7,4 @@ Button/font_sizes/font_size = 16
 Button/fonts/font = ExtResource("1_jm121")
 Label/font_sizes/font_size = 90
 Label/fonts/font = ExtResource("1_jm121")
+ProgressBar/fonts/font = ExtResource("1_jm121")

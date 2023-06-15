@@ -11,6 +11,7 @@
 [ext_resource type="Theme" uid="uid://caja5ekj3jrl" path="res://themes/theme.tres" id="9"]
 [ext_resource type="Script" path="res://scripts/Level/healthBar.gd" id="10"]
 [ext_resource type="Script" path="res://scripts/Level/healthBar2.gd" id="11"]
+[ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="11_6yos8"]
 [ext_resource type="Script" path="res://scripts/Level/enduranceBar.gd" id="12"]
 [ext_resource type="Script" path="res://scripts/Level/enduranceBar2.gd" id="13"]
 [ext_resource type="PackedScene" path="res://scenes/inventorySlot.tscn" id="14"]
@@ -172,18 +173,6 @@ cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="FontFile" id="16"]
-fallbacks = Array[Font]([ExtResource("5")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
 [sub_resource type="Animation" id="17"]
 length = 2.0
 tracks/0/type = "value"
@@ -253,12 +242,13 @@ anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("1")
+metadata/_edit_lock_ = true
 
 [node name="Background" parent="." instance=ExtResource("2")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("3")]
 position = Vector2(960, 540)
@@ -345,14 +335,6 @@ theme = ExtResource("9")
 value = 100.0
 script = ExtResource("10")
 
-[node name="Tween" type="Tween" parent="uiElements/gameElements/Base/healthBar"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="uiElements/gameElements/Base/healthBar"]
 libraries = {
 "": SubResource("AnimationLibrary_fbkq0")
@@ -363,15 +345,10 @@ light_mask = 2
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource("11_6yos8")
+theme_override_font_sizes/font_size = 22
 text = "Health"
-
-[node name="moveTween" type="Tween" parent="uiElements/gameElements/Base/healthBar"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
+vertical_alignment = 1
 
 [node name="healthBar2" type="ProgressBar" parent="uiElements/gameElements/Base"]
 visible = false
@@ -389,14 +366,6 @@ theme = ExtResource("9")
 value = 100.0
 script = ExtResource("11")
 
-[node name="Tween" type="Tween" parent="uiElements/gameElements/Base/healthBar2"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="uiElements/gameElements/Base/healthBar2"]
 libraries = {
 "": SubResource("AnimationLibrary_svnuo")
@@ -408,14 +377,6 @@ layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "Health"
-
-[node name="moveTween" type="Tween" parent="uiElements/gameElements/Base/healthBar2"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
 
 [node name="energyBar" type="ProgressBar" parent="uiElements/gameElements/Base"]
 light_mask = 2
@@ -429,6 +390,7 @@ offset_left = -400.0
 offset_top = -34.0
 offset_right = 400.0
 offset_bottom = -2.0
+theme = ExtResource("11_6yos8")
 value = 100.0
 script = ExtResource("12")
 
@@ -438,7 +400,9 @@ layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("9")
+theme_override_font_sizes/font_size = 22
 text = "Energy"
+vertical_alignment = 1
 
 [node name="regenerationTimer" type="Timer" parent="uiElements/gameElements/Base/energyBar"]
 wait_time = 0.1
@@ -457,6 +421,7 @@ offset_left = -400.0
 offset_top = -34.0
 offset_right = 400.0
 offset_bottom = -2.0
+theme = ExtResource("11_6yos8")
 value = 100.0
 script = ExtResource("13")
 
@@ -465,27 +430,12 @@ layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("9")
+theme_override_font_sizes/font_size = 22
 text = "Energy"
 
 [node name="regenerationTimer" type="Timer" parent="uiElements/gameElements/Base/energyBar2"]
 wait_time = 0.1
 one_shot = true
-
-[node name="Tween" type="Tween" parent="uiElements/gameElements/Base/energyBar2"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
-
-[node name="moveTween" type="Tween" parent="uiElements/gameElements/Base/energyBar2"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
 
 [node name="inventory" type="HBoxContainer" parent="uiElements/gameElements/Base"]
 light_mask = 2
@@ -507,14 +457,6 @@ slotNumber = 1
 [node name="slot2" parent="uiElements/gameElements/Base/inventory" instance=ExtResource("14")]
 layout_mode = 2
 slotNumber = 2
-
-[node name="Tween" type="Tween" parent="uiElements/gameElements/Base"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
 
 [node name="infoPanel" type="Control" parent="uiElements"]
 custom_minimum_size = Vector2(450, 0)
@@ -638,8 +580,8 @@ offset_left = -532.0
 offset_top = 10.0
 offset_right = -10.0
 offset_bottom = 160.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = SubResource("16")
+theme = ExtResource("11_6yos8")
+theme_override_font_sizes/font_size = 38
 text = "Esc: Pause/Menu
 WASD: Move
 Arrow keys: 2nd player"
@@ -656,14 +598,6 @@ process_mode = 2
 wait_time = 5.0
 one_shot = true
 autostart = true
-
-[node name="Tween" type="Tween" parent="uiElements/keyBinding"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 2
-process_priority = 0
-editor_description = ""
-script = null
 
 [node name="confDialog" type="ConfirmationDialog" parent="uiElements"]
 process_mode = 2
