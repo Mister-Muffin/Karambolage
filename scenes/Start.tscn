@@ -225,7 +225,6 @@ text = "Karambolage"
 align = 1
 
 [node name="ModeContainer" type="HBoxContainer" parent="Main"]
-editor/display_folded = true
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -243,7 +242,6 @@ margin_bottom = 918.0
 description = "Normal"
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="Main/ModeContainer"]
-editor/display_folded = true
 
 [node name="btnPlayFast" parent="Main/ModeContainer/CanvasLayer2" instance=ExtResource( 5 )]
 anchor_left = 0.5
@@ -268,7 +266,6 @@ description = "Cave"
 mode = "Cave"
 
 [node name="TitleContainer" type="HBoxContainer" parent="Main"]
-editor/display_folded = true
 visible = false
 anchor_right = 1.0
 margin_left = 50.0
@@ -383,7 +380,6 @@ nine_patch_stretch = true
 wait_time = 0.5
 
 [node name="Mouse" type="Area2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse"]
@@ -391,6 +387,7 @@ shape = SubResource( 9 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="."]
 anims/switch = SubResource( 10 )
+
 [connection signal="area_shape_entered" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard" method="_on_Area2D_area_shape_entered"]
 [connection signal="area_shape_exited" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard" method="_on_Area2D_area_shape_exited"]
 [connection signal="area_shape_entered" from="Main/CanvasLayer/sideBoard/areaControl" to="Main/CanvasLayer/sideBoard" method="_on_areaControl_area_shape_entered"]
