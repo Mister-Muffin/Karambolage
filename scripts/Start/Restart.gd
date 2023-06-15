@@ -8,7 +8,7 @@ const endColorScale = Vector2(0, 0)
 
 
 func _ready():
-	$ColorRect/labelScore.text = "Score: " + String(GLOBALS.score)
+	$ColorRect/labelScore.text = "Score: " + str(GLOBALS.score)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$animPlayer.play("fade_in")
 
