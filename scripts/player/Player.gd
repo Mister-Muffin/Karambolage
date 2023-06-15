@@ -92,7 +92,7 @@ func _process(delta):
 				enduranceTimer.start()
 				speed = sprintSpeed
 				$particles.emitting = true
-			await get_tree().idle_frame
+			await get_tree().process_frame
 	elif energy <= 0:
 		speed = slowSpeed
 		$particles.emitting = false

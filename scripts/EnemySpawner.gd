@@ -3,13 +3,13 @@ extends Node
 var enemy = preload("res://enemy/Enemy.tscn")
 
 func _ready():
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	spawn()
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	spawn()
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	spawn()
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	spawn()
 
 

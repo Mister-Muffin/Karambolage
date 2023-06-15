@@ -38,7 +38,7 @@ func shake(delta):
 		position = Vector2(randf_range(-magnitude, magnitude), randf_range(-magnitude, magnitude))
 
 		timeLeft -= delta
-		await get_tree().idle_frame
+		await get_tree().process_frame
 	
 	timeLeft = lifeTime
 	isShaking = false

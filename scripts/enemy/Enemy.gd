@@ -29,10 +29,10 @@ func _process(delta):
 			player = get_tree().get_nodes_in_group("Player2")
 			direction = (player[0].position - global_position).normalized()
 		move = true
-		#yield(get_tree(), "idle_frame")
+		#yield(get_tree(), "process_frame")
 	else:
 		move = false
-		#yield(get_tree(), "idle_frame")
+		#yield(get_tree(), "process_frame")
 
 
 func _on_detectingArea_body_entered(body):
@@ -61,7 +61,7 @@ func _on_warningArea_body_entered(body):
 	if body.is_in_group("AnyPlayer"):
 		$ExclamationMark.visible = true
 		if not $ExclamationMark/animPlayer.is_playing(): $ExclamationMark/animPlayer.play("question")
-		await get_tree().idle_frame
+		await get_tree().process_frame
 
 
 func _on_warningArea_body_exited(body):
