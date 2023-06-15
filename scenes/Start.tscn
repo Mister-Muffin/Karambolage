@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://biaww0wupnugk" path="res://fonts/good times rg.ttf" id="3"]
 [ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="3_1gbg4"]
 [ext_resource type="FontFile" uid="uid://vfec85wc02fo" path="res://fonts/BabelStoneModern.ttf" id="4"]
-[ext_resource type="PackedScene" path="res://scenes/ModeButton.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bb3c85x0ng3sf" path="res://scenes/ModeButton.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://scenes/TitleButton.tscn" id="6"]
 [ext_resource type="Script" path="res://scripts/Start/sideBoard.gd" id="7"]
 [ext_resource type="Script" path="res://scripts/IconButton.gd" id="8"]
@@ -6531,6 +6531,14 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/90/0 = Vector2(0, 0)
+cache/0/90/0/ascent = 0.0
+cache/0/90/0/descent = 0.0
+cache/0/90/0/underline_position = 0.0
+cache/0/90/0/underline_thickness = 0.0
+cache/0/90/0/scale = 1.0
+cache/0/90/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/90/0/kerning_overrides/90/0 = Vector2(0, 0)
 
 [sub_resource type="Animation" id="5"]
 length = 0.2
@@ -6753,18 +6761,21 @@ anchor_bottom = 1.0
 pivot_offset = Vector2(922, 789)
 
 [node name="title" type="Label" parent="Splash"]
+visible = false
 layout_mode = 0
 anchor_right = 1.0
 offset_top = 180.0
 offset_bottom = 335.0
 pivot_offset = Vector2(960, 77)
 theme = ExtResource("3_1gbg4")
+theme_override_colors/font_color = Color(1, 1, 1, 0)
 theme_override_fonts/font = SubResource("1")
 text = "Karambolage"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="info" type="Label" parent="Splash"]
+visible = false
 layout_mode = 0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -6773,7 +6784,7 @@ offset_top = -29.0
 offset_bottom = 29.0
 pivot_offset = Vector2(106, 119)
 theme = ExtResource("3_1gbg4")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0)
 theme_override_font_sizes/font_size = 50
 text = "PRESS [ENTER] TO START"
 horizontal_alignment = 1
@@ -6787,7 +6798,6 @@ libraries = {
 }
 
 [node name="Main" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -6800,6 +6810,7 @@ offset_top = 3.95336
 offset_right = -1495.89
 offset_bottom = 52.9534
 pivot_offset = Vector2(960, 77)
+theme = ExtResource("3_1gbg4")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("4")
 text = "Karambolage"
@@ -6820,12 +6831,12 @@ description = "Normal"
 [node name="btnPlayFast" parent="Main/ModeContainer" instance=ExtResource("5")]
 layout_mode = 2
 description = "Fast"
-mode = "Fast"
+mode = 2
 
 [node name="btnCave" parent="Main/ModeContainer" instance=ExtResource("5")]
 layout_mode = 2
 description = "Cave"
-mode = "Cave"
+mode = 1
 
 [node name="TitleContainer" type="HBoxContainer" parent="Main"]
 visible = false
@@ -7050,7 +7061,6 @@ shortcut_in_tooltip = false
 text = "exit to menu [e]"
 
 [node name="ColorRect2" type="ColorRect" parent="Restart"]
-visible = false
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
