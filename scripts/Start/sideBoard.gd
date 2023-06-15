@@ -42,8 +42,6 @@ func _on_areaControl_area_shape_exited(area_id, area, area_shape, self_shape):
 
 func swipe_in():
 	tween.tween_property(self, "position", Vector2(1920 - int(self.get_global_rect().size.x), 0), swipeTime)
-	tween.start()
 
 func swipe_out():
 	tween.tween_property(self, "position", Vector2(1920, 0), swipeTime)
-	tween.start()

@@ -7054,14 +7054,6 @@ libraries = {
 "": SubResource("AnimationLibrary_qdp46")
 }
 
-[node name="tween" type="Tween" parent="Restart"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
-
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
 
