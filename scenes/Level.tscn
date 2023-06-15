@@ -444,22 +444,6 @@ text = "Energy"
 wait_time = 0.1
 one_shot = true
 
-[node name="Tween" type="Tween" parent="uiElements/gameElements/Base/energyBar"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
-
-[node name="moveTween" type="Tween" parent="uiElements/gameElements/Base/energyBar"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
-
 [node name="energyBar2" type="ProgressBar" parent="uiElements/gameElements/Base"]
 visible = false
 light_mask = 2
