@@ -1,12 +1,19 @@
 extends Control
 
-#You are welcome to clean this code up!
+# You are welcome to clean this code up!
 
-var entered = false
-var block = false
-var exit = false
+var entered := false
+var block := false
+var exit := false
 
 @export var swipeTime = 0.5
+
+var tween: Tween 
+
+func _ready():
+	tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_OUT)
 
 func _on_Area2D_area_shape_entered(area_id, area, area_shape, self_shape):
 	if not entered && area.name == "Mouse":
@@ -34,9 +41,9 @@ func _on_areaControl_area_shape_exited(area_id, area, area_shape, self_shape):
 		$btnSettings/animPlayer.play_backwards("anim")
 
 func swipe_in():
-	$"Tween".interpolate_property(self, "position", Vector2(1920, 0), Vector2(1920 - int(self.get_global_rect().size.x), 0), swipeTime, Tween.TRANS_BACK, Tween.EASE_OUT)
-	$"Tween".start()
+	tween.tween_property(self, "position", Vector2(1920 - int(self.get_global_rect().size.x), 0), swipeTime)
+	tween.start()
 
 func swipe_out():
-	$"Tween".interpolate_property(self, "position", Vector2(1920 - self.get_global_rect().size.x, 0), Vector2(1920, 0), swipeTime, Tween.TRANS_BACK, Tween.EASE_OUT)
-	$"Tween".start()
+	tween.tween_property(self, "position", Vector2(1920, 0), swipeTime)
+	tween.start()
