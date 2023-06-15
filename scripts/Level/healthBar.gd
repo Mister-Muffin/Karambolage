@@ -8,15 +8,14 @@ var tween: Tween
 var moveTween: Tween
 
 func _ready():
-	tween = get_tree().create_tween()
-	tween.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
-	moveTween = get_tree().create_tween()
-	moveTween.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
-	
 	set_process(true)
  
 func _process(delta):
 	if GLOBALS.health1 != currHealth:
+		if tween:
+			tween.kill()
+		
+		tween = create_tween().set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "value", GLOBALS.health1, 0.5)
 		currHealth = GLOBALS.health1
 	if GLOBALS.health1 <= 20 && not colorChanged:
@@ -30,4 +29,8 @@ func _process(delta):
 		moved = true
 
 func move():
+	if moveTween:
+		moveTween.kill()
+	moveTween = create_tween()
+	moveTween.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
 	moveTween.tween_property(self, "position", Vector2(130, get("position").y), 0.5)
