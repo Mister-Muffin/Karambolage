@@ -10,7 +10,6 @@ func _ready():
 	Engine.time_scale = 1
 	GLOBALS.closeConfirmation = SETTINGS.get_setting("settings", "closeConf")
 	set_process(true)
-	$Splash/info/animPlayer.play("blend")
 	if GLOBALS.splashDone:
 		if not GLOBALS.health1 <= 0 && not GLOBALS.health2 <= 0:
 			switch()
@@ -42,7 +41,7 @@ func _unhandled_key_input(event):
 func _process(delta):
 	while pressed:
 		$btnQuit/TextureProgressBar.value = (1 - $btnQuit/Timer.time_left / 0.5) * 100
-		await get_tree().idle_frame
+		await get_tree().process_frame
 
 func _on_btnCave_button_down():
 	GLOBALS.cave = true

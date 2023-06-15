@@ -1,7 +1,7 @@
 [gd_scene load_steps=44 format=3 uid="uid://be3mefyo6c38a"]
 
 [ext_resource type="Script" path="res://scripts/Start/Start.gd" id="1"]
-[ext_resource type="PackedScene" path="res://scenes/Background.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://d267mpawqf7ih" path="res://scenes/Background.tscn" id="2"]
 [ext_resource type="FontFile" uid="uid://biaww0wupnugk" path="res://fonts/good times rg.ttf" id="3"]
 [ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="3_1gbg4"]
 [ext_resource type="FontFile" uid="uid://vfec85wc02fo" path="res://fonts/BabelStoneModern.ttf" id="4"]
@@ -6500,7 +6500,8 @@ cache/0/93/0/kerning_overrides/93/0 = Vector2(0, 0)
 
 [sub_resource type="Animation" id="3"]
 resource_name = "blend"
-length = 6.0
+length = 2.0
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -6508,7 +6509,7 @@ tracks/0/path = NodePath(".:theme_override_colors/font_color")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.392157)]
@@ -6733,11 +6734,16 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(922, 789)
 script = ExtResource("1")
 
 [node name="Background2" parent="." instance=ExtResource("2")]
 layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="Splash" type="Control" parent="."]
 anchors_preset = 0
@@ -6766,6 +6772,7 @@ offset_top = -29.0
 offset_bottom = 29.0
 pivot_offset = Vector2(106, 119)
 theme = ExtResource("3_1gbg4")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 50
 text = "PRESS [ENTER] TO START"
 horizontal_alignment = 1
@@ -6773,6 +6780,7 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="animPlayer" type="AnimationPlayer" parent="Splash/info"]
+autoplay = "blend"
 libraries = {
 "": SubResource("AnimationLibrary_w0tpi")
 }
