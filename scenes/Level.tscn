@@ -257,6 +257,8 @@ script = ExtResource("1")
 [node name="Background" parent="." instance=ExtResource("2")]
 layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="Player" parent="." instance=ExtResource("3")]
 position = Vector2(960, 540)
@@ -324,6 +326,8 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -120.0
+grow_horizontal = 2
+grow_vertical = 0
 script = ExtResource("8")
 
 [node name="healthBar" type="ProgressBar" parent="uiElements/gameElements/Base"]
@@ -537,6 +541,7 @@ anchor_right = 0.5
 offset_left = -335.0
 offset_top = -80.0
 offset_right = 335.0
+grow_horizontal = 2
 
 [node name="background" type="ColorRect" parent="uiElements/infoPanel"]
 light_mask = 2
@@ -582,6 +587,7 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = -313.25
 offset_right = -3.24963
+grow_vertical = 2
 script = ExtResource("17")
 
 [node name="animPlayer" type="AnimationPlayer" parent="uiElements/pauseMenu"]
@@ -696,18 +702,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_top = -1100.0
 color = Color(0, 0, 0, 1)
-
-[node name="Tween" type="Tween" parent="closeAnim"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
 script = ExtResource("19")
-
-[node name="waitBeforeQuit" type="Timer" parent="closeAnim"]
-wait_time = 0.5
-one_shot = true
 
 [node name="canvasLayerPause" type="CanvasLayer" parent="."]
 
@@ -742,7 +737,7 @@ script = ExtResource("23")
 
 [node name="container" type="Node" parent="."]
 
-[connection signal="end_game" from="Player" to="closeAnim/Tween" method="_on_Player_end_game"]
+[connection signal="end_game" from="Player" to="closeAnim/rectUp" method="_on_player_end_game"]
 [connection signal="timeout" from="uiElements/gameElements/labelTimer/Timer" to="uiElements/gameElements/labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="uiElements/gameElements/letterCountdown/timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="uiElements/pauseMenu/VBoxContainer/btnContinue" to="uiElements/pauseMenu" method="_on_btnContinue_pressed"]
@@ -750,6 +745,5 @@ script = ExtResource("23")
 [connection signal="pressed" from="uiElements/pauseMenu/VBoxContainer/btnQuit" to="uiElements/pauseMenu" method="_on_btnQuit_pressed"]
 [connection signal="timeout" from="uiElements/keyBinding/Timer" to="uiElements/keyBinding/infoLabel" method="_on_Timer_timeout"]
 [connection signal="confirmed" from="uiElements/confDialog" to="uiElements/pauseMenu" method="_on_ConfirmationDialog_confirmed"]
-[connection signal="timeout" from="closeAnim/waitBeforeQuit" to="closeAnim/Tween" method="_on_waitBeforeQuit_timeout"]
 [connection signal="body_entered" from="baseArea" to="uiElements/gameElements/Base" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="baseArea" to="uiElements/gameElements/Base" method="_on_Area2D_body_exited"]

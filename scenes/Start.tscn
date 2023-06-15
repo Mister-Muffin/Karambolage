@@ -6759,6 +6759,7 @@ anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 pivot_offset = Vector2(922, 789)
+metadata/_edit_lock_ = true
 
 [node name="title" type="Label" parent="Splash"]
 visible = false
@@ -6801,6 +6802,7 @@ libraries = {
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+metadata/_edit_lock_ = true
 
 [node name="title" type="Label" parent="Main"]
 layout_mode = 0
