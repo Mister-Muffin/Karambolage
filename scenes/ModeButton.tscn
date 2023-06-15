@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://uqakgt1xpmcr" path="res://textures/white/outline_arrow_forward_white_48dp.png" id="7"]
 
 [sub_resource type="FontFile" id="1"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 fallbacks = Array[Font]([ExtResource("2")])
 face_index = null
 embolden = null

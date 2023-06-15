@@ -26,18 +26,6 @@
 [ext_resource type="Script" path="res://scripts/Level/pauseManager.gd" id="23"]
 [ext_resource type="PackedScene" path="res://scenes/EnemySpawner.tscn" id="24"]
 
-[sub_resource type="FontFile" id="1"]
-fallbacks = Array[Font]([ExtResource("5")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
 [sub_resource type="FontFile" id="2"]
 fallbacks = Array[Font]([ExtResource("5")])
 face_index = null
@@ -173,14 +161,42 @@ cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="Animation" id="17"]
+[sub_resource type="Animation" id="Animation_mkare"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("infoLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("infoLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jitfb"]
+resource_name = "blend"
 length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("infoLabel:theme_override_colors/font_color")
 tracks/0/interp = 1
-tracks/0/loop_wrap = false
+tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
@@ -192,17 +208,18 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("infoLabel:visible")
 tracks/1/interp = 1
-tracks/1/loop_wrap = false
+tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.9, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, true, false]
+"values": [true, false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kujjv"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gic2q"]
 _data = {
-"blend": SubResource("17")
+"RESET": SubResource("Animation_mkare"),
+"blend": SubResource("Animation_jitfb")
 }
 
 [sub_resource type="FontFile" id="20"]
@@ -271,8 +288,11 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 104.0
 offset_bottom = 105.0
-theme_override_fonts/font = SubResource("1")
+theme = ExtResource("11_6yos8")
+theme_override_font_sizes/font_size = 65
 text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("6")
 
 [node name="Timer" type="Timer" parent="uiElements/gameElements/labelTimer"]
@@ -563,7 +583,6 @@ flat = true
 [node name="keyBinding" type="Node" parent="uiElements"]
 
 [node name="infoLabel" type="Label" parent="uiElements/keyBinding"]
-process_mode = 2
 light_mask = 2
 anchors_preset = 1
 anchor_left = 1.0
@@ -573,6 +592,7 @@ offset_top = 10.0
 offset_right = -10.0
 offset_bottom = 160.0
 theme = ExtResource("11_6yos8")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 38
 text = "Esc: Pause/Menu
 WASD: Move
@@ -580,13 +600,11 @@ Arrow keys: 2nd player"
 script = ExtResource("18")
 
 [node name="animPlayer" type="AnimationPlayer" parent="uiElements/keyBinding"]
-process_mode = 2
 libraries = {
-"": SubResource("AnimationLibrary_kujjv")
+"": SubResource("AnimationLibrary_gic2q")
 }
 
 [node name="Timer" type="Timer" parent="uiElements/keyBinding"]
-process_mode = 2
 wait_time = 5.0
 one_shot = true
 autostart = true

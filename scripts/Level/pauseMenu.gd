@@ -4,7 +4,6 @@ extends Control
 @onready var popupTween = get_node("../confDialogTween")
 @onready var keyBindingAnim = get_node("../keyBinding/animPlayer")
 @onready var keyBindingLabel = get_node("../keyBinding/infoLabel")
-@onready var keyBindingTween = get_node("../keyBinding/Tween")
 @onready var keyBindingTimer = get_node("../keyBinding/Timer")
 
 var quit = false
@@ -15,6 +14,7 @@ var initPosKeyBinding = Vector2()
 var endPosKeyBinding = Vector2()
 
 var keyBindingText
+var keyBindingTween: Tween
 
 func _ready():
 	set_process(true)
@@ -54,27 +54,20 @@ func _process(delta):
 
 func switchKeyBindingState(now_paused):
 	if now_paused:
-		keyBindingTween.interpolate_property(keyBindingLabel,
-		"position",
-		endPosKeyBinding,
-		initPosKeyBinding,
-		1,
-		Tween.TRANS_BACK,
-		Tween.EASE_OUT)
+		if keyBindingTween: keyBindingTween.kill()
+		keyBindingTween = get_tree().create_tween()
+		keyBindingTween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		if not keyBindingLabel.visible:
-			keyBindingTween.start()
-			
+			keyBindingTween.tween_property(keyBindingLabel, "position", initPosKeyBinding, 1)
+		
 		keyBindingLabel.text = "Esc: Continue"
 	else:
 		keyBindingLabel.text = keyBindingText
-		keyBindingTween.interpolate_property(keyBindingLabel,
-		"position",
-		initPosKeyBinding,
-		endPosKeyBinding,
-		1,
-		Tween.TRANS_BACK,
-		Tween.EASE_OUT)
-		keyBindingTween.start()
+		
+		if keyBindingTween: keyBindingTween.kill()
+		keyBindingTween = get_tree().create_tween()
+		keyBindingTween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		keyBindingTween.tween_property(keyBindingLabel, "position", endPosKeyBinding, 1)
 
 func _on_btnContinue_pressed():
 	get_tree().paused = false
