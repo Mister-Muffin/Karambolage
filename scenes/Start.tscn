@@ -1,10 +1,9 @@
-[gd_scene load_steps=44 format=3 uid="uid://be3mefyo6c38a"]
+[gd_scene load_steps=38 format=3 uid="uid://be3mefyo6c38a"]
 
 [ext_resource type="Script" path="res://scripts/Start/Start.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://d267mpawqf7ih" path="res://scenes/Background.tscn" id="2"]
 [ext_resource type="FontFile" uid="uid://biaww0wupnugk" path="res://fonts/good times rg.ttf" id="3"]
 [ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="3_1gbg4"]
-[ext_resource type="FontFile" uid="uid://vfec85wc02fo" path="res://fonts/BabelStoneModern.ttf" id="4"]
 [ext_resource type="PackedScene" uid="uid://bb3c85x0ng3sf" path="res://scenes/ModeButton.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://scenes/TitleButton.tscn" id="6"]
 [ext_resource type="Script" path="res://scripts/Start/sideBoard.gd" id="7"]
@@ -14,9 +13,7 @@
 [ext_resource type="Script" path="res://scripts/Start/settingsContainer.gd" id="11"]
 [ext_resource type="Theme" uid="uid://b02kqhknpk8mq" path="res://themes/sideBoardTheme.tres" id="12"]
 [ext_resource type="Texture2D" uid="uid://xewci5y08fpe" path="res://textures/whiteProgress.jpg" id="13"]
-[ext_resource type="Script" path="res://scripts/Start/mouse.gd" id="14"]
 [ext_resource type="Script" path="res://scripts/Start/Restart.gd" id="15"]
-[ext_resource type="FontFile" path="res://scenes/Restart_font.tres" id="16"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("3")])
@@ -6566,9 +6563,6 @@ size = Vector2(35, 35)
 [sub_resource type="RectangleShape2D" id="7"]
 size = Vector2(348, 540)
 
-[sub_resource type="CircleShape2D" id="9"]
-radius = 2.23607
-
 [sub_resource type="Animation" id="10"]
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -6660,30 +6654,6 @@ _data = {
 "switch": SubResource("10")
 }
 
-[sub_resource type="FontFile" id="11"]
-fallbacks = Array[Font]([ExtResource("4")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="17"]
-fallbacks = Array[Font]([ExtResource("4")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
 [sub_resource type="StyleBoxEmpty" id="16"]
 
 [sub_resource type="StyleBoxEmpty" id="12"]
@@ -6762,21 +6732,19 @@ pivot_offset = Vector2(922, 789)
 metadata/_edit_lock_ = true
 
 [node name="title" type="Label" parent="Splash"]
-visible = false
 layout_mode = 0
 anchor_right = 1.0
 offset_top = 180.0
 offset_bottom = 335.0
 pivot_offset = Vector2(960, 77)
 theme = ExtResource("3_1gbg4")
-theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("1")
 text = "Karambolage"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="info" type="Label" parent="Splash"]
-visible = false
 layout_mode = 0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -6785,7 +6753,7 @@ offset_top = -29.0
 offset_bottom = 29.0
 pivot_offset = Vector2(106, 119)
 theme = ExtResource("3_1gbg4")
-theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 50
 text = "PRESS [ENTER] TO START"
 horizontal_alignment = 1
@@ -6799,12 +6767,14 @@ libraries = {
 }
 
 [node name="Main" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 metadata/_edit_lock_ = true
 
 [node name="title" type="Label" parent="Main"]
+visible = false
 layout_mode = 0
 anchor_right = 1.0
 offset_left = 18.1051
@@ -6813,7 +6783,7 @@ offset_right = -1495.89
 offset_bottom = 52.9534
 pivot_offset = Vector2(960, 77)
 theme = ExtResource("3_1gbg4")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0)
 theme_override_fonts/font = SubResource("4")
 text = "Karambolage"
 
@@ -6957,12 +6927,6 @@ texture_progress = ExtResource("13")
 [node name="Timer" type="Timer" parent="btnQuit"]
 wait_time = 0.5
 
-[node name="Mouse" type="Area2D" parent="."]
-script = ExtResource("14")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse"]
-shape = SubResource("9")
-
 [node name="animPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_v8ojb")
@@ -6975,6 +6939,7 @@ anchor_bottom = 1.0
 offset_top = 1080.0
 offset_bottom = 1080.0
 script = ExtResource("15")
+metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Restart"]
 layout_mode = 0
@@ -6994,8 +6959,10 @@ layout_mode = 0
 anchor_right = 1.0
 offset_top = 20.0
 offset_bottom = 96.0
-theme_override_fonts/font = SubResource("11")
+theme = ExtResource("3_1gbg4")
+theme_override_font_sizes/font_size = 60
 text = "GAME OVER!"
+horizontal_alignment = 1
 
 [node name="labelReason" type="Label" parent="Restart/ColorRect"]
 visible = false
@@ -7005,7 +6972,8 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 offset_top = -64.0
 offset_bottom = -22.0
-theme_override_fonts/font = ExtResource("16")
+theme = ExtResource("3_1gbg4")
+theme_override_font_sizes/font_size = 45
 text = "You died!"
 
 [node name="labelScore" type="Label" parent="Restart/ColorRect"]
@@ -7015,8 +6983,10 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 offset_top = 4.0
 offset_bottom = 46.0
-theme_override_fonts/font = ExtResource("16")
+theme = ExtResource("3_1gbg4")
+theme_override_font_sizes/font_size = 32
 text = "Score: N/A"
+horizontal_alignment = 1
 
 [node name="btnRestart" type="Button" parent="Restart/ColorRect"]
 layout_mode = 0
@@ -7029,7 +6999,8 @@ offset_bottom = -19.5
 focus_mode = 0
 mouse_filter = 1
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = SubResource("17")
+theme = ExtResource("3_1gbg4")
+theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("16")
 theme_override_styles/hover = SubResource("12")
 theme_override_styles/pressed = SubResource("13")
@@ -7052,7 +7023,8 @@ offset_bottom = -19.5
 focus_mode = 0
 mouse_filter = 1
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = SubResource("17")
+theme = ExtResource("3_1gbg4")
+theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("16")
 theme_override_styles/hover = SubResource("20")
 theme_override_styles/pressed = SubResource("21")
@@ -7069,6 +7041,7 @@ anchor_bottom = 1.0
 mouse_filter = 1
 mouse_default_cursor_shape = 4
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
 [node name="animPlayer" type="AnimationPlayer" parent="Restart"]
 libraries = {

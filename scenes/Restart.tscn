@@ -1,12 +1,12 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=14 format=3 uid="uid://xdlx4nmrce74"]
 
-[ext_resource path="res://fonts/BabelStoneModern.ttf" type="FontFile" id=1]
+[ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="1_1qkxx"]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id="1"]
 script/source = "extends Control
 
 func _ready():
-	$ColorRect/labelScore.text = \"Score: \" + String(GLOBALS.score)
+	%labelScore.text = \"Score: \" + str(GLOBALS.score)
 	GLOBALS.enemys = 0
 	GLOBALS.health = 100
 
@@ -16,65 +16,43 @@ func _on_btnRestart_pressed():
 func _on_btnETMenu_pressed():
 	exit()
 
-# warning-ignore:return_value_discarded
 func restart(): get_tree().change_scene_to_file(\"res://scenes/Level.tscn\")
 
-# warning-ignore:return_value_discarded
 func exit(): get_tree().change_scene_to_file(\"res://scenes/Start.tscn\")
 "
 
-[sub_resource type="FontFile" id=2]
-size = 64
-font_data = ExtResource( 1 )
+[sub_resource type="StyleBoxEmpty" id="8"]
 
-[sub_resource type="FontFile" id=3]
-size = 35
-font_data = ExtResource( 1 )
+[sub_resource type="StyleBoxEmpty" id="4"]
 
-[sub_resource type="FontFile" id=9]
-size = 35
-font_data = ExtResource( 1 )
+[sub_resource type="StyleBoxEmpty" id="5"]
 
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxEmpty" id="7"]
 
-[sub_resource type="StyleBoxEmpty" id=5]
+[sub_resource type="StyleBoxEmpty" id="6"]
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="Shortcut" id="11"]
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id="12"]
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id="13"]
 
-[sub_resource type="InputEventKey" id=10]
-pressed = true
-keycode = 82
+[sub_resource type="StyleBoxEmpty" id="15"]
 
-[sub_resource type="Shortcut" id=11]
-shortcut = SubResource( 10 )
+[sub_resource type="StyleBoxEmpty" id="14"]
 
-[sub_resource type="StyleBoxEmpty" id=12]
-
-[sub_resource type="StyleBoxEmpty" id=13]
-
-[sub_resource type="StyleBoxEmpty" id=14]
-
-[sub_resource type="StyleBoxEmpty" id=15]
-
-[sub_resource type="InputEventKey" id=16]
-keycode = 69
-
-[sub_resource type="Shortcut" id=17]
-shortcut = SubResource( 16 )
+[sub_resource type="Shortcut" id="17"]
 
 [node name="Restart" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = SubResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+script = SubResource("1")
+metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -83,47 +61,53 @@ offset_left = -346.5
 offset_top = -145.5
 offset_right = 346.5
 offset_bottom = 145.5
-color = Color( 0.85098, 0, 0, 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+color = Color(0.85098, 0, 0, 1)
+metadata/_edit_lock_ = true
 
 [node name="labelGameOver" type="Label" parent="ColorRect"]
+layout_mode = 0
 anchor_right = 1.0
 offset_top = 20.0
 offset_bottom = 96.0
-theme_override_fonts/font = SubResource( 2 )
+theme = ExtResource("1_1qkxx")
+theme_override_font_sizes/font_size = 60
 text = "GAME OVER!"
-align = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="labelScore" type="Label" parent="ColorRect"]
+unique_name_in_owner = true
+layout_mode = 0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_top = -21.0
 offset_bottom = 21.0
-theme_override_fonts/font = SubResource( 3 )
+theme = ExtResource("1_1qkxx")
+theme_override_font_sizes/font_size = 34
 text = "Score: XX"
-align = 1
-valign = 1
+horizontal_alignment = 1
 
 [node name="btnRestart" type="Button" parent="ColorRect"]
+layout_mode = 0
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 20.5
 offset_top = -79.5
 offset_right = 246.5
 offset_bottom = -19.5
-theme_override_fonts/font = SubResource( 9 )
-theme_override_styles/hover = SubResource( 4 )
-theme_override_styles/pressed = SubResource( 5 )
-theme_override_styles/focus = SubResource( 6 )
-theme_override_styles/disabled = SubResource( 7 )
-theme_override_styles/normal = SubResource( 8 )
-shortcut = SubResource( 11 )
+theme = ExtResource("1_1qkxx")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("8")
+theme_override_styles/hover = SubResource("4")
+theme_override_styles/pressed = SubResource("5")
+theme_override_styles/disabled = SubResource("7")
+theme_override_styles/focus = SubResource("6")
+shortcut = SubResource("11")
 text = "restart [r]"
 
 [node name="btnETMenu" type="Button" parent="ColorRect"]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -132,13 +116,14 @@ offset_left = -345.5
 offset_top = -79.5
 offset_right = -19.5
 offset_bottom = -19.5
-theme_override_fonts/font = SubResource( 9 )
-theme_override_styles/hover = SubResource( 12 )
-theme_override_styles/pressed = SubResource( 13 )
-theme_override_styles/focus = SubResource( 14 )
-theme_override_styles/disabled = SubResource( 15 )
-theme_override_styles/normal = SubResource( 8 )
-shortcut = SubResource( 17 )
+theme = ExtResource("1_1qkxx")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("8")
+theme_override_styles/hover = SubResource("12")
+theme_override_styles/pressed = SubResource("13")
+theme_override_styles/disabled = SubResource("15")
+theme_override_styles/focus = SubResource("14")
+shortcut = SubResource("17")
 text = "exit to menu [e]"
 
 [connection signal="pressed" from="ColorRect/btnRestart" to="." method="_on_btnRestart_pressed"]
