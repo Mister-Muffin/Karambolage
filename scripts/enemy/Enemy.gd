@@ -6,7 +6,7 @@ var detected2 = false
 var direction
 var player
 var move = false
-@export (int) var speed = 100
+@export var speed := 100
 
 func _ready():
 	position = Vector2(randf_range(28, get_viewport_rect().size.x - 28), randf_range(28, get_viewport_rect().size.y - 28))
@@ -57,14 +57,14 @@ func _on_collsisionArea_body_exited(body):
 	if body.is_in_group("Player2"): GLOBALS.enemysInCollision2 -= 1
 
 
-func _on_warningArea_body_entered(body):
+func _on_warning_area_body_entered(body):
 	if body.is_in_group("AnyPlayer"):
 		$ExclamationMark.visible = true
 		if not $ExclamationMark/animPlayer.is_playing(): $ExclamationMark/animPlayer.play("question")
 		await get_tree().process_frame
 
 
-func _on_warningArea_body_exited(body):
+func _on_warning_area_body_exited(body):
 	if body.is_in_group("AnyPlayer"):
 		$ExclamationMark/animPlayer.stop(true)
 		$ExclamationMark.visible = false

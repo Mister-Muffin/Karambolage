@@ -9,9 +9,9 @@ func _on_player_end_game():
 	var endPos = Vector2(self.get_global_rect().position.x, 0)
 	if not GLOBALS.cave:
 		tween.tween_property(self, "position", endPos, 1.5)
-		tween.tween_callback(await _tween_callback())
+		tween.tween_callback(tween_callback)
 
-func _tween_callback():
+var tween_callback = func():
 	await get_tree().create_timer(0.5).timeout
 	_quit()
 
