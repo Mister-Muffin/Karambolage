@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cu4ptfibfkx75"]
+[gd_scene load_steps=7 format=3 uid="uid://cu4ptfibfkx75"]
 
 [ext_resource type="Script" path="res://scripts/player/Player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://q06xyvolh6c4" path="res://player/player.png" id="2"]
@@ -8,18 +8,15 @@
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(54, 54)
 
-[sub_resource type="Gradient" id="2"]
-offsets = PackedFloat32Array(0, 0.137255, 1)
-colors = PackedColorArray(1, 0.884766, 0, 1, 1, 0.439453, 0, 1, 0.637695, 0.637695, 0.637695, 1)
-
-[sub_resource type="GradientTexture2D" id="3"]
-gradient = SubResource("2")
-
 [sub_resource type="ParticleProcessMaterial" id="4"]
 emission_shape = 1
-emission_sphere_radius = 17.69
+emission_sphere_radius = 20.0
 gravity = Vector3(0, 0, 0)
-color_ramp = SubResource("3")
+radial_accel_max = 60.0
+scale_min = 4.0
+scale_max = 5.0
+color = Color(1, 0, 0, 1)
+hue_variation_max = 0.31
 
 [node name="Player" type="CharacterBody2D" groups=["AnyPlayer", "Player1"]]
 script = ExtResource("1")
@@ -41,22 +38,15 @@ one_shot = true
 [node name="particles" type="GPUParticles2D" parent="."]
 show_behind_parent = true
 emitting = false
-amount = 100
+amount = 55
 process_material = SubResource("4")
 lifetime = 0.5
+randomness = 0.5
 
 [node name="torch" type="PointLight2D" parent="."]
 visible = false
 texture = ExtResource("3")
 texture_scale = 3.5
-
-[node name="Tween" type="Tween" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
 
 [node name="playerNumber" type="Label" parent="."]
 visible = false

@@ -13,6 +13,8 @@ const hitDelay = 0.5
 @onready var playerNumber = get_node("playerNumber")
 @onready var enduranceTimer = $enduranceTimer
 
+var tween: Tween
+
 const speedEnduranceUp = 0.5 #Speed regenerating energy
 const speedEnduranceDown = 2 #Speed using energy
 
@@ -52,8 +54,10 @@ func _ready():
 
 func _physics_process(delta):
 	if GLOBALS.cave && not gameEnding:
-		$Tween.interpolate_property($torch, "texture_scale", $torch.texture_scale, $torch.texture_scale + 0.15, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		$Tween.start()
+		if tween: tween.kill()
+		tween = get_tree().create_tween()
+		tween.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property($torch, "texture_scale", $torch.texture_scale + 0.15, 0.5)
 
 	if first:
 		LEFT = Input.is_action_pressed("ui_a")
@@ -131,8 +135,10 @@ func endGame():
 	if first:
 		emit_signal("end_game")
 	if GLOBALS.cave:
-		$Tween.interpolate_property($torch, "texture_scale", $torch.texture_scale, 0.01, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		$Tween.start()
+		if tween: tween.kill()
+		tween = get_tree().create_tween()
+		tween.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property($torch, "texture_scale", 0.01, 1)
 
 func syncEnergy():
 	if first:
