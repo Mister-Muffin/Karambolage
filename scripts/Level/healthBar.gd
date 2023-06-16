@@ -10,6 +10,7 @@ var moveTween: Tween
 
 func _ready():
 	GLOBALS.change_health.connect(_health_changed)
+	GLOBALS.p2_join.connect(_on_p2_joined)
 
 func move():
 	if moveTween: moveTween.kill()
@@ -36,3 +37,6 @@ func _health_changed(val, player):
 	tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "value", health, 0.5)
+
+func _on_p2_joined():
+	move()

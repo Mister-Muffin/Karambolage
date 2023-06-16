@@ -1,6 +1,12 @@
 extends Control
 
+@export var playerScene: PackedScene
+
+@export var healthBarScene: PackedScene
+@export var energyBarScene: PackedScene
+
 @onready var infoPanel = get_node("uiElements/infoPanel")
+@onready var base = get_node("uiElements/gameElements/Base")
 @onready var letterCountdown = get_node("uiElements/gameElements/letterCountdown")
 @onready var letterCountdownTimer = get_node("uiElements/gameElements/letterCountdown/timer")
 @onready var letterCountdownLabel = get_node("uiElements/gameElements/letterCountdown/letterLabel")
@@ -15,7 +21,7 @@ var spacePressed = false
 var initPos = Vector2()
 var endPosY
 
-var spawned = false
+var spawned := false
 
 func _ready():
 	initPos.x = infoPanel.get_global_rect().position.x
@@ -43,7 +49,22 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_RIGHT or event.keycode == KEY_LEFT or event.keycode == KEY_UP or event.keycode == KEY_DOWN:
 			if not spawned:
 				spawned = true
-				$container.add_child(preload("res://player/Player.tscn").instantiate())
+
+				var playerInstance = playerScene.instantiate()
+				playerInstance.first = false
+
+				var healthBarInstance: ProgressBar = healthBarScene.instantiate()
+				healthBarInstance.position = Vector2(560, 67)
+				healthBarInstance.player = 2
+
+				var energyBarInstance: ProgressBar = energyBarScene.instantiate()
+				energyBarInstance.position = Vector2(560, 28)
+				energyBarInstance.player = 2
+
+				$container.add_child(playerInstance)
+				base.add_child(healthBarInstance)
+				base.add_child(energyBarInstance)
+				GLOBALS.signal_p2_join()
 
 
 func _process(delta):

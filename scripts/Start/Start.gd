@@ -63,4 +63,3 @@ func switch():
 
 func resetGlobals():
 	GLOBALS.enemys = 0
-	GLOBALS.players = 0

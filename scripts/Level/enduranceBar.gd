@@ -11,13 +11,7 @@ var moveTween: Tween
 
 func _ready():
 	GLOBALS.change_energy.connect(_energy_changed)
-
-# func _process(delta):
-	# if GLOBALS.players >= 2 && not moved:
-	#	move()
-	#	moved = true
-
-
+	GLOBALS.p2_join.connect(_on_p2_joined)
 
 func move():
 	if moveTween: moveTween.kill()
@@ -36,3 +30,6 @@ func _energy_changed(val, player):
 	tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "value", energy, 0.2)
+
+func _on_p2_joined():
+	move()

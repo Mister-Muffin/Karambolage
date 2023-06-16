@@ -160,6 +160,9 @@ anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("1")
+playerScene = ExtResource("3")
+healthBarScene = ExtResource("10_ykl2i")
+energyBarScene = ExtResource("13_hpo1v")
 metadata/_edit_lock_ = true
 
 [node name="Background" parent="." instance=ExtResource("2")]

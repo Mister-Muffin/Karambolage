@@ -19,8 +19,6 @@ var enduranceUsing = false
 
 var powerupType
 
-var players = 0
-
 var show_game_over := false
 
 #settings
@@ -44,3 +42,7 @@ func signal_change_energy(newValue: int, player: int):
 signal change_health(newValue: int, player: int)
 func signal_change_health(newValue: int, player: int):
 	change_health.emit(newValue, player)
+
+signal p2_join
+func signal_p2_join():
+	p2_join.emit()

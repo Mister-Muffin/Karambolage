@@ -38,13 +38,9 @@ signal end_game
 func _ready():
 	GLOBALS.change_health.connect(_on_change_health)
 	GLOBALS.change_energy.connect(_on_change_energy)
+	GLOBALS.p2_join.connect(_on_p2_joined)
 
-	if GLOBALS.players < 1:
-		GLOBALS.players = GLOBALS.players + 1
-		first = true
-	else:
-		GLOBALS.players += 1
-		first = false
+	if not first:
 		position = Vector2(get_viewport_rect().size.x / 2, get_viewport_rect().size.y / 2)
 		add_to_group("Player2")
 		remove_from_group("Player1")
@@ -73,10 +69,6 @@ func _physics_process(delta):
 
 func _process(delta):
 	_update_movement_keys()
-
-	if GLOBALS.players >= 2 && not playerNumber.visible && first:
-		playerNumber.text = "P1"
-		playerNumber.visible = true
 	if SHIFT && moving && energy >= 10 && enduranceTimer.is_stopped():
 		while SHIFT && energy > 0 && moving:
 			cooldownTimer.start()
@@ -172,3 +164,8 @@ func _on_change_energy(val, player):
 	if player == 2 and first: return
 
 	energy += val
+
+func _on_p2_joined():
+	if first:
+		playerNumber.text = "P1"
+		playerNumber.visible = true
