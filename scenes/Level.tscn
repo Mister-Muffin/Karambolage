@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://y7qmkb3srevp"]
+[gd_scene load_steps=40 format=3 uid="uid://y7qmkb3srevp"]
 
 [ext_resource type="Script" path="res://scripts/Level/Level.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://d267mpawqf7ih" path="res://scenes/Background.tscn" id="2"]
@@ -209,34 +209,6 @@ _data = {
 "RESET": SubResource("Animation_mkare"),
 "blend": SubResource("Animation_jitfb")
 }
-
-[sub_resource type="FontFile" id="20"]
-fallbacks = Array[Font]([ExtResource("5")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="StyleBoxFlat" id="18"]
-bg_color = Color(0.215686, 0.215686, 0.215686, 1)
-
-[sub_resource type="StyleBoxFlat" id="19"]
-bg_color = Color(0.0980392, 0.65098, 0, 1)
-
-[sub_resource type="Theme" id="21"]
-default_font = SubResource("20")
-Dialogs/constants/button_margin = 64
-Dialogs/constants/margin = 8
-ProgressBar/colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
-ProgressBar/colors/font_color_shadow = Color(0, 0, 0, 1)
-ProgressBar/fonts/font = SubResource("20")
-ProgressBar/styles/bg = SubResource("18")
-ProgressBar/styles/fg = SubResource("19")
 
 [sub_resource type="RectangleShape2D" id="22"]
 size = Vector2(660, 60)
@@ -595,17 +567,13 @@ one_shot = true
 autostart = true
 
 [node name="confDialog" type="ConfirmationDialog" parent="uiElements"]
-process_mode = 2
-theme = SubResource("21")
+unique_name_in_owner = true
+process_mode = 3
+title = "Please confirm..."
+position = Vector2i(450, 400)
+size = Vector2i(991, 106)
+theme = ExtResource("11_6yos8")
 dialog_text = "Möchten sie das Spiel wirklich beenden?"
-
-[node name="confDialogTween" type="Tween" parent="uiElements"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 2
-process_priority = 0
-editor_description = ""
-script = null
 
 [node name="closeAnim" type="CanvasLayer" parent="."]
 layer = 3
@@ -616,6 +584,7 @@ anchor_right = 1.0
 offset_top = -1100.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("19")
+metadata/_edit_lock_ = true
 
 [node name="canvasLayerPause" type="CanvasLayer" parent="."]
 

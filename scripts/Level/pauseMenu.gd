@@ -1,7 +1,6 @@
 extends Control
 
-@onready var popup = get_node("../confDialog")
-@onready var popupTween = get_node("../confDialogTween")
+@onready var popup = get_node("%confDialog")
 @onready var keyBindingAnim = get_node("../keyBinding/animPlayer")
 @onready var keyBindingLabel = get_node("../keyBinding/infoLabel")
 @onready var keyBindingTimer = get_node("../keyBinding/Timer")
@@ -17,6 +16,7 @@ var keyBindingText
 var keyBindingTween: Tween
 
 var tween: Tween
+var popupTween: Tween
 
 func _ready():
 	set_process(true)
@@ -115,12 +115,18 @@ func _on_ConfirmationDialog_confirmed():
 
 func showPopup():
 	popup.show()
-	popupTween.interpolate_property(popup, "scale", popup.get("scale"), Vector2(1, 1), 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
-	popupTween.start()
+	if popupTween: popupTween.kill()
+	popupTween = get_tree().create_tween()
+	popupTween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	popupTween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	popupTween.tween_property(popup, "scale", Vector2(1, 1), 0.5)
 
 func hidePopup():
-	popupTween.interpolate_property(popup, "scale", popup.get("scale"), Vector2(0.1, 0.1), 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
-	popupTween.start()
+	if popupTween: popupTween.kill()
+	popupTween = get_tree().create_tween()
+	popupTween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	popupTween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	popupTween.tween_property(popup, "scale", Vector2(0.1, 0.1), 0.5)
 
 func _on_Tween_tween_completed(object, key):
 	if not get_tree().paused: popup.visible = false
