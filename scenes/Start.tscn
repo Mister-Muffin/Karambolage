@@ -6849,6 +6849,7 @@ description = "Cave"
 mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Main"]
+visible = false
 
 [node name="sideBoard" type="Control" parent="Main/CanvasLayer"]
 layout_mode = 3

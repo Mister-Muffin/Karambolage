@@ -2,7 +2,7 @@ extends VBoxContainer
 
 func _ready():
 	await get_tree().process_frame
-	$closeConfirmationCheck.button_pressed = GLOBALS.closeConfirmation
+	# $closeConfirmationCheck.button_pressed = GLOBALS.closeConfirmation
 
 
 func _on_closeConfirmationCheck_toggled(button_pressed):
