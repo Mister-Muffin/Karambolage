@@ -1,6 +1,6 @@
 extends Marker2D
 
-@export (PackedScene) var itemScene
+@export var itemScene: PackedScene
 var pos = Vector2()
 
 var types = ["health", "energy"]

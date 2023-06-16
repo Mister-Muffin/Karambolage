@@ -2,7 +2,7 @@ extends Control
 
 @export var slotNumber: int
 
-const health = 20
+const health := 20
 
 var itemCount = 1
 var hasItem = false
@@ -37,12 +37,8 @@ func _process(delta):
 		$number.text = str(itemCount)
 
 func updateHealth():
-	GLOBALS.health1 += health
-	GLOBALS.health2 += health
-	if GLOBALS.health1 > 100:
-		GLOBALS.health1 = 100
-	if GLOBALS.health2 > 100:
-		GLOBALS.health2 = 100
+	GLOBALS.signal_change_health(health, 1)
+	GLOBALS.signal_change_health(health, 2)
 
 func updateEnergy():
 	get_tree().call_group("AnyPlayer", "addEnergy")

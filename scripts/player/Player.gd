@@ -36,6 +36,7 @@ var first = true #true when first player
 signal end_game
 
 func _ready():
+	GLOBALS.change_health.connect(_on_change_health)
 	if GLOBALS.players < 1:
 		GLOBALS.players = GLOBALS.players + 1
 		first = true
@@ -153,8 +154,13 @@ func _change_energy(val):
 		GLOBALS.signal_change_energy(val, 2)
 
 func _change_health(val):
-	health += val
 	if first:
 		GLOBALS.signal_change_health(val, 1)
 	else:
 		GLOBALS.signal_change_health(val, 2)
+
+func _on_change_health(val, player):
+	if player == 1 and not first: return
+	if player == 2 and first: return
+
+	health += val
