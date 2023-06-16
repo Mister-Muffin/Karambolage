@@ -8,7 +8,6 @@ script/source = "extends Control
 func _ready():
 	%labelScore.text = \"Score: \" + str(GLOBALS.score)
 	GLOBALS.enemys = 0
-	GLOBALS.health = 100
 
 func _on_btnRestart_pressed():
 	restart()
