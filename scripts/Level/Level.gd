@@ -49,7 +49,7 @@ func _unhandled_input(event):
 				$container.add_child(preload("res://player/Player.tscn").instantiate())
 		
 
-func _process(delta):		
+func _process(delta):
 	if Input.is_action_just_pressed("ui_select") && not spacePressed:
 		spacePressed = true
 		

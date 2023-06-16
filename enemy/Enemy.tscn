@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dqwyqjfok64fm" path="res://enemy/enemy.png" id="3"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(28, 28)
+size = Vector2(54, 54)
 
 [sub_resource type="Animation" id="3"]
 tracks/0/type = "value"
@@ -70,7 +70,7 @@ _data = {
 radius = 300.0
 
 [sub_resource type="RectangleShape2D" id="6"]
-size = Vector2(54, 54)
+size = Vector2(56, 56)
 
 [sub_resource type="CircleShape2D" id="7"]
 radius = 392.02
