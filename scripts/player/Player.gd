@@ -122,6 +122,7 @@ func dealDamage():
 func endGame():
 	gameEnding = true
 	if first:
+		GLOBALS.show_game_over = true
 		emit_signal("end_game")
 	if GLOBALS.cave:
 		if tween: tween.kill()
