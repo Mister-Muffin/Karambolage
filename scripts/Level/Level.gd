@@ -18,9 +18,6 @@ var endPosY
 var spawned = false
 
 func _ready():
-	infoPanelTween = get_tree().create_tween()
-	infoPanelTween.set_trans(Tween.TRANS_BACK)
-
 	initPos.x = infoPanel.get_global_rect().position.x
 	initPos.y = infoPanel.get_global_rect().position.y
 	endPosY = initPos.y + infoPanel.get_global_rect().size.y
@@ -52,15 +49,17 @@ func _unhandled_input(event):
 func _process(delta):
 	if Input.is_action_just_pressed("ui_select") && not spacePressed:
 		spacePressed = true
-
-		infoPanelTween.set_ease(Tween.EASE_OUT)
+		if infoPanelTween: infoPanelTween.kill()
+		infoPanelTween = get_tree().create_tween()
+		infoPanelTween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		infoPanelTween.tween_property(infoPanel, "position", Vector2(initPos.x, endPosY), 0.5)
 
 	if Input.is_action_just_released("ui_select") && spacePressed:
 		spacePressed = false
-
-		infoPanelTween.set_ease(Tween.EASE_IN)
-		infoPanelTween.interpolate_property(infoPanel, "position", Vector2(initPos.x, initPos.y), 0.5)
+		if infoPanelTween: infoPanelTween.kill()
+		infoPanelTween = get_tree().create_tween()
+		infoPanelTween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+		infoPanelTween.tween_property(infoPanel, "position", Vector2(initPos.x, initPos.y), 0.5)
 
 	if Input.is_action_pressed("ui_r") || Input.is_action_pressed("quit") || Input.is_action_pressed("ui_m"):
 		contCancel = true
