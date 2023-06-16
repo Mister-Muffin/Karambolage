@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/Level/healthBar.gd" id="2_vtyuy"]
 [ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="3_isq1y"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jy5e7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc3ex"]
 bg_color = Color(0.101961, 0.619608, 0, 1)
 border_width_left = 2
 border_width_top = 2
@@ -61,7 +61,7 @@ offset_right = 800.0
 offset_bottom = 38.0
 theme = ExtResource("1_gsp1n")
 theme_override_styles/background = ExtResource("2_8mwdv")
-theme_override_styles/fill = SubResource("StyleBoxFlat_jy5e7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yc3ex")
 value = 100.0
 script = ExtResource("2_vtyuy")
 

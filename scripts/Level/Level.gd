@@ -56,10 +56,17 @@ func _unhandled_input(event):
 				var healthBarInstance: ProgressBar = healthBarScene.instantiate()
 				healthBarInstance.position = Vector2(560, 67)
 				healthBarInstance.player = 2
+				# needed in order, that animation player won't animate
+				# both player's health bars
+				var healthBarMaterial: StyleBoxFlat = healthBarInstance.get("theme_override_styles/fill")
+				healthBarInstance.set("theme_override_styles/fill", healthBarMaterial.duplicate())
+
 
 				var energyBarInstance: ProgressBar = energyBarScene.instantiate()
 				energyBarInstance.position = Vector2(560, 28)
 				energyBarInstance.player = 2
+				var energyBarMaterial: StyleBoxFlat = energyBarInstance.get("theme_override_styles/fill")
+				energyBarInstance.set("theme_override_styles/fill", energyBarMaterial.duplicate())
 
 				$container.add_child(playerInstance)
 				base.add_child(healthBarInstance)
