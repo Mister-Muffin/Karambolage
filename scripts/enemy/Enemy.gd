@@ -24,7 +24,7 @@ func _process(delta):
 		get_node("ExclamationMark/animPlayer").play("axclamMark")
 		if detected1:
 			player = get_tree().get_nodes_in_group("Player1")
-			direction = (player[0].position - global_position).normalized() 
+			direction = (player[0].position - global_position).normalized()
 		if detected2:
 			player = get_tree().get_nodes_in_group("Player2")
 			direction = (player[0].position - global_position).normalized()

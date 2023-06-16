@@ -42,7 +42,7 @@ func _ready():
 		remove_from_group("Player1")
 		playerNumber.text = "P2"
 		playerNumber.visible = true
-		
+
 	if GLOBALS.cave:
 		$torch.visible = true
 	else:
@@ -71,7 +71,7 @@ func _physics_process(delta):
 
 	move_direction.x = int(RIGHT) - int(LEFT)
 	move_direction.y = int(DOWN) - int(UP)
-	
+
 	if LEFT || RIGHT || UP || DOWN:
 		collision_info = move_and_collide(move_direction.normalized() * speed * delta)
 		if not moving:
@@ -108,7 +108,7 @@ func _process(delta):
 	if GLOBALS.enemysInCollision2 >= 1 && $timer.is_stopped() && not first:
 		dealDamage()
 		$timer.start(hitDelay)
-	
+
 	if GLOBALS.health1 <= 0 && not gameEnding:
 		endGame()
 	if GLOBALS.health2 <= 0 && not gameEnding:

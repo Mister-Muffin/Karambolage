@@ -15,7 +15,7 @@ func _ready():
 
 func _on_btnRestart_pressed():
 	restart()
-	
+
 func _on_btnETMenu_pressed():
 	if tween: tween.kill()
 	tween = get_tree().create_tween()

@@ -76,7 +76,7 @@ func item_collected():
 		elif type == "energy":
 			$"container/item".texture = textures[1]
 		update_global_slot(type)
-	
+
 
 func add_item():
 	itemCount += 1
@@ -90,7 +90,7 @@ func remove_item():
 		hasItem = false
 		update_global_slot("")
 		$animPlayer.play_backwards("anim")
-		
+
 func update_global_slot(new_type):
 	if slotNumber == 1:
 		GLOBALS.itemSlot1 = new_type

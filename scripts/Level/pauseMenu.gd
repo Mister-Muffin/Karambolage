@@ -32,11 +32,11 @@ func _process(delta):
 			get_tree().paused = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			$animPlayer.play_backwards("anim")
-			
+
 			if popup.visible: hidePopup()
-			
+
 			switchKeyBindingState(false)
-			
+
 			$Tween.interpolate_property(self, "position", endPos, initPos, 0.5, Tween.TRANS_BACK, Tween.EASE_IN)
 			$Tween.start()
 			keyBindingTimer.start(5)
@@ -44,7 +44,7 @@ func _process(delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			switchKeyBindingState(true)
-			
+
 			$Tween.interpolate_property(self, "position", initPos, endPos, 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
 			$Tween.start()
 			$animPlayer.play("anim")
@@ -59,11 +59,11 @@ func switchKeyBindingState(now_paused):
 		keyBindingTween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		if not keyBindingLabel.visible:
 			keyBindingTween.tween_property(keyBindingLabel, "position", initPosKeyBinding, 1)
-		
+
 		keyBindingLabel.text = "Esc: Continue"
 	else:
 		keyBindingLabel.text = keyBindingText
-		
+
 		if keyBindingTween: keyBindingTween.kill()
 		keyBindingTween = get_tree().create_tween()
 		keyBindingTween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
@@ -72,13 +72,13 @@ func switchKeyBindingState(now_paused):
 func _on_btnContinue_pressed():
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	
+
 	$animPlayer.play_backwards("anim")
-	
+
 	if popup.visible: hidePopup()
-	
+
 	switchKeyBindingState(false)
-	
+
 	$Tween.interpolate_property(self, "position", endPos, initPos, 0.5, Tween.TRANS_BACK, Tween.EASE_IN)
 	$Tween.start()
 	keyBindingTimer.start(5)

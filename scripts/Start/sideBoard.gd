@@ -8,7 +8,7 @@ var exit := false
 
 @export var swipeTime = 0.5
 
-var tween: Tween 
+var tween: Tween
 
 func _ready():
 	tween = get_tree().create_tween()

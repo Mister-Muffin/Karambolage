@@ -18,7 +18,7 @@ func _process(delta):
 		if GLOBALS.endurance1 < tmpEnergy:
 			shrinking = true
 		else: shrinking = false
-		
+
 		if tween:
 			tween.kill()
 		tween = get_tree().create_tween()

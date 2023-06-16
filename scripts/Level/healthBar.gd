@@ -9,12 +9,12 @@ var moveTween: Tween
 
 func _ready():
 	set_process(true)
- 
+
 func _process(delta):
 	if GLOBALS.health1 != currHealth:
 		if tween:
 			tween.kill()
-		
+
 		tween = create_tween().set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "value", GLOBALS.health1, 0.5)
 		currHealth = GLOBALS.health1

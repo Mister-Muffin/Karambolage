@@ -20,15 +20,15 @@ var spawned = false
 func _ready():
 	infoPanelTween = get_tree().create_tween()
 	infoPanelTween.set_trans(Tween.TRANS_BACK)
-	
+
 	initPos.x = infoPanel.get_global_rect().position.x
 	initPos.y = infoPanel.get_global_rect().position.y
 	endPosY = initPos.y + infoPanel.get_global_rect().size.y
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	
+
 	if GLOBALS.fast: Engine.time_scale = 1.5
 	else: Engine.time_scale = 1
-	
+
 	if GLOBALS.cave:
 		get_node("PointLight2D").visible = true
 	else:
@@ -47,21 +47,21 @@ func _unhandled_input(event):
 			if not spawned:
 				spawned = true
 				$container.add_child(preload("res://player/Player.tscn").instantiate())
-		
+
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_select") && not spacePressed:
 		spacePressed = true
-		
+
 		infoPanelTween.set_ease(Tween.EASE_OUT)
 		infoPanelTween.tween_property(infoPanel, "position", Vector2(initPos.x, endPosY), 0.5)
-		
+
 	if Input.is_action_just_released("ui_select") && spacePressed:
 		spacePressed = false
-		
+
 		infoPanelTween.set_ease(Tween.EASE_IN)
 		infoPanelTween.interpolate_property(infoPanel, "position", Vector2(initPos.x, initPos.y), 0.5)
-		
+
 	if Input.is_action_pressed("ui_r") || Input.is_action_pressed("quit") || Input.is_action_pressed("ui_m"):
 		contCancel = true
 		if letterCountdownTimer.is_stopped(): letterCountdownTimer.start()
@@ -72,7 +72,7 @@ func _process(delta):
 		letterCountdown.visible = true
 		if not letterCountdownTimer.is_stopped() && contCancel:
 			letterCountdownProgress.value = (letterCountdownTimer.time_left / 1 * 100)
-	
+
 	if Input.is_action_just_released("ui_r") || Input.is_action_just_released("quit") || Input.is_action_just_released("ui_m"):
 		contCancel = false
 		letterCountdownTimer.stop()
