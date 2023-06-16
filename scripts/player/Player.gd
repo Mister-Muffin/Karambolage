@@ -29,14 +29,16 @@ var UP := Input.is_action_pressed("ui_w")
 var DOWN := Input.is_action_pressed("ui_s")
 var SHIFT: bool
 
-var moving = false
+var moving := false
 
-var first = true #true when first player
+var first := true # true when first player
 
 signal end_game
 
 func _ready():
 	GLOBALS.change_health.connect(_on_change_health)
+	GLOBALS.change_energy.connect(_on_change_energy)
+
 	if GLOBALS.players < 1:
 		GLOBALS.players = GLOBALS.players + 1
 		first = true
@@ -164,3 +166,9 @@ func _on_change_health(val, player):
 	if player == 2 and first: return
 
 	health += val
+
+func _on_change_energy(val, player):
+	if player == 1 and not first: return
+	if player == 2 and first: return
+
+	energy += val
