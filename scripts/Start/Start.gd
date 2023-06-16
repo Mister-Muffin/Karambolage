@@ -13,7 +13,7 @@ func _ready():
 	if GLOBALS.splashDone:
 		if not GLOBALS.health1 <= 0 && not GLOBALS.health2 <= 0:
 			switch()
-	if GLOBALS.health1 <= 0 || GLOBALS.health2 <= 0:
+	if GLOBALS.show_game_over:
 		$camera.position = Vector2(0, 1080)
 		get_node("Main/CanvasLayer/sideBoard/btnSettings").visible = false
 	else:
@@ -63,6 +63,4 @@ func switch():
 
 func resetGlobals():
 	GLOBALS.enemys = 0
-	GLOBALS.health1 = 100
-	GLOBALS.health2 = 100
 	GLOBALS.players = 0

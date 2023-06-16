@@ -1,36 +1,38 @@
 extends ProgressBar
 
-var currHealth = 100
-var moved = false
+@export_range(1, 2) var player: int = 1
+
+var health = 100
 var colorChanged = false
 
 var tween: Tween
 var moveTween: Tween
 
 func _ready():
-	set_process(true)
-
-func _process(delta):
-	if GLOBALS.health1 != currHealth:
-		if tween:
-			tween.kill()
-
-		tween = create_tween().set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
-		tween.tween_property(self, "value", GLOBALS.health1, 0.5)
-		currHealth = GLOBALS.health1
-	if GLOBALS.health1 <= 20 && not colorChanged:
-		$AnimationPlayer.play("changeColor")
-		colorChanged = true
-	if GLOBALS.health1 > 20 && colorChanged:
-		$AnimationPlayer.play_backwards("changeColor")
-		colorChanged = false
-	if GLOBALS.players >= 2 && not moved:
-		move()
-		moved = true
+	GLOBALS.change_health.connect(_health_changed)
 
 func move():
-	if moveTween:
-		moveTween.kill()
-	moveTween = create_tween()
+	if moveTween: moveTween.kill()
+	moveTween = get_tree().create_tween()
 	moveTween.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
-	moveTween.tween_property(self, "position", Vector2(130, get("position").y), 0.5)
+	if player == 1:
+		moveTween.tween_property(self, "position", Vector2(130, get("position").y), 0.5)
+	else:
+		moveTween.tween_property(self, "position", Vector2(990, get("position").y), 0.5)
+
+func _health_changed(val, player):
+	if player != self.player: return
+	health += val
+
+	if health <= 20 && not colorChanged:
+		$AnimationPlayer.play("changeColor")
+		colorChanged = true
+	if health > 20 && colorChanged:
+		$AnimationPlayer.play_backwards("changeColor")
+		colorChanged = false
+
+	if tween:
+		tween.kill()
+	tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "value", health, 0.5)

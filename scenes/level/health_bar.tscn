@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf0wn2caen3fo"]
+
+[ext_resource type="Theme" uid="uid://caja5ekj3jrl" path="res://themes/theme.tres" id="1_gsp1n"]
+[ext_resource type="Script" path="res://scripts/Level/healthBar.gd" id="2_vtyuy"]
+[ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="3_isq1y"]
+
+[sub_resource type="Animation" id="5"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/fg:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0980392, 0.65098, 0, 1), Color(0.792157, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fbkq0"]
+_data = {
+"changeColor": SubResource("5")
+}
+
+[node name="healthBar" type="ProgressBar"]
+light_mask = 2
+custom_minimum_size = Vector2(800, 38)
+offset_right = 800.0
+offset_bottom = 38.0
+theme = ExtResource("1_gsp1n")
+value = 100.0
+script = ExtResource("2_vtyuy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fbkq0")
+}
+
+[node name="Label" type="Label" parent="."]
+light_mask = 2
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("3_isq1y")
+theme_override_font_sizes/font_size = 22
+text = "Health"
+vertical_alignment = 1

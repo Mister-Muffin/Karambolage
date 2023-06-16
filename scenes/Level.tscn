@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://y7qmkb3srevp"]
+[gd_scene load_steps=32 format=3 uid="uid://y7qmkb3srevp"]
 
 [ext_resource type="Script" path="res://scripts/Level/Level.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://d267mpawqf7ih" path="res://scenes/Background.tscn" id="2"]
@@ -8,12 +8,9 @@
 [ext_resource type="Script" path="res://scripts/Level/labelTime.gd" id="6"]
 [ext_resource type="Texture2D" uid="uid://csvhoo735e2ow" path="res://textures/progress.png" id="7"]
 [ext_resource type="Script" path="res://scripts/Level/Base.gd" id="8"]
-[ext_resource type="Theme" uid="uid://caja5ekj3jrl" path="res://themes/theme.tres" id="9"]
-[ext_resource type="Script" path="res://scripts/Level/healthBar.gd" id="10"]
-[ext_resource type="Script" path="res://scripts/Level/healthBar2.gd" id="11"]
+[ext_resource type="PackedScene" uid="uid://bf0wn2caen3fo" path="res://scenes/level/health_bar.tscn" id="10_ykl2i"]
 [ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="11_6yos8"]
-[ext_resource type="Script" path="res://scripts/Level/enduranceBar.gd" id="12"]
-[ext_resource type="Script" path="res://scripts/Level/enduranceBar2.gd" id="13"]
+[ext_resource type="PackedScene" uid="uid://dtk1o5eh7u8xk" path="res://scenes/level/energy_bar.tscn" id="13_hpo1v"]
 [ext_resource type="PackedScene" path="res://scenes/inventorySlot.tscn" id="14"]
 [ext_resource type="Script" path="res://scripts/Level/totalEnemysLabel.gd" id="15"]
 [ext_resource type="Script" path="res://scripts/Level/labelFPS.gd" id="16"]
@@ -37,62 +34,6 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="Animation" id="5"]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:theme_override_styles/fg:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.0980392, 0.65098, 0, 1), Color(0.792157, 0, 0, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fbkq0"]
-_data = {
-"changeColor": SubResource("5")
-}
-
-[sub_resource type="Animation" id="8"]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:theme_override_styles/fg:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.0980392, 0.65098, 0, 1), Color(0.792157, 0, 0, 1)]
-}
-
-[sub_resource type="Animation" id="9"]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:theme_override_styles/fg:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.0980392, 0.65098, 0, 1), Color(0.792157, 0, 0, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_svnuo"]
-_data = {
-"Eingefügte Animation": SubResource("8"),
-"changeColor": SubResource("9")
-}
 
 [sub_resource type="FontFile" id="12"]
 fallbacks = Array[Font]([ExtResource("5")])
@@ -299,122 +240,33 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("8")
 
-[node name="healthBar" type="ProgressBar" parent="uiElements/gameElements/Base"]
-light_mask = 2
-custom_minimum_size = Vector2(300, 38)
-layout_mode = 0
+[node name="healthBar" parent="uiElements/gameElements/Base" instance=ExtResource("10_ykl2i")]
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -400.0
-offset_right = 400.0
-offset_bottom = 38.0
-theme = ExtResource("9")
-value = 100.0
-script = ExtResource("10")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="uiElements/gameElements/Base/healthBar"]
-libraries = {
-"": SubResource("AnimationLibrary_fbkq0")
-}
-
-[node name="Label" type="Label" parent="uiElements/gameElements/Base/healthBar"]
-light_mask = 2
-layout_mode = 0
-anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource("11_6yos8")
-theme_override_font_sizes/font_size = 22
-text = "Health"
-vertical_alignment = 1
+offset_left = -400.0
+offset_top = -53.0
+offset_right = 400.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="healthBar2" type="ProgressBar" parent="uiElements/gameElements/Base"]
-visible = false
-light_mask = 2
-custom_minimum_size = Vector2(300, 38)
-layout_mode = 0
+[node name="energyBar" parent="uiElements/gameElements/Base" instance=ExtResource("13_hpo1v")]
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -400.0
-offset_right = 400.0
-offset_bottom = 38.0
-theme = ExtResource("9")
-value = 100.0
-script = ExtResource("11")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="uiElements/gameElements/Base/healthBar2"]
-libraries = {
-"": SubResource("AnimationLibrary_svnuo")
-}
-
-[node name="Label" type="Label" parent="uiElements/gameElements/Base/healthBar2"]
-light_mask = 2
-layout_mode = 0
-anchor_right = 1.0
 anchor_bottom = 1.0
-text = "Health"
-
-[node name="energyBar" type="ProgressBar" parent="uiElements/gameElements/Base"]
-light_mask = 2
-custom_minimum_size = Vector2(300, 32)
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -400.0
-offset_top = -34.0
+offset_top = -92.0
 offset_right = 400.0
-offset_bottom = -2.0
-theme = ExtResource("11_6yos8")
-value = 100.0
-script = ExtResource("12")
-
-[node name="Label" type="Label" parent="uiElements/gameElements/Base/energyBar"]
-light_mask = 2
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource("9")
-theme_override_font_sizes/font_size = 22
-text = "Energy"
-vertical_alignment = 1
-
-[node name="regenerationTimer" type="Timer" parent="uiElements/gameElements/Base/energyBar"]
-wait_time = 0.1
-one_shot = true
-
-[node name="energyBar2" type="ProgressBar" parent="uiElements/gameElements/Base"]
-visible = false
-light_mask = 2
-custom_minimum_size = Vector2(300, 32)
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -34.0
-offset_right = 400.0
-offset_bottom = -2.0
-theme = ExtResource("11_6yos8")
-value = 100.0
-script = ExtResource("13")
-
-[node name="Label" type="Label" parent="uiElements/gameElements/Base/energyBar2"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource("9")
-theme_override_font_sizes/font_size = 22
-text = "Energy"
-
-[node name="regenerationTimer" type="Timer" parent="uiElements/gameElements/Base/energyBar2"]
-wait_time = 0.1
-one_shot = true
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="inventory" type="HBoxContainer" parent="uiElements/gameElements/Base"]
 light_mask = 2

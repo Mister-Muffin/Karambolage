@@ -12,9 +12,9 @@ func _ready():
 	tween.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
 	moveTween = get_tree().create_tween()
 	moveTween.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
-	
+
 	set_process(true)
- 
+
 func _process(delta):
 	if GLOBALS.health2 != currHealth:
 		tween.tween_property(self, "value", GLOBALS.health2, 0.5)

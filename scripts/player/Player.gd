@@ -6,7 +6,8 @@ var move_direction = Vector2()
 const slowSpeed = 250
 const sprintSpeed = 500
 var speed
-var energy = 100
+var health := 100
+var energy := 100
 
 const hitDelay = 0.5
 
@@ -22,11 +23,11 @@ const speedEnduranceDown := 2 #Speed using energy
 
 var gameEnding = false
 
-var LEFT = Input.is_action_pressed("ui_a")
-var RIGHT = Input.is_action_pressed("ui_d")
-var UP = Input.is_action_pressed("ui_w")
-var DOWN = Input.is_action_pressed("ui_s")
-var SHIFT
+var LEFT := Input.is_action_pressed("ui_a")
+var RIGHT := Input.is_action_pressed("ui_d")
+var UP := Input.is_action_pressed("ui_w")
+var DOWN := Input.is_action_pressed("ui_s")
+var SHIFT: bool
 
 var moving = false
 
@@ -61,33 +62,15 @@ func _physics_process(delta):
 		tween.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property($torch, "texture_scale", $torch.texture_scale + 0.15, 0.5)
 
-	if first:
-		LEFT = Input.is_action_pressed("ui_a")
-		RIGHT = Input.is_action_pressed("ui_d")
-		UP = Input.is_action_pressed("ui_w")
-		DOWN = Input.is_action_pressed("ui_s")
-		SHIFT = Input.is_action_pressed("ui_sprint")
-	else:
-		LEFT = Input.is_action_pressed("ui_left")
-		RIGHT = Input.is_action_pressed("ui_right")
-		UP = Input.is_action_pressed("ui_up")
-		DOWN = Input.is_action_pressed("ui_down")
-		SHIFT = Input.is_action_pressed("ui_second_sprint")
-
-
 	move_direction.x = int(RIGHT) - int(LEFT)
 	move_direction.y = int(DOWN) - int(UP)
-
 	if LEFT || RIGHT || UP || DOWN:
 		collision_info = move_and_collide(move_direction.normalized() * speed * delta)
-		if not moving:
-			moving = true
-	else:
-		if moving:
-			moving = false
 
 
 func _process(delta):
+	_update_movement_keys()
+
 	if GLOBALS.players >= 2 && not playerNumber.visible && first:
 		playerNumber.text = "P1"
 		playerNumber.visible = true
@@ -116,21 +99,30 @@ func _process(delta):
 		dealDamage()
 		$timer.start(hitDelay)
 
-	if GLOBALS.health1 <= 0 && not gameEnding:
-		endGame()
-	if GLOBALS.health2 <= 0 && not gameEnding:
+	if health <= 0 && not gameEnding:
 		endGame()
 
+func _update_movement_keys():
+	if first:
+		LEFT = Input.is_action_pressed("ui_a")
+		RIGHT = Input.is_action_pressed("ui_d")
+		UP = Input.is_action_pressed("ui_w")
+		DOWN = Input.is_action_pressed("ui_s")
+		SHIFT = Input.is_action_pressed("ui_sprint")
+	else:
+		LEFT = Input.is_action_pressed("ui_left")
+		RIGHT = Input.is_action_pressed("ui_right")
+		UP = Input.is_action_pressed("ui_up")
+		DOWN = Input.is_action_pressed("ui_down")
+		SHIFT = Input.is_action_pressed("ui_second_sprint")
+	moving = LEFT || RIGHT || UP || DOWN
 
 func _on_Tween_tween_completed(object, key):
 	if $torch.texture_scale < 1 && first && GLOBALS.cave:
 		get_tree().change_scene_to_file("res://scenes/Start.tscn")
 
 func dealDamage():
-	if first:
-		GLOBALS.health1 -= 10
-	else:
-		GLOBALS.health2 -= 10
+	_change_health(-10)
 
 func endGame():
 	gameEnding = true
@@ -142,19 +134,16 @@ func endGame():
 		tween.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property($torch, "texture_scale", 0.01, 1)
 
-func syncEnergy():
-	if first:
-		GLOBALS.signal_change_energy(30, 1)
-	else:
-		GLOBALS.signal_change_energy(30, 2)
-
 func addEnergy():
 	energy += 30
 	if energy > 100:
 		energy = 100
 	if energy > 100:
 		energy = 100
-	syncEnergy()
+	if first:
+		GLOBALS.signal_change_energy(30, 1)
+	else:
+		GLOBALS.signal_change_energy(30, 2)
 
 func _change_energy(val):
 	energy += val
@@ -162,3 +151,10 @@ func _change_energy(val):
 		GLOBALS.signal_change_energy(val, 1)
 	else:
 		GLOBALS.signal_change_energy(val, 2)
+
+func _change_health(val):
+	health += val
+	if first:
+		GLOBALS.signal_change_health(val, 1)
+	else:
+		GLOBALS.signal_change_health(val, 2)

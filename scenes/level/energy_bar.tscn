@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtk1o5eh7u8xk"]
+
+[ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="1_miwsk"]
+[ext_resource type="Script" path="res://scripts/Level/enduranceBar.gd" id="2_1vs16"]
+[ext_resource type="Theme" uid="uid://caja5ekj3jrl" path="res://themes/theme.tres" id="3_fiaqp"]
+
+[node name="energyBar" type="ProgressBar"]
+light_mask = 2
+custom_minimum_size = Vector2(800, 38)
+offset_right = 800.0
+offset_bottom = 32.0
+theme = ExtResource("1_miwsk")
+value = 100.0
+script = ExtResource("2_1vs16")
+
+[node name="Label" type="Label" parent="."]
+light_mask = 2
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("3_fiaqp")
+theme_override_font_sizes/font_size = 22
+text = "Energy"
+vertical_alignment = 1
+
+[node name="regenerationTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

@@ -1,8 +1,8 @@
 extends ProgressBar
 
-@onready var timer = $regenerationTimer
+@export_range(1, 2) var player: int = 1
 
-var moved := false
+@onready var timer = $regenerationTimer
 
 var energy := 100
 
@@ -23,9 +23,13 @@ func move():
 	if moveTween: moveTween.kill()
 	moveTween = get_tree().create_tween()
 	moveTween.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
-	moveTween.tween_property(self, "position", Vector2(130, get("position").y), 0.5)
+	if player == 1:
+		moveTween.tween_property(self, "position", Vector2(130, get("position").y), 0.5)
+	else:
+		moveTween.tween_property(self, "position", Vector2(990, get("position").y), 0.5)
 
 func _energy_changed(val, player):
+	if player != self.player: return
 	energy += val
 	if tween:
 		tween.kill()
