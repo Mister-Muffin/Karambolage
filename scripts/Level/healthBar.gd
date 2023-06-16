@@ -3,7 +3,6 @@ extends ProgressBar
 @export_range(1, 2) var player: int = 1
 
 var health = 100
-var colorChanged = false
 
 var tween: Tween
 var moveTween: Tween
@@ -23,14 +22,13 @@ func move():
 
 func _health_changed(val, player):
 	if player != self.player: return
+	var prev_health = health
 	health += val
 
-	if health <= 20 && not colorChanged:
-		$AnimationPlayer.play("changeColor")
-		colorChanged = true
-	if health > 20 && colorChanged:
-		$AnimationPlayer.play_backwards("changeColor")
-		colorChanged = false
+	if health <= 20 and prev_health > 20:
+		$AnimationPlayer.play("green_red")
+	if health > 20 and prev_health <= 20:
+		$AnimationPlayer.play_backwards("green_red")
 
 	if tween:
 		tween.kill()

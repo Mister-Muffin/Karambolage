@@ -24,13 +24,27 @@ func move():
 
 func _energy_changed(val, player):
 	if player != self.player: return
+	var prev_energy = energy
 	energy += val
-	print(energy)
+
+	if energy > 20 and prev_energy <= 20:
+		$AnimationPlayer.play_backwards("blue_yellow")
+
+	elif energy <= 20 and energy > 10:
+		if prev_energy > 20:
+			$AnimationPlayer.play("blue_yellow")
+		elif prev_energy <= 10:
+			$AnimationPlayer.play_backwards("yellow_red")
+
+	elif energy <= 10 and prev_energy > 10:
+		$AnimationPlayer.play("yellow_red")
+
 	if tween:
 		tween.kill()
 	tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "value", energy, 0.2)
+
 
 func _on_p2_joined():
 	move()

@@ -1,27 +1,57 @@
-[gd_scene load_steps=6 format=3 uid="uid://bf0wn2caen3fo"]
+[gd_scene load_steps=9 format=3 uid="uid://bf0wn2caen3fo"]
 
 [ext_resource type="Theme" uid="uid://caja5ekj3jrl" path="res://themes/theme.tres" id="1_gsp1n"]
+[ext_resource type="StyleBox" uid="uid://cq817mbwefx71" path="res://scenes/level/progress_bar_background.tres" id="2_8mwdv"]
 [ext_resource type="Script" path="res://scripts/Level/healthBar.gd" id="2_vtyuy"]
 [ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="3_isq1y"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jy5e7"]
+bg_color = Color(0.101961, 0.619608, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Animation" id="Animation_k2t1n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/fill:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.101961, 0.619608, 0, 1)]
+}
+
 [sub_resource type="Animation" id="5"]
+resource_name = "green_red"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:theme_override_styles/fg:bg_color")
+tracks/0/path = NodePath(".:theme_override_styles/fill:bg_color")
 tracks/0/interp = 1
-tracks/0/loop_wrap = false
+tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.0980392, 0.65098, 0, 1), Color(0.792157, 0, 0, 1)]
+"values": [Color(0.101961, 0.619608, 0, 1), Color(0.670588, 0.0588235, 0.0588235, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fbkq0"]
 _data = {
-"changeColor": SubResource("5")
+"RESET": SubResource("Animation_k2t1n"),
+"green_red": SubResource("5")
 }
 
 [node name="healthBar" type="ProgressBar"]
@@ -30,6 +60,8 @@ custom_minimum_size = Vector2(800, 38)
 offset_right = 800.0
 offset_bottom = 38.0
 theme = ExtResource("1_gsp1n")
+theme_override_styles/background = ExtResource("2_8mwdv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jy5e7")
 value = 100.0
 script = ExtResource("2_vtyuy")
 
