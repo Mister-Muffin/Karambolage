@@ -16,6 +16,8 @@ var endPosKeyBinding = Vector2()
 var keyBindingText
 var keyBindingTween: Tween
 
+var tween: Tween
+
 func _ready():
 	set_process(true)
 	keyBindingText = keyBindingLabel.text
@@ -37,16 +39,22 @@ func _process(delta):
 
 			switchKeyBindingState(false)
 
-			$Tween.interpolate_property(self, "position", endPos, initPos, 0.5, Tween.TRANS_BACK, Tween.EASE_IN)
-			$Tween.start()
+			if tween: tween.kill()
+			tween = get_tree().create_tween()
+			tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+			tween.tween_property(self, "position", initPos, 0.5)
+
 			keyBindingTimer.start(5)
 
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			switchKeyBindingState(true)
 
-			$Tween.interpolate_property(self, "position", initPos, endPos, 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
-			$Tween.start()
+			if tween: tween.kill()
+			tween = get_tree().create_tween()
+			tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			tween.tween_property(self, "position", endPos, 0.5)
+
 			$animPlayer.play("anim")
 			if not keyBindingLabel.visible:
 				keyBindingAnim.play_backwards("blend")
