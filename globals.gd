@@ -17,8 +17,7 @@ var score = 0
 
 var health1 = 100
 var health2 = 100
-var endurance1 = 100
-var endurance2 = 100
+
 var enduranceUsing = false
 
 var powerupType
@@ -36,3 +35,7 @@ var popupShown = false
 
 var itemSlot1 = ""
 var itemSlot2 = ""
+
+signal change_energy(newValue: int, player: int)
+func signal_change_energy(newValue: int, player: int):
+	change_energy.emit(newValue, player)

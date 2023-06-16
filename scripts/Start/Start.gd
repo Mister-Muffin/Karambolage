@@ -65,6 +65,4 @@ func resetGlobals():
 	GLOBALS.enemys = 0
 	GLOBALS.health1 = 100
 	GLOBALS.health2 = 100
-	GLOBALS.endurance1 = 100
-	GLOBALS.endurance2 = 100
 	GLOBALS.players = 0

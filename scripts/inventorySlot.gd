@@ -1,6 +1,6 @@
 extends Control
 
-@export (int) var slotNumber
+@export var slotNumber: int
 
 const health = 20
 
@@ -22,19 +22,19 @@ func _ready():
 		update_global_slot("health")
 	else:
 		remove_item()
-	$number.text = String(itemCount)
+	$number.text = str(itemCount)
 	set_process(true)
 
 
 func _process(delta):
-	if Input.is_action_just_pressed(String(slotNumber)) && not type == null:
+	if Input.is_action_just_pressed(str(slotNumber)) && not type == null:
 		if itemCount >= 1:
 			remove_item()
 			if type == "health":
 				updateHealth()
 			if type == "energy":
 				updateEnergy()
-		$number.text = String(itemCount)
+		$number.text = str(itemCount)
 
 func updateHealth():
 	GLOBALS.health1 += health
@@ -54,7 +54,7 @@ func item_collected():
 				$animPlayer.play("anim")
 			add_item()
 			$"container/textureRect/animPlayer".play("zoom")
-			$number.text = String(itemCount)
+			$number.text = str(itemCount)
 	elif not hasItem:
 		if slotNumber == 1:
 			if GLOBALS.itemSlot2 == GLOBALS.powerupType:
@@ -69,7 +69,7 @@ func item_collected():
 			$animPlayer.play("anim")
 		add_item()
 		$"container/textureRect/animPlayer".play("zoom")
-		$number.text = String(itemCount)
+		$number.text = str(itemCount)
 		if type == "health":
 			updateHealth()
 			$"container/item".texture = textures[0]

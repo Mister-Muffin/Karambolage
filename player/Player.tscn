@@ -35,6 +35,9 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
+[node name="cooldownTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="particles" type="GPUParticles2D" parent="."]
 show_behind_parent = true
 emitting = false

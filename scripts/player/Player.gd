@@ -12,11 +12,13 @@ const hitDelay = 0.5
 
 @onready var playerNumber = get_node("playerNumber")
 @onready var enduranceTimer = $enduranceTimer
+# used to wait after sprint before regenerating energy
+@onready var cooldownTimer = $cooldownTimer
 
 var tween: Tween
 
-const speedEnduranceUp = 0.5 #Speed regenerating energy
-const speedEnduranceDown = 2 #Speed using energy
+const speedEnduranceUp := 1 #Speed regenerating energy
+const speedEnduranceDown := 2 #Speed using energy
 
 var gameEnding = false
 
@@ -91,17 +93,18 @@ func _process(delta):
 		playerNumber.visible = true
 	if SHIFT && moving && energy >= 10 && enduranceTimer.is_stopped():
 		while SHIFT && energy > 0 && moving:
+			cooldownTimer.start()
 			if enduranceTimer.is_stopped():
-				energy -= speedEnduranceDown
+				_change_energy(-speedEnduranceDown)
 				enduranceTimer.start()
 				speed = sprintSpeed
 				$particles.emitting = true
 			await get_tree().process_frame
-	elif energy <= 0:
 		speed = slowSpeed
 		$particles.emitting = false
-	if not SHIFT && energy <= 100 && enduranceTimer.is_stopped():
-		energy += speedEnduranceUp
+
+	if not SHIFT && energy <= 100 && enduranceTimer.is_stopped() && cooldownTimer.is_stopped():
+		_change_energy(speedEnduranceUp)
 		enduranceTimer.start()
 		speed = slowSpeed
 		$particles.emitting = false
@@ -118,7 +121,6 @@ func _process(delta):
 	if GLOBALS.health2 <= 0 && not gameEnding:
 		endGame()
 
-	syncEnergy() #set th globals equal to the local variable
 
 func _on_Tween_tween_completed(object, key):
 	if $torch.texture_scale < 1 && first && GLOBALS.cave:
@@ -142,9 +144,9 @@ func endGame():
 
 func syncEnergy():
 	if first:
-		GLOBALS.endurance1 = energy
+		GLOBALS.signal_change_energy(30, 1)
 	else:
-		GLOBALS.endurance2 = energy
+		GLOBALS.signal_change_energy(30, 2)
 
 func addEnergy():
 	energy += 30
@@ -153,3 +155,10 @@ func addEnergy():
 	if energy > 100:
 		energy = 100
 	syncEnergy()
+
+func _change_energy(val):
+	energy += val
+	if first:
+		GLOBALS.signal_change_energy(val, 1)
+	else:
+		GLOBALS.signal_change_energy(val, 2)
