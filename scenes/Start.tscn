@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://be3mefyo6c38a"]
+[gd_scene load_steps=40 format=3 uid="uid://be3mefyo6c38a"]
 
 [ext_resource type="Script" path="res://scripts/Start/Start.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://d267mpawqf7ih" path="res://scenes/Background.tscn" id="2"]
@@ -6649,8 +6649,41 @@ tracks/6/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_1qa2u"]
+resource_name = "fade_black"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_07oor"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v8ojb"]
 _data = {
+"RESET": SubResource("Animation_07oor"),
+"fade_black": SubResource("Animation_1qa2u"),
 "switch": SubResource("10")
 }
 
@@ -6928,6 +6961,7 @@ texture_progress = ExtResource("13")
 wait_time = 0.5
 
 [node name="animPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fade_black"
 libraries = {
 "": SubResource("AnimationLibrary_v8ojb")
 }
@@ -7035,18 +7069,30 @@ shortcut_in_tooltip = false
 text = "exit to menu [e]"
 
 [node name="ColorRect2" type="ColorRect" parent="Restart"]
+visible = false
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
 mouse_default_cursor_shape = 4
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0)
 metadata/_edit_lock_ = true
 
 [node name="animPlayer" type="AnimationPlayer" parent="Restart"]
 libraries = {
 "": SubResource("AnimationLibrary_qdp46")
 }
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0

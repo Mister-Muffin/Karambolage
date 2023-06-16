@@ -21,7 +21,7 @@
 [ext_resource type="Script" path="res://scripts/Level/infoLabel.gd" id="18"]
 [ext_resource type="Script" path="res://scripts/Level/closeAnimTween.gd" id="19"]
 [ext_resource type="PackedScene" path="res://scenes/ItemSpawner.tscn" id="20"]
-[ext_resource type="PackedScene" path="res://scenes/Border.tscn" id="21"]
+[ext_resource type="PackedScene" uid="uid://geph6rl0xq3m" path="res://scenes/Border.tscn" id="21"]
 [ext_resource type="Script" path="res://scripts/Level/camera.gd" id="22"]
 [ext_resource type="Script" path="res://scripts/Level/pauseManager.gd" id="23"]
 [ext_resource type="PackedScene" path="res://scenes/EnemySpawner.tscn" id="24"]
