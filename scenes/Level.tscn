@@ -651,6 +651,7 @@ shape = SubResource("22")
 [node name="ItemSpawner" parent="." instance=ExtResource("20")]
 
 [node name="Border" parent="." instance=ExtResource("21")]
+visible = false
 
 [node name="camera" type="Camera2D" parent="."]
 visible = false

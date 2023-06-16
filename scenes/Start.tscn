@@ -1,11 +1,10 @@
-[gd_scene load_steps=40 format=3 uid="uid://be3mefyo6c38a"]
+[gd_scene load_steps=39 format=3 uid="uid://be3mefyo6c38a"]
 
 [ext_resource type="Script" path="res://scripts/Start/Start.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://d267mpawqf7ih" path="res://scenes/Background.tscn" id="2"]
 [ext_resource type="FontFile" uid="uid://biaww0wupnugk" path="res://fonts/good times rg.ttf" id="3"]
 [ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="3_1gbg4"]
 [ext_resource type="PackedScene" uid="uid://bb3c85x0ng3sf" path="res://scenes/ModeButton.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://scenes/TitleButton.tscn" id="6"]
 [ext_resource type="Script" path="res://scripts/Start/sideBoard.gd" id="7"]
 [ext_resource type="Script" path="res://scripts/IconButton.gd" id="8"]
 [ext_resource type="Texture2D" uid="uid://dw2afprqfmn1t" path="res://textures/white/outline_settings_white_48dp.png" id="9"]
@@ -6563,6 +6562,37 @@ size = Vector2(35, 35)
 [sub_resource type="RectangleShape2D" id="7"]
 size = Vector2(348, 540)
 
+[sub_resource type="Animation" id="Animation_07oor"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1qa2u"]
+resource_name = "fade_black"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="10"]
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -6647,37 +6677,6 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_1qa2u"]
-resource_name = "fade_black"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_07oor"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v8ojb"]
@@ -6842,18 +6841,6 @@ mode = 2
 layout_mode = 2
 description = "Cave"
 mode = 1
-
-[node name="TitleContainer" type="HBoxContainer" parent="Main"]
-visible = false
-layout_mode = 0
-anchor_right = 1.0
-offset_left = 50.0
-offset_top = 80.0
-offset_right = -50.0
-offset_bottom = 150.0
-
-[node name="btnPlay" parent="Main/TitleContainer" instance=ExtResource("6")]
-layout_mode = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Main"]
 
