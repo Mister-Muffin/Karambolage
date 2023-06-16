@@ -42,6 +42,7 @@ func _process(delta):
 			if tween: tween.kill()
 			tween = get_tree().create_tween()
 			tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+			tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 			tween.tween_property(self, "position", initPos, 0.5)
 
 			keyBindingTimer.start(5)
@@ -53,7 +54,8 @@ func _process(delta):
 			if tween: tween.kill()
 			tween = get_tree().create_tween()
 			tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-			tween.tween_property(self, "position", endPos, 0.5)
+			tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+			tween.tween_property(self, "position", Vector2(0, 0), 0.5)
 
 			$animPlayer.play("anim")
 			if not keyBindingLabel.visible:
@@ -87,8 +89,11 @@ func _on_btnContinue_pressed():
 
 	switchKeyBindingState(false)
 
-	$Tween.interpolate_property(self, "position", endPos, initPos, 0.5, Tween.TRANS_BACK, Tween.EASE_IN)
-	$Tween.start()
+	if tween: tween.kill()
+	tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "position", initPos, 0.5)
+
 	keyBindingTimer.start(5)
 
 func _on_btnExit_pressed():
@@ -107,19 +112,6 @@ func _on_ConfirmationDialog_confirmed():
 	else:
 		get_tree().paused = false
 		get_tree().change_scene_to_file("res://scenes/Start.tscn")
-
-#func _on_animPlayer_animation_finished(anim_name):
-#	if not get_tree().paused: popup.visible = false
-
-#func _on_confDialog_visibility_changed():
-##	if not GLOBALS.closeConfirmation && popup.visible:
-##		popup.visible = false
-##		if quit:
-##			get_tree().quit()
-##		else:
-##			get_tree().paused = false
-##			get_tree().change_scene("res://scenes/Start.tscn")
-#	pass
 
 func showPopup():
 	popup.show()

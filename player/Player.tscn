@@ -62,6 +62,9 @@ offset_right = 20.0
 offset_bottom = 27.0
 theme = ExtResource("4")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
 text = "P2"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="end_game" from="." to="." method="_on_Player_end_game"]

@@ -511,8 +511,8 @@ light_mask = 2
 layout_mode = 3
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = -313.25
-offset_right = -3.24963
+offset_left = -310.0
+offset_right = 0.000366211
 grow_vertical = 2
 script = ExtResource("17")
 
@@ -527,12 +527,14 @@ layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="btnContinue" type="Button" parent="uiElements/pauseMenu/VBoxContainer"]
 light_mask = 2
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("11_6yos8")
+theme_override_font_sizes/font_size = 45
 text = "Continue"
 flat = true
 
@@ -545,6 +547,7 @@ light_mask = 2
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("11_6yos8")
+theme_override_font_sizes/font_size = 45
 text = "Exit"
 flat = true
 
@@ -557,6 +560,7 @@ light_mask = 2
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("11_6yos8")
+theme_override_font_sizes/font_size = 45
 text = "Quit"
 flat = true
 
@@ -577,6 +581,7 @@ theme_override_font_sizes/font_size = 38
 text = "Esc: Pause/Menu
 WASD: Move
 Arrow keys: 2nd player"
+horizontal_alignment = 2
 script = ExtResource("18")
 
 [node name="animPlayer" type="AnimationPlayer" parent="uiElements/keyBinding"]
