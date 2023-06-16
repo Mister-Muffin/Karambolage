@@ -61,7 +61,6 @@ func _unhandled_input(event):
 				var healthBarMaterial: StyleBoxFlat = healthBarInstance.get("theme_override_styles/fill")
 				healthBarInstance.set("theme_override_styles/fill", healthBarMaterial.duplicate())
 
-
 				var energyBarInstance: ProgressBar = energyBarScene.instantiate()
 				energyBarInstance.position = Vector2(560, 28)
 				energyBarInstance.player = 2

@@ -1,7 +1,15 @@
 extends ColorRect
+
 var tween: Tween
 
-func _on_player_end_game():
+var gameEnding := false
+
+func _ready() -> void:
+	GLOBALS.end_game.connect(_on_game_end)
+
+func _on_game_end():
+	if gameEnding: return
+	gameEnding = true
 	var endPos = Vector2(self.get_global_rect().position.x, 0)
 	if not GLOBALS.cave:
 		if tween: tween.kill()

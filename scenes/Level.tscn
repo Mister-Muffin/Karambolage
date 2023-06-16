@@ -474,7 +474,6 @@ script = ExtResource("23")
 
 [node name="container" type="Node" parent="."]
 
-[connection signal="end_game" from="Player" to="closeAnim/rectUp" method="_on_player_end_game"]
 [connection signal="timeout" from="uiElements/gameElements/labelTimer/Timer" to="uiElements/gameElements/labelTimer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="uiElements/gameElements/letterCountdown/timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="uiElements/pauseMenu/VBoxContainer/btnContinue" to="uiElements/pauseMenu" method="_on_btnContinue_pressed"]

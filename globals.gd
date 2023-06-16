@@ -43,3 +43,7 @@ func signal_change_health(newValue: int, player: int):
 signal p2_join
 func signal_p2_join():
 	p2_join.emit()
+
+signal end_game
+func signal_end_game():
+	end_game.emit()
