@@ -11,15 +11,12 @@ var enemysInCollision2 = 0
 
 var fast = false
 
-var splashDone = false
+var splashDone := false
+var show_game_over := false
 
 var score = 0
 
-var enduranceUsing = false
-
 var powerupType
-
-var show_game_over := false
 
 #settings
 
