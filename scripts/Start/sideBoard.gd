@@ -10,26 +10,6 @@ var exit := false
 
 var tween: Tween
 
-func _ready():
-	tween = get_tree().create_tween()
-	tween.set_trans(Tween.TRANS_BACK)
-	tween.set_ease(Tween.EASE_OUT)
-
-func _on_Area2D_area_shape_entered(area_id, area, area_shape, self_shape):
-	if not entered && area.name == "Mouse":
-		entered = true
-		swipe_in()
-		$btnSettings/animPlayer.play("anim")
-	block = true
-	exit = false
-
-func _on_Area2D_area_shape_exited(area_id, area, area_shape, self_shape):
-	block = false
-	if exit == true:
-		swipe_out()
-		$btnSettings/animPlayer.play_backwards("anim")
-		entered = false
-
 func _on_areaControl_area_shape_entered(area_id, area, area_shape, self_shape):
 	exit = false
 
@@ -41,7 +21,30 @@ func _on_areaControl_area_shape_exited(area_id, area, area_shape, self_shape):
 		$btnSettings/animPlayer.play_backwards("anim")
 
 func swipe_in():
+	if tween: tween.kill()
+	tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "position", Vector2(1920 - int(self.get_global_rect().size.x), 0), swipeTime)
 
 func swipe_out():
+	if tween: tween.kill()
+	tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "position", Vector2(1920, 0), swipeTime)
+
+
+func _on_btn_settings_mouse_entered() -> void:
+	if not entered:
+		entered = true
+		swipe_in()
+		$btnSettings/animPlayer.play("anim")
+	block = true
+	exit = false
+
+
+func _on_btn_settings_mouse_exited() -> void:
+	block = false
+	if exit == true:
+		swipe_out()
+		$btnSettings/animPlayer.play_backwards("anim")
+		entered = false

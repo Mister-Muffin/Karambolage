@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://be3mefyo6c38a"]
+[gd_scene load_steps=38 format=3 uid="uid://be3mefyo6c38a"]
 
 [ext_resource type="Script" path="res://scripts/Start/Start.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://d267mpawqf7ih" path="res://scenes/Background.tscn" id="2"]
@@ -6528,6 +6528,7 @@ cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/16/0/kerning_overrides/90/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/42/0 = Vector2(0, 0)
 cache/0/90/0/ascent = 0.0
 cache/0/90/0/descent = 0.0
 cache/0/90/0/underline_position = 0.0
@@ -6535,6 +6536,15 @@ cache/0/90/0/underline_thickness = 0.0
 cache/0/90/0/scale = 1.0
 cache/0/90/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/90/0/kerning_overrides/90/0 = Vector2(0, 0)
+cache/0/90/0/kerning_overrides/42/0 = Vector2(0, 0)
+cache/0/42/0/ascent = 0.0
+cache/0/42/0/descent = 0.0
+cache/0/42/0/underline_position = 0.0
+cache/0/42/0/underline_thickness = 0.0
+cache/0/42/0/scale = 1.0
+cache/0/42/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/42/0/kerning_overrides/90/0 = Vector2(0, 0)
+cache/0/42/0/kerning_overrides/42/0 = Vector2(0, 0)
 
 [sub_resource type="Animation" id="5"]
 length = 0.2
@@ -6555,9 +6565,6 @@ tracks/0/keys = {
 _data = {
 "anim": SubResource("5")
 }
-
-[sub_resource type="RectangleShape2D" id="6"]
-size = Vector2(35, 35)
 
 [sub_resource type="RectangleShape2D" id="7"]
 size = Vector2(348, 540)
@@ -6754,7 +6761,6 @@ metadata/_edit_lock_ = true
 layout_mode = 1
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true
 
 [node name="Splash" type="Control" parent="."]
 anchors_preset = 0
@@ -6764,19 +6770,21 @@ pivot_offset = Vector2(922, 789)
 metadata/_edit_lock_ = true
 
 [node name="title" type="Label" parent="Splash"]
+visible = false
 layout_mode = 0
 anchor_right = 1.0
 offset_top = 180.0
 offset_bottom = 335.0
 pivot_offset = Vector2(960, 77)
 theme = ExtResource("3_1gbg4")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0)
 theme_override_fonts/font = SubResource("1")
 text = "Karambolage"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="info" type="Label" parent="Splash"]
+visible = false
 layout_mode = 0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -6785,7 +6793,7 @@ offset_top = -29.0
 offset_bottom = 29.0
 pivot_offset = Vector2(106, 119)
 theme = ExtResource("3_1gbg4")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0)
 theme_override_font_sizes/font_size = 50
 text = "PRESS [ENTER] TO START"
 horizontal_alignment = 1
@@ -6799,14 +6807,12 @@ libraries = {
 }
 
 [node name="Main" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 metadata/_edit_lock_ = true
 
 [node name="title" type="Label" parent="Main"]
-visible = false
 layout_mode = 0
 anchor_right = 1.0
 offset_left = 18.1051
@@ -6815,7 +6821,7 @@ offset_right = -1495.89
 offset_bottom = 52.9534
 pivot_offset = Vector2(960, 77)
 theme = ExtResource("3_1gbg4")
-theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("4")
 text = "Karambolage"
 
@@ -6861,7 +6867,6 @@ offset_right = 150.0
 color = Color(0, 0, 0, 0.588235)
 
 [node name="btnSettings" type="Control" parent="Main/CanvasLayer/sideBoard"]
-visible = false
 anchors_preset = 0
 offset_left = -70.0
 offset_bottom = 70.0
@@ -6873,12 +6878,6 @@ script = ExtResource("8")
 libraries = {
 "": SubResource("AnimationLibrary_a8nem")
 }
-
-[node name="areaButton" type="Area2D" parent="Main/CanvasLayer/sideBoard/btnSettings"]
-position = Vector2(35, 35)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/CanvasLayer/sideBoard/btnSettings/areaButton"]
-shape = SubResource("6")
 
 [node name="icon" type="TextureRect" parent="Main/CanvasLayer/sideBoard/btnSettings"]
 layout_mode = 0
@@ -7084,8 +7083,8 @@ metadata/_edit_lock_ = true
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[connection signal="area_shape_entered" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard" method="_on_Area2D_area_shape_entered"]
-[connection signal="area_shape_exited" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard" method="_on_Area2D_area_shape_exited"]
+[connection signal="mouse_entered" from="Main/CanvasLayer/sideBoard/btnSettings" to="Main/CanvasLayer/sideBoard" method="_on_btn_settings_mouse_entered"]
+[connection signal="mouse_exited" from="Main/CanvasLayer/sideBoard/btnSettings" to="Main/CanvasLayer/sideBoard" method="_on_btn_settings_mouse_exited"]
 [connection signal="area_shape_entered" from="Main/CanvasLayer/sideBoard/areaControl" to="Main/CanvasLayer/sideBoard" method="_on_areaControl_area_shape_entered"]
 [connection signal="area_shape_exited" from="Main/CanvasLayer/sideBoard/areaControl" to="Main/CanvasLayer/sideBoard" method="_on_areaControl_area_shape_exited"]
 [connection signal="toggled" from="Main/CanvasLayer/sideBoard/settingsContainer/closeConfirmationCheck" to="Main/CanvasLayer/sideBoard/settingsContainer" method="_on_closeConfirmationCheck_toggled"]
