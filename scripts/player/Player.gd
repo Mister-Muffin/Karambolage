@@ -142,7 +142,6 @@ func addEnergy():
 		GLOBALS.signal_change_energy(30, 2)
 
 func _change_energy(val):
-	energy += val
 	if first:
 		GLOBALS.signal_change_energy(val, 1)
 	else:

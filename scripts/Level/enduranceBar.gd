@@ -25,6 +25,7 @@ func move():
 func _energy_changed(val, player):
 	if player != self.player: return
 	energy += val
+	print(energy)
 	if tween:
 		tween.kill()
 	tween = get_tree().create_tween()
