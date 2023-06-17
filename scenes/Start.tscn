@@ -6770,21 +6770,19 @@ pivot_offset = Vector2(922, 789)
 metadata/_edit_lock_ = true
 
 [node name="title" type="Label" parent="Splash"]
-visible = false
 layout_mode = 0
 anchor_right = 1.0
 offset_top = 180.0
 offset_bottom = 335.0
 pivot_offset = Vector2(960, 77)
 theme = ExtResource("3_1gbg4")
-theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("1")
 text = "Karambolage"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="info" type="Label" parent="Splash"]
-visible = false
 layout_mode = 0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -6793,7 +6791,7 @@ offset_top = -29.0
 offset_bottom = 29.0
 pivot_offset = Vector2(106, 119)
 theme = ExtResource("3_1gbg4")
-theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 50
 text = "PRESS [ENTER] TO START"
 horizontal_alignment = 1
@@ -6807,12 +6805,14 @@ libraries = {
 }
 
 [node name="Main" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 metadata/_edit_lock_ = true
 
 [node name="title" type="Label" parent="Main"]
+visible = false
 layout_mode = 0
 anchor_right = 1.0
 offset_left = 18.1051
@@ -6821,7 +6821,7 @@ offset_right = -1495.89
 offset_bottom = 52.9534
 pivot_offset = Vector2(960, 77)
 theme = ExtResource("3_1gbg4")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0)
 theme_override_fonts/font = SubResource("4")
 text = "Karambolage"
 
