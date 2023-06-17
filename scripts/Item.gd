@@ -12,7 +12,7 @@ func _ready():
 		$Sprite2D.texture = texture_energy
 
 func _on_Area2D_body_entered(body):
-	if body.is_in_group("AnyPlayer") && not type == null:
+	if body is Player and type != null:
 		GLOBALS.powerupType = type
 		get_tree().call_group("Slot", "item_collected")
 		queue_free()

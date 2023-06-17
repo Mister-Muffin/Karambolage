@@ -44,8 +44,6 @@ func _ready():
 
 	if not first:
 		position = Vector2(get_viewport_rect().size.x / 2, get_viewport_rect().size.y / 2)
-		add_to_group("Player2")
-		remove_from_group("Player1")
 		playerNumber.text = "P2"
 		playerNumber.visible = true
 

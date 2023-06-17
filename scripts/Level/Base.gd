@@ -10,12 +10,12 @@ func _ready():
 	endPos = Vector2(0, 0)
 
 func _on_Area2D_body_entered(body):
-	if body.is_in_group("AnyPlayer"):
+	if body is Player:
 		_recreate_tween()
 		tween.tween_property(self, "position", endPos, 0.5)
 
 func _on_Area2D_body_exited(body):
-	if body.is_in_group("AnyPlayer"):
+	if body is Player:
 		_recreate_tween()
 		tween.tween_property(self, "position", initPos, 0.5)
 

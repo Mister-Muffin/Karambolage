@@ -41,7 +41,8 @@ func updateHealth():
 	GLOBALS.signal_change_health(health, 2)
 
 func updateEnergy():
-	get_tree().call_group("AnyPlayer", "addEnergy")
+	GLOBALS.signal_change_energy(30, 1)
+	GLOBALS.signal_change_energy(30, 2)
 
 func item_collected():
 	if hasItem:
