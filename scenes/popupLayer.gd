@@ -31,7 +31,7 @@ func _on_confDialog_visibility_changed():
 	elif(GLOBALS.popupShown):
 		GLOBALS.popupShown = false
 		showLight()
-	
+
 func hideLight():
 	if GLOBALS.cave:
 		$"../canvasLayerPause/colorRectPause".color.a = 255
@@ -39,7 +39,7 @@ func hideLight():
 			$"../PointLight2D".visible = false
 		else:
 			hideLight()
-	
+
 func showLight():
 	if GLOBALS.cave:
 		$"../PointLight2D".visible = true

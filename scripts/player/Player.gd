@@ -112,8 +112,9 @@ func _update_movement_keys():
 		SHIFT = Input.is_action_pressed("ui_second_sprint")
 	moving = LEFT || RIGHT || UP || DOWN
 
-func _on_Tween_tween_completed(object, key):
-	if $torch.texture_scale < 1 && first && GLOBALS.cave:
+func _on_torch_tween_completed():
+	if GLOBALS.cave and $torch.texture_scale < 1:
+		GLOBALS.show_game_over = true
 		get_tree().change_scene_to_file("res://scenes/Start.tscn")
 
 func dealDamage():
@@ -128,6 +129,7 @@ func endGame():
 		tween = get_tree().create_tween()
 		tween.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property($torch, "texture_scale", 0.01, 1)
+		tween.tween_callback(_on_torch_tween_completed)
 
 func addEnergy():
 	energy += 30

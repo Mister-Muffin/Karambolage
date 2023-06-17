@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://scripts/Level/Level.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://d267mpawqf7ih" path="res://scenes/Background.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://cu4ptfibfkx75" path="res://player/Player.tscn" id="3"]
-[ext_resource type="Texture2D" uid="uid://c01spc8qlt38q" path="res://textures/background.png" id="4"]
 [ext_resource type="FontFile" uid="uid://vfec85wc02fo" path="res://fonts/BabelStoneModern.ttf" id="5"]
 [ext_resource type="Script" path="res://scripts/Level/labelTime.gd" id="6"]
 [ext_resource type="Texture2D" uid="uid://csvhoo735e2ow" path="res://textures/progress.png" id="7"]
@@ -22,6 +21,8 @@
 [ext_resource type="Script" path="res://scripts/Level/camera.gd" id="22"]
 [ext_resource type="Script" path="res://scripts/Level/pauseManager.gd" id="23"]
 [ext_resource type="PackedScene" path="res://scenes/EnemySpawner.tscn" id="24"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vwo18"]
 
 [sub_resource type="FontFile" id="2"]
 fallbacks = Array[Font]([ExtResource("5")])
@@ -170,15 +171,16 @@ layout_mode = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Player" parent="." instance=ExtResource("3")]
-position = Vector2(960, 540)
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
 position = Vector2(960, 540)
-scale = Vector2(32, 18)
+scale = Vector2(1920, 1080)
 color = Color(0, 0, 0, 1)
-texture = ExtResource("4")
+blend_mode = 2
+texture = SubResource("PlaceholderTexture2D_vwo18")
+
+[node name="Player" parent="." instance=ExtResource("3")]
+position = Vector2(960, 540)
 
 [node name="uiElements" type="CanvasLayer" parent="."]
 layer = 2
