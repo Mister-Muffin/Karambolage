@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bf0wn2caen3fo" path="res://scenes/level/health_bar.tscn" id="10_ykl2i"]
 [ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="11_6yos8"]
 [ext_resource type="PackedScene" uid="uid://dtk1o5eh7u8xk" path="res://scenes/level/energy_bar.tscn" id="13_hpo1v"]
-[ext_resource type="PackedScene" path="res://scenes/inventorySlot.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://cm613asqivb6f" path="res://scenes/inventorySlot.tscn" id="14"]
 [ext_resource type="Script" path="res://scripts/Level/totalEnemysLabel.gd" id="15"]
 [ext_resource type="Script" path="res://scripts/Level/labelFPS.gd" id="16"]
 [ext_resource type="Script" path="res://scripts/Level/pauseMenu.gd" id="17"]

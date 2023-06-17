@@ -11,7 +11,7 @@ func _ready():
 	GLOBALS.closeConfirmation = SETTINGS.get_setting("settings", "closeConf")
 	set_process(true)
 	if GLOBALS.splashDone:
-		if not GLOBALS.health1 <= 0 && not GLOBALS.health2 <= 0:
+		if not GLOBALS.show_game_over:
 			switch()
 	if GLOBALS.show_game_over:
 		$camera.position = Vector2(0, 1080)
