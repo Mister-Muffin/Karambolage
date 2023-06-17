@@ -13,14 +13,13 @@ var player: Player
 func _ready():
 	position = Vector2(randf_range(28, get_viewport_rect().size.x - 28), randf_range(28, get_viewport_rect().size.y - 28))
 	get_node("ExclamationMark").visible = false
-	player = get_tree().get_nodes_in_group("Player1")[0]
 
 func _physics_process(delta):
 	if move:
 		move_and_collide(direction * speed * delta)
 
 func _process(delta):
-	if detected:
+	if detected and player:
 		direction = (player.position - global_position).normalized()
 		move = true
 	else:
@@ -38,12 +37,12 @@ func _on_detectingArea_body_exited(body):
 
 
 func _on_collsisionArea_body_entered(body):
-	if body.is_in_group("Player1"): GLOBALS.enemysInCollision1 += 1
-	if body.is_in_group("Player2"): GLOBALS.enemysInCollision2 += 1
+	if body is Player:
+		body.dealDamage()
+		self.queue_free()
 
 func _on_collsisionArea_body_exited(body):
-	if body.is_in_group("Player1"): GLOBALS.enemysInCollision1 -= 1
-	if body.is_in_group("Player2"): GLOBALS.enemysInCollision2 -= 1
+	pass
 
 
 func _on_warning_area_body_entered(body):

@@ -5,10 +5,6 @@ var countDown = false
 var enemys = 0
 
 var cave = true
-
-var enemysInCollision1 = 0
-var enemysInCollision2 = 0
-
 var fast = false
 
 var splashDone := false

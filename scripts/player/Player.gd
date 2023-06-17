@@ -2,10 +2,11 @@ class_name Player
 extends CharacterBody2D
 
 var collision_info
-var move_direction = Vector2()
+var move_direction := Vector2()
 
-const slowSpeed = 250
-const sprintSpeed = 500
+const slowSpeed := 250
+const sprintSpeed := 500
+
 var speed
 var health := 100
 var energy := 100
@@ -88,13 +89,6 @@ func _process(delta):
 		speed = slowSpeed
 		$particles.emitting = false
 
-	if GLOBALS.enemysInCollision1 >= 1 && $timer.is_stopped() && first:
-		dealDamage()
-		$timer.start(hitDelay)
-	if GLOBALS.enemysInCollision2 >= 1 && $timer.is_stopped() && not first:
-		dealDamage()
-		$timer.start(hitDelay)
-
 	if health <= 0 && not gameEnding:
 		endGame()
 
@@ -119,7 +113,9 @@ func _on_torch_tween_completed():
 		get_tree().change_scene_to_file("res://scenes/Start.tscn")
 
 func dealDamage():
-	_change_health(-10)
+	if $timer.is_stopped():
+		_change_health(-10)
+		$timer.start(hitDelay)
 
 func endGame():
 	gameEnding = true
