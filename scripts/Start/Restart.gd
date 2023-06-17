@@ -34,8 +34,4 @@ func exit(): get_tree().change_scene_to_file("res://scenes/Start.tscn")
 
 func switch():
 	get_node("../Main").visible = true
-	get_node("../Main/title").visible = true
-	get_node("../Main/ModeContainer/btnPlay").visible = true
-	get_node("../Main/ModeContainer/btnPlayFast").visible = true
-	get_node("../Main/ModeContainer/btnCave").visible = true
 	get_node("../Splash").visible = false

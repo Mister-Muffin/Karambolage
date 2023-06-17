@@ -15,6 +15,7 @@ func _ready():
 			switch()
 	if GLOBALS.show_game_over:
 		$camera.position = Vector2(0, 1080)
+		switch()
 		get_node("Main/CanvasLayer/sideBoard/btnSettings").visible = false
 	else:
 		$camera.position = Vector2(0, 0)
@@ -54,11 +55,8 @@ func _on_Timer_timeout():
 	get_tree().change_scene_to_file("res://scenes/ReleaseToQuit.tscn")
 
 func switch():
+	%playButtons.set("modulate", Color(1, 1, 1, 1))
 	$Main.visible = true
-	$Main/title.visible = true
-	$Main/ModeContainer/btnPlay.visible = true
-	$Main/ModeContainer/btnPlayFast.visible = true
-	$Main/ModeContainer/btnCave.visible = true
 	$Splash.visible = false
 
 func resetGlobals():
