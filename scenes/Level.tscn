@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://scripts/Level/pauseMenu.gd" id="17"]
 [ext_resource type="Script" path="res://scripts/Level/infoLabel.gd" id="18"]
 [ext_resource type="Script" path="res://scripts/Level/closeAnimTween.gd" id="19"]
-[ext_resource type="PackedScene" path="res://scenes/ItemSpawner.tscn" id="20"]
+[ext_resource type="PackedScene" uid="uid://cqgwwhf6ajm1o" path="res://scenes/ItemSpawner.tscn" id="20"]
 [ext_resource type="PackedScene" uid="uid://geph6rl0xq3m" path="res://scenes/Border.tscn" id="21"]
 [ext_resource type="Script" path="res://scripts/Level/camera.gd" id="22"]
 [ext_resource type="Script" path="res://scripts/Level/pauseManager.gd" id="23"]
@@ -153,7 +153,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="22"]
-size = Vector2(660, 60)
+size = Vector2(810, 82)
 
 [node name="Level" type="Control"]
 layout_mode = 3
@@ -452,7 +452,7 @@ anchor_bottom = 1.0
 color = Color(0, 0, 0, 0)
 
 [node name="baseArea" type="Area2D" parent="."]
-position = Vector2(960, 1020)
+position = Vector2(960, 1026)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="baseArea"]
 visible = false
