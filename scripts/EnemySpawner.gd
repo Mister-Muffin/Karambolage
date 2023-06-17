@@ -1,6 +1,6 @@
 extends Node
 
-var enemy = preload("res://enemy/Enemy.tscn")
+const enemy = preload("res://enemy/Enemy.tscn")
 
 func _ready():
 	await get_tree().process_frame
@@ -18,4 +18,4 @@ func _on_timer_timeout():
 
 func spawn():
 	get_node("container").add_child(enemy.instantiate())
-	GLOBALS.enemys = GLOBALS.enemys + 1
+	GLOBALS.enemys += 1
