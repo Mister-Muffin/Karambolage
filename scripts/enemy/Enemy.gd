@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var speed := 100
+@export var destroyParticles: PackedScene
 
 var detected := false
 var move := false
@@ -39,6 +40,10 @@ func _on_detectingArea_body_exited(body):
 func _on_collsisionArea_body_entered(body):
 	if body is Player:
 		body.dealDamage()
+		var particlesInstance: GPUParticles2D = destroyParticles.instantiate()
+		particlesInstance.emitting = true
+		particlesInstance.position = self.position
+		get_tree().get_root().add_child(particlesInstance)
 		self.queue_free()
 
 func _on_collsisionArea_body_exited(body):

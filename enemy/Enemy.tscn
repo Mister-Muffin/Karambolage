@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bs3mmgpjxgohl"]
+[gd_scene load_steps=12 format=3 uid="uid://bs3mmgpjxgohl"]
 
 [ext_resource type="Script" path="res://scripts/enemy/Enemy.gd" id="1"]
 [ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="2_66qjw"]
+[ext_resource type="PackedScene" uid="uid://dmoemes2t0bfq" path="res://enemy/DestroyedParticles.tscn" id="2_rw6sd"]
 [ext_resource type="Texture2D" uid="uid://dqwyqjfok64fm" path="res://enemy/enemy.png" id="3"]
 
 [sub_resource type="RectangleShape2D" id="1"]
@@ -77,6 +78,7 @@ radius = 392.02
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1")
+destroyParticles = ExtResource("2_rw6sd")
 
 [node name="mainCollisionShape2" type="CollisionShape2D" parent="."]
 shape = SubResource("1")
