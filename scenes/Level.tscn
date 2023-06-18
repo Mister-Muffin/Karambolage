@@ -428,8 +428,11 @@ process_mode = 3
 title = "Please confirm..."
 position = Vector2i(450, 400)
 size = Vector2i(991, 106)
+unresizable = true
 theme = ExtResource("11_6yos8")
+ok_button_text = "Ja"
 dialog_text = "Möchten sie das Spiel wirklich beenden?"
+cancel_button_text = "Nein"
 
 [node name="closeAnim" type="CanvasLayer" parent="."]
 layer = 3

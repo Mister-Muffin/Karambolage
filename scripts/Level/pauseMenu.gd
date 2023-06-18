@@ -1,6 +1,6 @@
 extends Control
 
-@onready var popup = get_node("%confDialog")
+@onready var popup: ConfirmationDialog = get_node("%confDialog")
 @onready var keyBindingAnim = get_node("../keyBinding/animPlayer")
 @onready var keyBindingLabel = get_node("../keyBinding/infoLabel")
 @onready var keyBindingTimer = get_node("../keyBinding/Timer")
@@ -115,18 +115,10 @@ func _on_ConfirmationDialog_confirmed():
 
 func showPopup():
 	popup.show()
-	if popupTween: popupTween.kill()
-	popupTween = get_tree().create_tween()
-	popupTween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	popupTween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	popupTween.tween_property(popup, "scale", Vector2(1, 1), 0.5)
 
 func hidePopup():
-	if popupTween: popupTween.kill()
-	popupTween = get_tree().create_tween()
-	popupTween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	popupTween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	popupTween.tween_property(popup, "scale", Vector2(0.1, 0.1), 0.5)
+	popup.hide()
+
 
 func _on_Tween_tween_completed(object, key):
 	if not get_tree().paused: popup.visible = false
