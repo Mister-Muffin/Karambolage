@@ -39,7 +39,6 @@ func change_slot_number(number: int):
 
 
 func add_item(t: Item.TYPES, texture: Resource):
-	print(t)
 	type = t
 	if itemCount == 0:
 		$animPlayer.play("anim")
