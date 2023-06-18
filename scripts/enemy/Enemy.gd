@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 var detected := false
 var move := false
+var gameEnding := false
 
 var direction
 
@@ -15,6 +16,7 @@ var player: Player
 
 func _ready():
 	position = Vector2(randf_range(28, get_viewport_rect().size.x - 28), randf_range(28, get_viewport_rect().size.y - 28))
+	GLOBALS.end_game.connect(_on_game_end)
 
 
 func _physics_process(delta):
@@ -43,7 +45,7 @@ func _on_detectingArea_body_exited(body):
 
 
 func _on_collsisionArea_body_entered(body):
-	if body is Player:
+	if body is Player and not gameEnding:
 		body.dealDamage()
 		var particlesInstance: GPUParticles2D = destroyParticles.instantiate()
 		particlesInstance.emitting = true
@@ -75,3 +77,6 @@ func _show_exclemation_mark():
 
 func _hide_current_mark():
 	label.visible = false
+
+func _on_game_end():
+	gameEnding = true
