@@ -1,6 +1,6 @@
 extends ProgressBar
 
-@export_range(1, 2) var player: int = 1
+var player: int = 1
 
 var energy := 100
 
