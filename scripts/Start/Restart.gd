@@ -1,6 +1,6 @@
 extends Control
 
-@onready var camera = get_node("../camera")
+@onready var camera = get_node("%camera")
 
 var tween: Tween
 

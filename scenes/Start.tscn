@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://be3mefyo6c38a"]
+[gd_scene load_steps=39 format=3 uid="uid://be3mefyo6c38a"]
 
 [ext_resource type="Script" path="res://scripts/Start/Start.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://d267mpawqf7ih" path="res://scenes/Background.tscn" id="2"]
@@ -211,7 +211,13 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="14"]
 
+[sub_resource type="InputEventKey" id="InputEventKey_20gyg"]
+device = -1
+keycode = 82
+unicode = 114
+
 [sub_resource type="Shortcut" id="19"]
+events = [SubResource("InputEventKey_20gyg")]
 
 [sub_resource type="StyleBoxEmpty" id="20"]
 
@@ -221,7 +227,13 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="22"]
 
+[sub_resource type="InputEventKey" id="InputEventKey_42pey"]
+device = -1
+keycode = 69
+unicode = 101
+
 [sub_resource type="Shortcut" id="25"]
+events = [SubResource("InputEventKey_42pey")]
 
 [sub_resource type="Animation" id="26"]
 tracks/0/type = "value"
@@ -593,6 +605,7 @@ color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
 anchor_mode = 0
 
 [connection signal="mouse_entered" from="Main/CanvasLayer/sideBoard/btnSettings" to="Main/CanvasLayer/sideBoard" method="_on_btn_settings_mouse_entered"]
