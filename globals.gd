@@ -12,19 +12,12 @@ var show_game_over := false
 
 var score = 0
 
-var powerupType
-
 #settings
 
 var closeConfirmation = true
 
 var powerupPos = Vector2()
 var popupShown = false
-
-#inventory
-
-var itemSlot1 = ""
-var itemSlot2 = ""
 
 # signals
 
@@ -43,3 +36,7 @@ func signal_p2_join():
 signal end_game
 func signal_end_game():
 	end_game.emit()
+
+signal add_item(item, texture: Resource)
+func signal_add_item(item, texture: Resource):
+	add_item.emit(item, texture)

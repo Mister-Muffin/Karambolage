@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cm613asqivb6f"]
+[gd_scene load_steps=10 format=3 uid="uid://cm613asqivb6f"]
 
 [ext_resource type="Script" path="res://scripts/inventorySlot.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dbcvfqoow2b43" path="res://textures/invSlot.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://ce2jhe45pli80" path="res://textures/health.png" id="3"]
-[ext_resource type="FontFile" uid="uid://vfec85wc02fo" path="res://fonts/BabelStoneModern.ttf" id="4"]
+[ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="4_i5fyo"]
 
 [sub_resource type="Animation" id="Animation_b18c5"]
 length = 0.001
@@ -65,21 +65,6 @@ _data = {
 "RESET": SubResource("Animation_b18c5"),
 "zoom": SubResource("1")
 }
-
-[sub_resource type="FontFile" id="2"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-fallbacks = Array[Font]([ExtResource("4")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="Animation" id="3"]
 resource_name = "anim"
@@ -162,25 +147,40 @@ libraries = {
 }
 
 [node name="item" type="TextureRect" parent="container"]
+visible = false
 light_mask = 2
 layout_mode = 2
 offset_right = 60.0
 offset_bottom = 60.0
-rotation = 12.5664
+scale = Vector2(0.01, 0.01)
 pivot_offset = Vector2(30, 30)
 texture = ExtResource("3")
 
 [node name="container" type="Node" parent="container"]
 
+[node name="slot" type="Label" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 29.0
+offset_right = 55.0
+offset_bottom = 55.0
+theme = ExtResource("4_i5fyo")
+theme_override_font_sizes/font_size = 15
+text = "0"
+vertical_alignment = 2
+
 [node name="number" type="Label" parent="."]
 light_mask = 2
 layout_mode = 0
-offset_left = 26.0
-offset_top = 36.0
+offset_left = 5.0
+offset_top = 34.0
 offset_right = 55.0
 offset_bottom = 55.0
-theme_override_fonts/font = SubResource("2")
+theme = ExtResource("4_i5fyo")
+theme_override_font_sizes/font_size = 15
 text = "N/A"
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="animPlayer" type="AnimationPlayer" parent="."]
 libraries = {
