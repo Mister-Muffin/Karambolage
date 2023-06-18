@@ -6,6 +6,7 @@ extends Control
 @export var energyBarScene: PackedScene
 
 @onready var infoPanel = get_node("uiElements/infoPanel")
+@onready var infoPanelContainer = get_node("uiElements/infoPanel/container")
 @onready var base = get_node("uiElements/gameElements/Base")
 @onready var letterCountdown = get_node("uiElements/gameElements/letterCountdown")
 @onready var letterCountdownTimer = get_node("uiElements/gameElements/letterCountdown/timer")
@@ -80,6 +81,7 @@ func _process(delta):
 		infoPanelTween = get_tree().create_tween()
 		infoPanelTween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		infoPanelTween.tween_property(infoPanel, "position", Vector2(initPos.x, endPosY), 0.5)
+		infoPanelContainer.set_process(true)
 
 	if Input.is_action_just_released("ui_select") && spacePressed:
 		spacePressed = false
@@ -87,6 +89,7 @@ func _process(delta):
 		infoPanelTween = get_tree().create_tween()
 		infoPanelTween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 		infoPanelTween.tween_property(infoPanel, "position", Vector2(initPos.x, initPos.y), 0.5)
+		infoPanelContainer.set_process(false)
 
 	if Input.is_action_pressed("ui_r") || Input.is_action_pressed("quit") || Input.is_action_pressed("ui_m"):
 		contCancel = true

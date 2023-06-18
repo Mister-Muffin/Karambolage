@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://y7qmkb3srevp"]
+[gd_scene load_steps=34 format=3 uid="uid://y7qmkb3srevp"]
 
 [ext_resource type="Script" path="res://scripts/Level/Level.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://d267mpawqf7ih" path="res://scenes/Background.tscn" id="2"]
@@ -11,9 +11,8 @@
 [ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="11_6yos8"]
 [ext_resource type="Script" path="res://scripts/Level/inventory.gd" id="11_je1eo"]
 [ext_resource type="PackedScene" uid="uid://dtk1o5eh7u8xk" path="res://scenes/level/energy_bar.tscn" id="13_hpo1v"]
+[ext_resource type="Script" path="res://scripts/Level/infoContainer.gd" id="13_nfdig"]
 [ext_resource type="PackedScene" uid="uid://cm613asqivb6f" path="res://scenes/inventorySlot.tscn" id="14"]
-[ext_resource type="Script" path="res://scripts/Level/totalEnemysLabel.gd" id="15"]
-[ext_resource type="Script" path="res://scripts/Level/labelFPS.gd" id="16"]
 [ext_resource type="Script" path="res://scripts/Level/pauseMenu.gd" id="17"]
 [ext_resource type="Script" path="res://scripts/Level/infoLabel.gd" id="18"]
 [ext_resource type="Script" path="res://scripts/Level/closeAnimTween.gd" id="19"]
@@ -305,27 +304,26 @@ layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -50.0
-color = Color(0.679688, 0.679688, 0.679688, 0.588235)
+color = Color(0.678431, 0.678431, 0.678431, 0.156863)
 
 [node name="container" type="VBoxContainer" parent="uiElements/infoPanel"]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 alignment = 1
+script = ExtResource("13_nfdig")
 
 [node name="totalEnemysLabel" type="Label" parent="uiElements/infoPanel/container"]
 light_mask = 2
 layout_mode = 2
 theme_override_fonts/font = SubResource("12")
 text = "Monster: N/A"
-script = ExtResource("15")
 
 [node name="labelFPS" type="Label" parent="uiElements/infoPanel/container"]
 light_mask = 2
 layout_mode = 2
 theme_override_fonts/font = SubResource("13")
 text = "FPS: N/A"
-script = ExtResource("16")
 
 [node name="pauseMenu" type="Control" parent="uiElements"]
 process_mode = 3
