@@ -2,8 +2,6 @@ extends ProgressBar
 
 @export_range(1, 2) var player: int = 1
 
-@onready var timer = $regenerationTimer
-
 var energy := 100
 
 var tween: Tween
