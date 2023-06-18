@@ -20,8 +20,8 @@ func move():
 	else:
 		moveTween.tween_property(self, "position", Vector2(990, get("position").y), 0.5)
 
-func _energy_changed(val, player):
-	if player != self.player: return
+func _energy_changed(val, p):
+	if p != player: return
 	var prev_energy = energy
 	energy += val
 
