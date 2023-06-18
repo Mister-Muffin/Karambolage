@@ -1,33 +1,26 @@
-extends Tween
+extends ColorRect
 
-onready var light = get_node("../../Player/Light2D")
-onready var rect = get_node("../rectUp")
+var tween: Tween
 
+var gameEnding := false
 
-func _on_Player_end_game():
-	var initPos = Vector2(rect.get_global_rect().position.x, rect.get_global_rect().position.y)
-	var endPos = Vector2(rect.get_global_rect().position.x, 0)
-	if GLOBALS.cave:
-		interpolate_property(light,
-		"texture_scale",
-		light.texture_scale,
-		0.01,
-		1,
-		Tween.TRANS_LINEAR,
-		Tween.EASE_IN_OUT)
-		start()
-		
-	else:
-		interpolate_property(rect,
-		"rect_position",
-		initPos,
-		endPos,
-		1.5,
-		Tween.TRANS_BOUNCE,
-		Tween.EASE_OUT)
-		start()
+func _ready() -> void:
+	GLOBALS.end_game.connect(_on_game_end)
 
+func _on_game_end():
+	if gameEnding: return
+	gameEnding = true
+	var endPos = Vector2(self.get_global_rect().position.x, 0)
+	if not GLOBALS.cave:
+		if tween: tween.kill()
+		tween = get_tree().create_tween()
+		tween.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+		tween.tween_property(self, "position", endPos, 1.5)
+		tween.tween_callback(tween_callback)
 
-func _on_Tween_tween_completed(object, key):
-	light.visible = false
-	get_tree().change_scene("res://scenes/Restart.tscn")
+var tween_callback = func():
+	await get_tree().create_timer(0.5).timeout
+	_quit()
+
+func _quit():
+	get_tree().change_scene_to_file("res://scenes/Start.tscn")

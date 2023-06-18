@@ -1,158 +1,80 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://bs3mmgpjxgohl"]
 
-[ext_resource path="res://scripts/enemy/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://fonts/texgyreheros-regular.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://enemy/enemy.png" type="Texture" id=3]
+[ext_resource type="Script" path="res://scripts/enemy/Enemy.gd" id="1"]
+[ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="2_66qjw"]
+[ext_resource type="PackedScene" uid="uid://dmoemes2t0bfq" path="res://enemy/DestroyedParticles.tscn" id="2_rw6sd"]
+[ext_resource type="Texture2D" uid="uid://dqwyqjfok64fm" path="res://enemy/enemy.png" id="3"]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 28, 28 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(54, 54)
 
-[sub_resource type="DynamicFont" id=2]
-size = 70
-font_data = ExtResource( 2 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ywjq"]
 
-[sub_resource type="Animation" id=3]
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:text")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "!" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:custom_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 0, 0, 1 ) ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "question"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:text")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "?" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:custom_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 0.796078, 0, 1 ) ]
-}
-
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id="5"]
 radius = 300.0
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 31, 30 )
+[sub_resource type="RectangleShape2D" id="6"]
+size = Vector2(56, 56)
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CircleShape2D" id="7"]
 radius = 392.02
 
-[node name="Enemy" type="KinematicBody2D" groups=[
-"Enemy",
-]]
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1")
+destroyParticles = ExtResource("2_rw6sd")
 
 [node name="mainCollisionShape2" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+shape = SubResource("1")
 
-[node name="ExclamationMark" type="Label" parent="."]
+[node name="enemyLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -28.0
-margin_top = -131.0
-margin_right = 32.0
-margin_bottom = -30.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 1, 0.796078, 0, 1 )
+offset_left = -27.0
+offset_top = -103.0
+offset_right = 27.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_66qjw")
+theme_override_colors/font_color = Color(1, 0.796078, 0, 1)
+theme_override_font_sizes/font_size = 52
 text = "?"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 2
 
-[node name="animPlayer" type="AnimationPlayer" parent="ExclamationMark"]
-anims/axclamMark = SubResource( 3 )
-anims/question = SubResource( 4 )
-
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 3 )
-__meta__ = {
-"_edit_lock_": true
+[node name="animPlayer" type="AnimationPlayer" parent="enemyLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_8ywjq")
 }
 
-[node name="detectingArea" type="Area2D" parent="." groups=[
-"Area",
-]]
-editor/display_folded = true
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3")
+
+[node name="detectingArea" type="Area2D" parent="." groups=["Area3D"]]
 visible = false
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detectingArea"]
-shape = SubResource( 5 )
+shape = SubResource("5")
 
 [node name="collsisionArea" type="Area2D" parent="."]
-editor/display_folded = true
 visible = false
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
 
 [node name="mainCollisionShape" type="CollisionShape2D" parent="collsisionArea"]
-shape = SubResource( 6 )
-__meta__ = {
-"_edit_lock_": true
-}
+shape = SubResource("6")
 
 [node name="warningArea" type="Area2D" parent="."]
-editor/display_folded = true
 visible = false
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="warningArea"]
-shape = SubResource( 7 )
+shape = SubResource("7")
+
 [connection signal="body_entered" from="detectingArea" to="." method="_on_detectingArea_body_entered"]
 [connection signal="body_exited" from="detectingArea" to="." method="_on_detectingArea_body_exited"]
 [connection signal="body_entered" from="collsisionArea" to="." method="_on_collsisionArea_body_entered"]
 [connection signal="body_exited" from="collsisionArea" to="." method="_on_collsisionArea_body_exited"]
-[connection signal="body_entered" from="warningArea" to="." method="_on_warningArea_body_entered"]
-[connection signal="body_exited" from="warningArea" to="." method="_on_warningArea_body_exited"]
+[connection signal="body_entered" from="warningArea" to="." method="_on_warning_area_body_entered"]
+[connection signal="body_exited" from="warningArea" to="." method="_on_warning_area_body_exited"]

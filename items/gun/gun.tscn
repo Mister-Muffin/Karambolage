@@ -6,7 +6,7 @@
 size = Vector2( 60, 60 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 35, 35 )
+size = Vector2( 35, 35 )
 
 [node name="Gun" type="Node2D"]
 script = ExtResource( 1 )

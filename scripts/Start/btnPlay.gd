@@ -1,12 +1,12 @@
 extends Control
 
-var entered = false
+enum modes {NORMAL, CAVE, FAST}
 
-export var title = "Play"
-export var description = ""
-export (String, "Normal", "Cave", "Fast") var mode
+@export var title = "Play"
+@export var description = ""
+@export var mode: modes = modes.NORMAL
 
-export var ScenePath = "res://scenes/Level.tscn"
+@export var ScenePath = "res://scenes/Level.tscn"
 
 func _ready():
 	set_process(true)
@@ -14,31 +14,19 @@ func _ready():
 	$mode.text = "-" + description + "-"
 
 func _process(delta):
-	if get_node("../../../../Main").visible: visible = true
+	if get_node("../../../Main").visible: visible = true
 	else: visible = false
 
-func _on_Area2D_area_shape_entered(area_id, area, area_shape, self_shape):
-	if not entered && area.name == "Mouse":
-		get_parent().layer = 2
-		$animPlayer.play("anim")
-		entered = true
-
-
-func _on_Area2D_area_shape_exited(area_id, area, area_shape, self_shape):
-	if entered && area.name == "Mouse":
-		get_parent().layer = 1
-		$animPlayer.play_backwards("anim")
-		entered = false
-
-
 func _on_button_pressed():
-	if mode == "Cave":
-		GLOBALS.cave = true
-		GLOBALS.fast = false
-	elif mode == "Fast":
-		GLOBALS.fast = true
-		GLOBALS.cave = false
-	else: 
-		GLOBALS.fast = false
-		GLOBALS.cave = false
-	get_tree().change_scene(ScenePath)
+	GLOBALS.fast = mode == modes.FAST
+	GLOBALS.cave = mode == modes.CAVE
+	get_tree().change_scene_to_file(ScenePath)
+
+func _on_button_mouse_entered():
+	$animPlayer.play("anim")
+	# don't cover the other buttons
+	z_index += 1
+
+func _on_button_mouse_exited():
+	$animPlayer.play_backwards("anim")
+	z_index -= 1

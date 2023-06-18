@@ -1,491 +1,490 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=32 format=3 uid="uid://y7qmkb3srevp"]
 
-[ext_resource path="res://scripts/Level/Level.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
-[ext_resource path="res://player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://textures/light.png" type="Texture" id=4]
-[ext_resource path="res://scenes/EnemySpawner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://textures/background.png" type="Texture" id=6]
-[ext_resource path="res://fonts/BabelStoneModern.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://scripts/Level/labelTime.gd" type="Script" id=8]
-[ext_resource path="res://textures/progress.png" type="Texture" id=9]
-[ext_resource path="res://scripts/Level/totalEnemysLabel.gd" type="Script" id=10]
-[ext_resource path="res://scripts/Level/labelFPS.gd" type="Script" id=11]
-[ext_resource path="res://scripts/Level/pauseManager.gd" type="Script" id=12]
-[ext_resource path="res://scripts/Level/closeAnimTween.gd" type="Script" id=13]
-[ext_resource path="res://scenes/Border.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scripts/Level/pauseMenu.gd" type="Script" id=15]
-[ext_resource path="res://scripts/Level/keyBindingCanvas.gd" type="Script" id=16]
-[ext_resource path="res://scenes/popupLayer.gd" type="Script" id=17]
-[ext_resource path="res://themes/theme.tres" type="Theme" id=18]
-[ext_resource path="res://scripts/Level/healthBar.gd" type="Script" id=19]
-[ext_resource path="res://scenes/inventorySlot.tscn" type="PackedScene" id=20]
-[ext_resource path="res://scenes/ItemSpawner.tscn" type="PackedScene" id=21]
+[ext_resource type="Script" path="res://scripts/Level/Level.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://d267mpawqf7ih" path="res://scenes/Background.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cu4ptfibfkx75" path="res://player/Player.tscn" id="3"]
+[ext_resource type="FontFile" uid="uid://vfec85wc02fo" path="res://fonts/BabelStoneModern.ttf" id="5"]
+[ext_resource type="Script" path="res://scripts/Level/labelTime.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://csvhoo735e2ow" path="res://textures/progress.png" id="7"]
+[ext_resource type="Script" path="res://scripts/Level/Base.gd" id="8"]
+[ext_resource type="PackedScene" uid="uid://bf0wn2caen3fo" path="res://scenes/level/health_bar.tscn" id="10_ykl2i"]
+[ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="11_6yos8"]
+[ext_resource type="PackedScene" uid="uid://dtk1o5eh7u8xk" path="res://scenes/level/energy_bar.tscn" id="13_hpo1v"]
+[ext_resource type="PackedScene" uid="uid://cm613asqivb6f" path="res://scenes/inventorySlot.tscn" id="14"]
+[ext_resource type="Script" path="res://scripts/Level/totalEnemysLabel.gd" id="15"]
+[ext_resource type="Script" path="res://scripts/Level/labelFPS.gd" id="16"]
+[ext_resource type="Script" path="res://scripts/Level/pauseMenu.gd" id="17"]
+[ext_resource type="Script" path="res://scripts/Level/infoLabel.gd" id="18"]
+[ext_resource type="Script" path="res://scripts/Level/closeAnimTween.gd" id="19"]
+[ext_resource type="PackedScene" uid="uid://cqgwwhf6ajm1o" path="res://scenes/ItemSpawner.tscn" id="20"]
+[ext_resource type="PackedScene" uid="uid://geph6rl0xq3m" path="res://scenes/Border.tscn" id="21"]
+[ext_resource type="Script" path="res://scripts/Level/camera.gd" id="22"]
+[ext_resource type="Script" path="res://scripts/Level/pauseManager.gd" id="23"]
+[ext_resource type="PackedScene" path="res://scenes/EnemySpawner.tscn" id="24"]
 
-[sub_resource type="DynamicFont" id=1]
-size = 80
-font_data = ExtResource( 7 )
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vwo18"]
 
-[sub_resource type="DynamicFont" id=2]
-size = 50
-font_data = ExtResource( 7 )
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("5")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="DynamicFont" id=3]
-size = 20
-font_data = ExtResource( 7 )
+[sub_resource type="FontFile" id="12"]
+fallbacks = Array[Font]([ExtResource("5")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="DynamicFont" id=4]
-size = 20
-font_data = ExtResource( 7 )
+[sub_resource type="FontFile" id="13"]
+fallbacks = Array[Font]([ExtResource("5")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id="14"]
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("../../canvasLayerPause/colorRectPause:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.784314 ) ]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.784314)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("../../canvasLayerPause/colorRectPause:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ false, true ]
+"values": [false, true]
 }
 
-[sub_resource type="DynamicFont" id=6]
-size = 50
-font_data = ExtResource( 7 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dj6p7"]
+_data = {
+"anim": SubResource("14")
+}
 
-[sub_resource type="DynamicFont" id=7]
-size = 40
-font_data = ExtResource( 7 )
-
-[sub_resource type="Animation" id=8]
-length = 2.0
+[sub_resource type="Animation" id="Animation_mkare"]
+length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("infoLabel:custom_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("infoLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("infoLabel:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1.9, 2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true, true, false ]
+"values": [true]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "zoom"
-length = 0.3
-step = 0.01
+[sub_resource type="Animation" id="Animation_jitfb"]
+resource_name = "blend"
+length = 2.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("confDialog:rect_scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("infoLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 0.1, 0.1 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("confDialog:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
+tracks/1/path = NodePath("infoLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.01, 0.02 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ false, true ]
+"values": [true, false]
 }
 
-[sub_resource type="StyleBoxFlat" id=10]
-bg_color = Color( 0.0980392, 0.65098, 0, 1 )
-
-[sub_resource type="Animation" id=11]
-resource_name = "changeColor"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:custom_styles/fg:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0.0980392, 0.65098, 0, 1 ), Color( 0.792157, 0, 0, 1 ) ]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gic2q"]
+_data = {
+"RESET": SubResource("Animation_mkare"),
+"blend": SubResource("Animation_jitfb")
 }
+
+[sub_resource type="RectangleShape2D" id="22"]
+size = Vector2(810, 82)
 
 [node name="Level" type="Control"]
-margin_right = 1920.0
-margin_bottom = 1080.0
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1")
+playerScene = ExtResource("3")
+healthBarScene = ExtResource("10_ykl2i")
+energyBarScene = ExtResource("13_hpo1v")
+metadata/_edit_lock_ = true
 
-[node name="Background" parent="." instance=ExtResource( 2 )]
+[node name="Background" parent="." instance=ExtResource("2")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-editor/display_folded = true
-position = Vector2( 960, 540 )
-
-[node name="Light2D" type="Light2D" parent="Player"]
+[node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
-texture = ExtResource( 4 )
-texture_scale = 3.5
-energy = 1.5
-mode = 2
+position = Vector2(960, 540)
+scale = Vector2(1920, 1080)
+color = Color(0, 0, 0, 1)
+blend_mode = 2
+texture = SubResource("PlaceholderTexture2D_vwo18")
 
-[node name="EnemySpawner" parent="." instance=ExtResource( 5 )]
+[node name="Player" parent="." instance=ExtResource("3")]
+position = Vector2(960, 540)
 
-[node name="Light2D" type="Light2D" parent="."]
-visible = false
-position = Vector2( 960, 540 )
-scale = Vector2( 32, 18 )
-texture = ExtResource( 6 )
-color = Color( 0, 0, 0, 1 )
-mode = 3
-
-[node name="labelTimer" type="Label" parent="."]
-editor/display_folded = true
-light_mask = 2
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 104.0
-margin_bottom = 105.0
-custom_fonts/font = SubResource( 1 )
-text = "0"
-align = 1
-script = ExtResource( 8 )
-
-[node name="Timer" type="Timer" parent="labelTimer"]
-autostart = true
-
-[node name="Tween" type="Tween" parent="labelTimer"]
-
-[node name="letter_countdown" type="CenterContainer" parent="."]
-editor/display_folded = true
-visible = false
-light_mask = 2
-margin_left = 1140.0
-margin_right = 1240.0
-margin_bottom = 100.0
-
-[node name="progressBar" type="TextureProgress" parent="letter_countdown"]
-light_mask = 2
-margin_right = 100.0
-margin_bottom = 100.0
-texture_progress = ExtResource( 9 )
-fill_mode = 4
-
-[node name="letterLabel" type="Label" parent="letter_countdown"]
-light_mask = 2
-margin_left = 35.0
-margin_top = 20.0
-margin_right = 65.0
-margin_bottom = 80.0
-custom_fonts/font = SubResource( 2 )
-text = "R"
-
-[node name="timer" type="Timer" parent="letter_countdown"]
-one_shot = true
-
-[node name="infoLayer" type="CanvasLayer" parent="."]
-
-[node name="infoPanel" type="Control" parent="infoLayer"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -335.0
-margin_top = -80.0
-margin_right = 335.0
-rect_min_size = Vector2( 450, 0 )
-
-[node name="background" type="ColorRect" parent="infoLayer/infoPanel"]
-light_mask = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -50.0
-color = Color( 0.679688, 0.679688, 0.679688, 0.588235 )
-
-[node name="container" type="VBoxContainer" parent="infoLayer/infoPanel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-alignment = 1
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="totalEnemysLabel" type="Label" parent="infoLayer/infoPanel/container"]
-light_mask = 2
-margin_top = 14.0
-margin_right = 670.0
-margin_bottom = 38.0
-custom_fonts/font = SubResource( 3 )
-text = "Monster: N/A"
-script = ExtResource( 10 )
-
-[node name="labelFPS" type="Label" parent="infoLayer/infoPanel/container"]
-light_mask = 2
-margin_top = 42.0
-margin_right = 670.0
-margin_bottom = 66.0
-custom_fonts/font = SubResource( 4 )
-text = "FPS: N/A"
-script = ExtResource( 11 )
-
-[node name="Tween" type="Tween" parent="infoLayer/infoPanel"]
-
-[node name="pauseManager" type="Node" parent="."]
-pause_mode = 2
-script = ExtResource( 12 )
-
-[node name="closeAnim" type="CanvasLayer" parent="."]
-editor/display_folded = true
-layer = 7
-
-[node name="rectUp" type="ColorRect" parent="closeAnim"]
-anchor_right = 1.0
-margin_top = -1100.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Tween" type="Tween" parent="closeAnim"]
-script = ExtResource( 13 )
-
-[node name="Border" parent="." instance=ExtResource( 14 )]
-
-[node name="canvasLayerPause" type="CanvasLayer" parent="."]
-layer = 3
-
-[node name="colorRectPause" type="ColorRect" parent="canvasLayerPause"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0 )
-
-[node name="canvasPauseMenu" type="CanvasLayer" parent="."]
-layer = 4
-
-[node name="pauseMenu" type="Control" parent="canvasPauseMenu"]
-pause_mode = 2
-light_mask = 2
-anchor_bottom = 1.0
-margin_left = -313.25
-margin_right = -3.24963
-script = ExtResource( 15 )
-
-[node name="animPlayer" type="AnimationPlayer" parent="canvasPauseMenu/pauseMenu"]
-anims/anim = SubResource( 5 )
-
-[node name="Tween" type="Tween" parent="canvasPauseMenu/pauseMenu"]
-pause_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="canvasPauseMenu/pauseMenu"]
-light_mask = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
-alignment = 1
-
-[node name="btnContinue" type="Button" parent="canvasPauseMenu/pauseMenu/VBoxContainer"]
-light_mask = 2
-margin_top = 393.0
-margin_right = 310.0
-margin_bottom = 459.0
-focus_mode = 0
-custom_fonts/font = SubResource( 6 )
-enabled_focus_mode = 0
-text = "Continue"
-flat = true
-
-[node name="spacer" type="Control" parent="canvasPauseMenu/pauseMenu/VBoxContainer"]
-margin_top = 463.0
-margin_right = 310.0
-margin_bottom = 503.0
-rect_min_size = Vector2( 0, 40 )
-
-[node name="btnExit" type="Button" parent="canvasPauseMenu/pauseMenu/VBoxContainer"]
-light_mask = 2
-margin_top = 507.0
-margin_right = 310.0
-margin_bottom = 573.0
-focus_mode = 0
-custom_fonts/font = SubResource( 6 )
-enabled_focus_mode = 0
-text = "Exit"
-flat = true
-
-[node name="spacer2" type="Control" parent="canvasPauseMenu/pauseMenu/VBoxContainer"]
-margin_top = 577.0
-margin_right = 310.0
-margin_bottom = 617.0
-rect_min_size = Vector2( 0, 40 )
-
-[node name="btnQuit" type="Button" parent="canvasPauseMenu/pauseMenu/VBoxContainer"]
-light_mask = 2
-margin_top = 621.0
-margin_right = 310.0
-margin_bottom = 687.0
-focus_mode = 0
-custom_fonts/font = SubResource( 6 )
-enabled_focus_mode = 0
-text = "Quit"
-flat = true
-
-[node name="keyBindingCanvas" type="CanvasLayer" parent="."]
-editor/display_folded = true
-layer = 5
-script = ExtResource( 16 )
-
-[node name="infoLabel" type="Label" parent="keyBindingCanvas"]
-pause_mode = 2
-light_mask = 2
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -249.0
-margin_top = 10.0
-margin_right = 60.0
-margin_bottom = 65.0
-custom_fonts/font = SubResource( 7 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Esc: Pause"
-
-[node name="animPlayer" type="AnimationPlayer" parent="keyBindingCanvas"]
-pause_mode = 2
-anims/blend = SubResource( 8 )
-
-[node name="Timer" type="Timer" parent="keyBindingCanvas"]
-pause_mode = 2
-wait_time = 10.0
-one_shot = true
-autostart = true
-
-[node name="Tween" type="Tween" parent="keyBindingCanvas"]
-pause_mode = 2
-
-[node name="popupLayer" type="CanvasLayer" parent="."]
-layer = 5
-script = ExtResource( 17 )
-
-[node name="confDialog" type="ConfirmationDialog" parent="popupLayer"]
-pause_mode = 2
-visible = true
-light_mask = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 695.5
-margin_top = 447.5
-margin_right = -694.5
-margin_bottom = -447.5
-rect_pivot_offset = Vector2( 265, 92 )
-theme = ExtResource( 18 )
-dialog_text = "Möchten sie das Spiel wirklich beenden?"
-
-[node name="animPlayer" type="AnimationPlayer" parent="popupLayer"]
-pause_mode = 2
-anims/zoom = SubResource( 9 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="uiElements" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="Base" type="Control" parent="CanvasLayer"]
+[node name="gameElements" type="CanvasLayer" parent="uiElements"]
+
+[node name="labelTimer" type="Label" parent="uiElements/gameElements"]
 light_mask = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 104.0
+offset_bottom = 105.0
+theme = ExtResource("11_6yos8")
+theme_override_font_sizes/font_size = 65
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6")
+
+[node name="Timer" type="Timer" parent="uiElements/gameElements/labelTimer"]
+autostart = true
+
+[node name="Tween" type="Tween" parent="uiElements/gameElements/labelTimer"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
+
+[node name="letterCountdown" type="CenterContainer" parent="uiElements/gameElements"]
+visible = false
+light_mask = 2
+offset_left = 1140.0
+offset_right = 1240.0
+offset_bottom = 100.0
+
+[node name="progressBar" type="TextureProgressBar" parent="uiElements/gameElements/letterCountdown"]
+light_mask = 2
+layout_mode = 2
+fill_mode = 4
+texture_progress = ExtResource("7")
+
+[node name="letterLabel" type="Label" parent="uiElements/gameElements/letterCountdown"]
+light_mask = 2
+layout_mode = 2
+theme_override_fonts/font = SubResource("2")
+text = "R"
+
+[node name="timer" type="Timer" parent="uiElements/gameElements/letterCountdown"]
+one_shot = true
+
+[node name="Base" type="Control" parent="uiElements/gameElements"]
+light_mask = 2
+layout_mode = 3
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -100.0
-__meta__ = {
-"_edit_lock_": true
-}
+offset_top = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("8")
 
-[node name="healthBar" type="ProgressBar" parent="CanvasLayer/Base"]
-light_mask = 2
+[node name="healthBar" parent="uiElements/gameElements/Base" instance=ExtResource("10_ykl2i")]
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -300.0
-margin_top = -19.0
-margin_right = 300.0
-margin_bottom = 19.0
-theme = ExtResource( 18 )
-custom_styles/fg = SubResource( 10 )
-value = 100.0
-percent_visible = false
-script = ExtResource( 19 )
-
-[node name="Tween" type="Tween" parent="CanvasLayer/Base/healthBar"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Base/healthBar"]
-anims/changeColor = SubResource( 11 )
-
-[node name="Label" type="Label" parent="CanvasLayer/Base/healthBar"]
-light_mask = 2
-anchor_right = 1.0
 anchor_bottom = 1.0
-text = "Health"
-align = 1
-valign = 1
+offset_left = -400.0
+offset_top = -53.0
+offset_right = 400.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="inventory" type="HBoxContainer" parent="CanvasLayer/Base"]
+[node name="energyBar" parent="uiElements/gameElements/Base" instance=ExtResource("13_hpo1v")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -92.0
+offset_right = 400.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="inventory" type="HBoxContainer" parent="uiElements/gameElements/Base"]
 light_mask = 2
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 310.0
-margin_top = -30.0
-margin_right = 370.0
-margin_bottom = 30.0
-__meta__ = {
-"_edit_group_": true
-}
+offset_left = 750.0
+offset_top = -30.0
+offset_right = 874.0
+offset_bottom = 30.0
+alignment = 2
 
-[node name="slot" parent="CanvasLayer/Base/inventory" instance=ExtResource( 20 )]
+[node name="slot" parent="uiElements/gameElements/Base/inventory" instance=ExtResource("14")]
+layout_mode = 2
 slotNumber = 1
 
-[node name="ItemSpawner" parent="." instance=ExtResource( 21 )]
-[connection signal="end_game" from="Player" to="closeAnim/Tween" method="_on_Player_end_game"]
-[connection signal="timeout" from="labelTimer/Timer" to="labelTimer" method="_on_Timer_timeout"]
-[connection signal="timeout" from="letter_countdown/timer" to="." method="_on_timer_timeout"]
-[connection signal="tween_completed" from="closeAnim/Tween" to="closeAnim/Tween" method="_on_Tween_tween_completed"]
-[connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnContinue" to="canvasPauseMenu/pauseMenu" method="_on_btnContinue_pressed"]
-[connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnExit" to="canvasPauseMenu/pauseMenu" method="_on_btnExit_pressed"]
-[connection signal="pressed" from="canvasPauseMenu/pauseMenu/VBoxContainer/btnQuit" to="canvasPauseMenu/pauseMenu" method="_on_btnQuit_pressed"]
-[connection signal="timeout" from="keyBindingCanvas/Timer" to="keyBindingCanvas" method="_on_Timer_timeout"]
-[connection signal="confirmed" from="popupLayer/confDialog" to="canvasPauseMenu/pauseMenu" method="_on_ConfirmationDialog_confirmed"]
-[connection signal="visibility_changed" from="popupLayer/confDialog" to="canvasPauseMenu/pauseMenu" method="_on_confDialog_visibility_changed"]
-[connection signal="visibility_changed" from="popupLayer/confDialog" to="popupLayer" method="_on_confDialog_visibility_changed"]
-[connection signal="animation_finished" from="popupLayer/animPlayer" to="canvasPauseMenu/pauseMenu" method="_on_animPlayer_animation_finished"]
+[node name="slot2" parent="uiElements/gameElements/Base/inventory" instance=ExtResource("14")]
+layout_mode = 2
+slotNumber = 2
+
+[node name="infoPanel" type="Control" parent="uiElements"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -335.0
+offset_top = -80.0
+offset_right = 335.0
+grow_horizontal = 2
+
+[node name="background" type="ColorRect" parent="uiElements/infoPanel"]
+light_mask = 2
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+color = Color(0.679688, 0.679688, 0.679688, 0.588235)
+
+[node name="container" type="VBoxContainer" parent="uiElements/infoPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="totalEnemysLabel" type="Label" parent="uiElements/infoPanel/container"]
+light_mask = 2
+layout_mode = 2
+theme_override_fonts/font = SubResource("12")
+text = "Monster: N/A"
+script = ExtResource("15")
+
+[node name="labelFPS" type="Label" parent="uiElements/infoPanel/container"]
+light_mask = 2
+layout_mode = 2
+theme_override_fonts/font = SubResource("13")
+text = "FPS: N/A"
+script = ExtResource("16")
+
+[node name="pauseMenu" type="Control" parent="uiElements"]
+process_mode = 3
+light_mask = 2
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -310.0
+offset_right = 0.000366211
+grow_vertical = 2
+script = ExtResource("17")
+
+[node name="animPlayer" type="AnimationPlayer" parent="uiElements/pauseMenu"]
+libraries = {
+"": SubResource("AnimationLibrary_dj6p7")
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="uiElements/pauseMenu"]
+light_mask = 2
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="btnContinue" type="Button" parent="uiElements/pauseMenu/VBoxContainer"]
+light_mask = 2
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("11_6yos8")
+theme_override_font_sizes/font_size = 45
+text = "Continue"
+flat = true
+
+[node name="spacer" type="Control" parent="uiElements/pauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="btnExit" type="Button" parent="uiElements/pauseMenu/VBoxContainer"]
+light_mask = 2
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("11_6yos8")
+theme_override_font_sizes/font_size = 45
+text = "Exit"
+flat = true
+
+[node name="spacer2" type="Control" parent="uiElements/pauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="btnQuit" type="Button" parent="uiElements/pauseMenu/VBoxContainer"]
+light_mask = 2
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("11_6yos8")
+theme_override_font_sizes/font_size = 45
+text = "Quit"
+flat = true
+
+[node name="keyBinding" type="Node" parent="uiElements"]
+
+[node name="infoLabel" type="Label" parent="uiElements/keyBinding"]
+light_mask = 2
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -532.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 160.0
+theme = ExtResource("11_6yos8")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 38
+text = "Esc: Pause/Menu
+WASD: Move
+Arrow keys: 2nd player"
+horizontal_alignment = 2
+script = ExtResource("18")
+
+[node name="animPlayer" type="AnimationPlayer" parent="uiElements/keyBinding"]
+libraries = {
+"": SubResource("AnimationLibrary_gic2q")
+}
+
+[node name="Timer" type="Timer" parent="uiElements/keyBinding"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="confDialog" type="ConfirmationDialog" parent="uiElements"]
+unique_name_in_owner = true
+process_mode = 3
+title = "Please confirm..."
+position = Vector2i(450, 400)
+size = Vector2i(991, 106)
+unresizable = true
+theme = ExtResource("11_6yos8")
+ok_button_text = "Ja"
+dialog_text = "Möchten sie das Spiel wirklich beenden?"
+cancel_button_text = "Nein"
+
+[node name="closeAnim" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="rectUp" type="ColorRect" parent="closeAnim"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -1100.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("19")
+metadata/_edit_lock_ = true
+
+[node name="canvasLayerPause" type="CanvasLayer" parent="."]
+
+[node name="colorRectPause" type="ColorRect" parent="canvasLayerPause"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0)
+
+[node name="baseArea" type="Area2D" parent="."]
+position = Vector2(960, 1026)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="baseArea"]
+visible = false
+shape = SubResource("22")
+
+[node name="ItemSpawner" parent="." instance=ExtResource("20")]
+
+[node name="Border" parent="." instance=ExtResource("21")]
+visible = false
+
+[node name="camera" type="Camera2D" parent="."]
+visible = false
+anchor_mode = 0
+script = ExtResource("22")
+
+[node name="pauseManager" type="Node" parent="."]
+process_mode = 2
+script = ExtResource("23")
+
+[node name="EnemySpawner" parent="." instance=ExtResource("24")]
+
+[node name="container" type="Node" parent="."]
+
+[connection signal="timeout" from="uiElements/gameElements/labelTimer/Timer" to="uiElements/gameElements/labelTimer" method="_on_Timer_timeout"]
+[connection signal="timeout" from="uiElements/gameElements/letterCountdown/timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="uiElements/pauseMenu/VBoxContainer/btnContinue" to="uiElements/pauseMenu" method="_on_btnContinue_pressed"]
+[connection signal="pressed" from="uiElements/pauseMenu/VBoxContainer/btnExit" to="uiElements/pauseMenu" method="_on_btnExit_pressed"]
+[connection signal="pressed" from="uiElements/pauseMenu/VBoxContainer/btnQuit" to="uiElements/pauseMenu" method="_on_btnQuit_pressed"]
+[connection signal="timeout" from="uiElements/keyBinding/Timer" to="uiElements/keyBinding/infoLabel" method="_on_Timer_timeout"]
+[connection signal="confirmed" from="uiElements/confDialog" to="uiElements/pauseMenu" method="_on_ConfirmationDialog_confirmed"]
+[connection signal="body_entered" from="baseArea" to="uiElements/gameElements/Base" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="baseArea" to="uiElements/gameElements/Base" method="_on_Area2D_body_exited"]

@@ -6,7 +6,7 @@ var bullet = preload("res://items/Bullet.tscn")
 var velocity
 
 func _on_Area2D_body_entered(body):
-	if body.is_in_group("Player") && not picked:
+	if body is Player && not picked:
 		picked = true
 		$texture.visible = false
 
@@ -16,5 +16,5 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_pressed("mouse_left") && picked:
-		$container.add_child(bullet.instance())
+		$container.add_child(bullet.instantiate())
 		print("shoot!")
