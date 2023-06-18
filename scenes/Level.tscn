@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://y7qmkb3srevp"]
+[gd_scene load_steps=35 format=3 uid="uid://y7qmkb3srevp"]
 
 [ext_resource type="Script" path="res://scripts/Level/Level.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://d267mpawqf7ih" path="res://scenes/Background.tscn" id="2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/Level/Base.gd" id="8"]
 [ext_resource type="PackedScene" uid="uid://bf0wn2caen3fo" path="res://scenes/level/health_bar.tscn" id="10_ykl2i"]
 [ext_resource type="Theme" uid="uid://ck1yusat33fmo" path="res://main_theme.tres" id="11_6yos8"]
+[ext_resource type="Script" path="res://scripts/Level/inventory.gd" id="11_je1eo"]
 [ext_resource type="PackedScene" uid="uid://dtk1o5eh7u8xk" path="res://scenes/level/energy_bar.tscn" id="13_hpo1v"]
 [ext_resource type="PackedScene" uid="uid://cm613asqivb6f" path="res://scenes/inventorySlot.tscn" id="14"]
 [ext_resource type="Script" path="res://scripts/Level/totalEnemysLabel.gd" id="15"]
@@ -16,7 +17,9 @@
 [ext_resource type="Script" path="res://scripts/Level/pauseMenu.gd" id="17"]
 [ext_resource type="Script" path="res://scripts/Level/infoLabel.gd" id="18"]
 [ext_resource type="Script" path="res://scripts/Level/closeAnimTween.gd" id="19"]
+[ext_resource type="Texture2D" uid="uid://ce2jhe45pli80" path="res://textures/health.png" id="19_wosrs"]
 [ext_resource type="PackedScene" uid="uid://cqgwwhf6ajm1o" path="res://scenes/ItemSpawner.tscn" id="20"]
+[ext_resource type="Texture2D" uid="uid://de837xurdltkl" path="res://textures/energy.png" id="20_b4hmp"]
 [ext_resource type="PackedScene" uid="uid://geph6rl0xq3m" path="res://scenes/Border.tscn" id="21"]
 [ext_resource type="Script" path="res://scripts/Level/camera.gd" id="22"]
 [ext_resource type="Script" path="res://scripts/Level/pauseManager.gd" id="23"]
@@ -277,14 +280,13 @@ offset_top = -30.0
 offset_right = 874.0
 offset_bottom = 30.0
 alignment = 2
+script = ExtResource("11_je1eo")
 
 [node name="slot" parent="uiElements/gameElements/Base/inventory" instance=ExtResource("14")]
 layout_mode = 2
-slotNumber = 1
 
 [node name="slot2" parent="uiElements/gameElements/Base/inventory" instance=ExtResource("14")]
 layout_mode = 2
-slotNumber = 2
 
 [node name="infoPanel" type="Control" parent="uiElements"]
 custom_minimum_size = Vector2(450, 0)
@@ -454,6 +456,8 @@ visible = false
 shape = SubResource("22")
 
 [node name="ItemSpawner" parent="." instance=ExtResource("20")]
+texture_health = ExtResource("19_wosrs")
+texture_energy = ExtResource("20_b4hmp")
 
 [node name="Border" parent="." instance=ExtResource("21")]
 visible = false
