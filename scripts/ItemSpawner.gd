@@ -16,9 +16,14 @@ func _on_timer_timeout():
 func spawn():
 	var item: Item = itemScene.instantiate()
 
-	item.type = Item.TYPES.HEALTH
+	var randomType: Item.TYPES = Item.TYPES[Item.TYPES.keys()[randi() % 2]]
+	item.type = randomType
 	item.global_position = pos
-	item.set_texture(texture_health)
+	match randomType:
+		Item.TYPES.HEALTH:
+			item.set_texture(texture_health)
+		Item.TYPES.ENERGY:
+			item.set_texture(texture_energy)
 
 	$container.add_child(item)
 

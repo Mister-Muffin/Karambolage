@@ -4,13 +4,13 @@ extends Marker2D
 enum TYPES {HEALTH, ENERGY}
 
 var type: TYPES
-var texture: Resource
+var _texture: Resource
 
 func _on_Area2D_body_entered(body):
 	if body is Player:
-		GLOBALS.signal_add_item(type, texture)
+		GLOBALS.signal_add_item(type, _texture)
 		queue_free()
 
 func set_texture(t: Resource):
-	texture = t
-	$Sprite2D.texture = texture
+	_texture = t
+	$Sprite2D.texture = _texture
